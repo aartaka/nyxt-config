@@ -1,0 +1,19 @@
+#+TITLE:My Nyxt Configuration Files
+
+This is my repo with small tweaks to Nyxt that make it more
+comfortable and personal. Things of interest here:
+
+* Alternative format for status-buffer
+
+I don't like the default wordy version of status-buffer (especially
+with long mode names), so I define my own =short-format-status= to make
+modeline a bit more minimalistic. Several helper functions
+(=format-short-status-*=) are there to make things easier. 
+
+This can evolve into an extension someday.
+
+* Status-buffer tweaking for big screens
+
+Small change in =status-buffer= CSS to make it more readable on a big
+screen. It's commented for now, but I'll uncomment it once I fully
+migrate to a big-screen PC.
