@@ -68,17 +68,6 @@
          :background-color "black"
          :color "white")))))))
 
-;; ;; An experimental setting for transition to a bigger screen.
-;; (define-configuration status-buffer
-;;   ((height 30)
-;;    (style (str:concat %slot-default
-;;                       (cl-css:css
-;;                        '((body
-;;                           :font-size "20px"
-;;                           :line-height "30px")
-;;                          (".arrow"
-;;                           :height "30px")))))))
-
 (define-configuration minibuffer
   ((style
     (str:concat
