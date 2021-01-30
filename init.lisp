@@ -81,7 +81,43 @@
   ((default-modes `(emacs-mode ,@%slot-default))
    (conservative-word-move t)
    ;; QWERTY home row.
-   (hints-alphabet "DSJKHLFAGNMXCWEIO")))
+   (hints-alphabet "DSJKHLFAGNMXCWEIO")
+   (search-engines (list (make-instance 'search-engine
+                                        :shortcut "whois"
+                                        :search-url "https://whoisrequest.com/whois/~a"
+                                        :fallback-url "https://whoisrequest.com/")
+                         (make-instance 'search-engine
+                                        :shortcut "ftp"
+                                        :search-url "http://www.freewareweb.com/cgi-bin/ftpsearch.pl?q=~a"
+                                        :fallback-url "http://www.freewareweb.com/ftpsearch.shtml")
+                         (make-instance 'search-engine
+                                        :shortcut "gmaps"
+                                        :search-url "https://www.google.pl/maps/search/~a"
+                                        :fallback-url "https://www.google.pl/maps/search/")
+                         (make-instance 'search-engine
+                                        :shortcut "osm"
+                                        :search-url "https://www.openstreetmap.org/search?query=~a"
+                                        :fallback-url "https://www.openstreetmap.org/")
+                         (make-instance 'search-engine
+                                        :shortcut "wikiwikiweb"
+                                        :search-url "https://proxy.c2.com/cgi/fullSearch?search=~a"
+                                        :fallback-url "http://wiki.c2.com/?FindPage")
+                         (make-instance 'search-engine
+                                        :shortcut "wiki"
+                                        :search-url "https://en.wikipedia.org/w/index.php?search=~a"
+                                        :fallback-url "https://en.wikipedia.org/")
+                         (make-instance 'search-engine
+                                        :shortcut "y"
+                                        :search-url "https://yandex.com/search/?text=~a"
+                                        :fallback-url "https://yandex.com/search/")
+                         (make-instance 'search-engine
+                                        :shortcut "g"
+                                        :search-url "https://google.com/search?q=~a&safe=images"
+                                        :fallback-url "https://google.com/search/")
+                         (make-instance 'search-engine
+                                        :shortcut "d"
+                                        :search-url "https://duckduckgo.com/?q=~a&kae=d&kau=-1&kao=-1&kaq=-1&kap=-1&kax=-1&kak=-1&kaj=m&kk=1&k1=-1&kn=-1&kav=1&kp=-2&ks=m&ko=-1&kt=h&k7=000000&km=m"
+                                        :fallback-url "https://duckduckgo.com/")))))
 
 (define-configuration web-buffer
   ((default-modes `(emacs-mode auto-mode blocker-mode force-https-mode
