@@ -12,8 +12,10 @@ modeline a bit more minimalistic. Several helper functions
 
 This can evolve into an extension someday.
 
-* Status-buffer tweaking for big screens
-
-Small change in =status-buffer= CSS to make it more readable on a big
-screen. It's commented for now, but I'll uncomment it once I fully
-migrate to a big-screen PC.
+* Lots of search engines for different things
+I've just added several search engines to quickly search through
+Internet when I need to. One plan I haven't yet implemented is to use
+some reverse image search engine through Nyxt search engines system
+and some [[http://www.lispworks.com/documentation/HyperSpec/Body/22_ced.htm][accidentally Turing-complete part of format]]. The obstacle is
+that you can't set the file-picker HTML element's value via script --
+it's only user that can do that.
