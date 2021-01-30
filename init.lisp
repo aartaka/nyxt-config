@@ -107,6 +107,10 @@
                                         :search-url "https://en.wikipedia.org/w/index.php?search=~a"
                                         :fallback-url "https://en.wikipedia.org/")
                          (make-instance 'search-engine
+                                        :shortcut "yimg"
+                                        :search-url "https://yandex.ru/images/search?text=~a"
+                                        :fallback-url "https://yandex.ru/images/")
+                         (make-instance 'search-engine
                                         :shortcut "y"
                                         :search-url "https://yandex.com/search/?text=~a"
                                         :fallback-url "https://yandex.com/search/")
