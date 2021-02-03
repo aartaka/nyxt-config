@@ -111,6 +111,24 @@
                                         :search-url "https://yandex.ru/images/search?text=~a"
                                         :fallback-url "https://yandex.ru/images/")
                          (make-instance 'search-engine
+                                        :shortcut "wn"
+                                        ;; As this is an HTTP-only URL, you also need to add
+                                        ;; an auto-mode rule to not enable force-https-mode there.
+                                        :search-url (str:concat
+                                                     "http://wordnetweb.princeton.edu/perl/webwn?s=~a&"
+                                                     (str:join "&"
+                                                               '("o0=1"    ; Show Example sentences
+                                                                 "o1=1"    ; Show Glosses (explanations)
+                                                                 "02=1"    ; Show Frequency counts
+                                                                 ;; "o3="     ; Hide Database Locations
+                                                                 ;; "o4="     ; Hide Lexical File Info
+                                                                 ;; "o5="     ; Hide Lexical File Numbers
+                                                                 ;; "o6="     ; Hide Sense Keys
+                                                                 ;; "o7="     ; Hide Sense Numbers
+                                                                 ))
+                                                     )
+                                        :fallback-url "http://wordnetweb.princeton.edu/perl/webwn")
+                         (make-instance 'search-engine
                                         :shortcut "y"
                                         :search-url "https://yandex.com/search/?text=~a"
                                         :fallback-url "https://yandex.com/search/")
