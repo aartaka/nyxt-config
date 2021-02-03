@@ -6,6 +6,10 @@
   ((session-restore-prompt :always-ask)))
 
 (defun format-short-status-modes (&optional (buffer (current-buffer)))
+  "A shorter version of built-in `format-status-modes'.
+
+Main difference: the modes I personally use often are replaced
+with (mostly) Greek letters."
   (str:replace-using
    '("-mode" ""
      "base" ""
@@ -24,6 +28,8 @@
                    (modes buffer)))))
 
 (defun format-short-status-load-status (&optional (buffer (current-buffer)))
+  "A shorter version of built-in `format-status-load-status'.
+Glyphs are used to reflect the `load-status' other than :finished."
   (when (web-buffer-p buffer)
     (case (slot-value buffer 'nyxt::load-status)
       (:unloaded "∅")
@@ -31,6 +37,9 @@
       (:finished ""))))
 
 (defun format-short-status-url (&optional (buffer (current-buffer)))
+  "A shorter version of built-in `format-status-url'.
+Strips all the obvious decorations (HTTPS scheme, WWW prefix, trailing
+slashes) off the URL."
   (markup:markup
    (:a :class "button"
        :href (lisp-url '(nyxt:set-url-from-current-url))
@@ -44,6 +53,8 @@
                 (title buffer))))))
 
 (defun short-format-status (window)
+  "An alternative version of built-in `format-status'.
+Most sub-functions are replaced with shorter counterparts."
   (let ((buffer (current-buffer window)))
     (markup:markup
      (:div :id "container"
