@@ -5,6 +5,21 @@
 (define-configuration browser
   ((session-restore-prompt :always-ask)))
 
+(push #'password:make-keepassxc-interface password:interface-list)
+
+(define-command setup-keepassxc (&optional (interface (nyxt::password-interface *browser*)))
+  "Input all the necessary values into the `password::keepassxc-interface' INTERFACE.
+Prompt for `password::password-file' once only.
+Prompt for `password::master-password' until the database is unlocked.
+Be wary that completion is not perfect ¯\_(ツ)_/¯"
+  (loop :initially (setf (password::password-file interface)
+                         (prompt-minibuffer
+                          :input-prompt "Password file"
+                          :input-buffer (namestring (uiop:getcwd))))
+        :until (ignore-errors (password:list-passwords interface))
+        :do (setf (password::master-password interface)
+                  (prompt-minibuffer :input-prompt "Master pass" :invisible-input-p t))))
+
 (defun format-short-status-modes (&optional (buffer (current-buffer)))
   "A shorter version of built-in `format-status-modes'.
 
