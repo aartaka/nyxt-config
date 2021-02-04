@@ -108,6 +108,9 @@ Most sub-functions are replaced with shorter counterparts."
    (conservative-word-move t)
    ;; QWERTY home row.
    (hints-alphabet "DSJKHLFAGNMXCWEIO")
+   (override-map (keymap:define-key %slot-default
+                   "C-c p c" 'copy-password
+                   "C-c p s" 'save-new-password))
    (search-engines (list (make-instance 'search-engine
                                         :shortcut "whois"
                                         :search-url "https://whoisrequest.com/whois/~a"
