@@ -103,6 +103,64 @@ Most sub-functions are replaced with shorter counterparts."
          :background-color "black"
          :color "#808080")))))))
 
+(defun wordnet (&key
+                  ;; TODO: Support "Hide all" and "Show-all" args?
+                  (shortcut "wordnet")
+                  (examples t examples-supplied-p)
+                  (glosses t glosses-supplied-p)
+                  (freqs nil freqs-supplied-p)
+                  (db-locations nil db-locations-supplied-p)
+                  (lexical-file-info nil lexical-file-info-supplied-p)
+                  (lexical-file-nums nil lexical-file-nums-supplied-p)
+                  (sense-keys nil sense-keys-supplied-p)
+                  (sense-nums nil sense-nums-supplied-p))
+  "Return the configured `nyxt:search-engine' for WordNet.
+
+To use it, disable force-https-mode for wordnetweb.princeton.edu or
+add auto-mode rule that will manage that for you!
+
+Arguments mean:
+SHORTCUT -- the shortcut you need to input to use this search engine. Set to \"wordnet\" by default.
+EXAMPLES -- Show example sentences. True by default.
+GLOSSES -- Show definitions. True by default.
+FREQS -- Show word frequency counts. False by default.
+DB-LOCATIONS -- Show WordNet database locations for this word. False by default.
+LEXICAL-FILE-INFO -- Show lexical file word belongs to. False by default.
+LEXICAL-FILE-NUMS -- Show number of the word in the lexical file. False by default.
+SENSE-KEYS -- Show symbols for senses of the word. False by default.
+SENSE-NUMS -- Show sense numbers. False by default.
+
+A sensible non-default example:
+\(wordnet :shortcut \"wn\"
+         :freqs t
+         :sense-nums t
+         :examples nil)
+
+This search engine, invokable with \"wn\", will show:
+- NO example sentences,
+- glosses,
+- frequency counts,
+- sense-numbers."
+  (make-instance 'search-engine
+                 :shortcut shortcut
+                 :fallback-url "http://wordnetweb.princeton.edu/perl/webwn"
+                 :search-url (concatenate
+                              'string
+                              "http://wordnetweb.princeton.edu/perl/webwn?s=~a"
+                              ;; Quite a convoluted control string it is, isn't it?
+                              ;; What it means is basically "For each entry in alist,
+                              ;; if the first argument (supplied-p) is true,
+                              ;; then format remaining ones into "&oX=(|1)"."
+                              (format nil "~:{~@[&~*~a=~:[~;1~]~]~}"
+                                      (list (list examples-supplied-p          "o0" examples)
+                                            (list glosses-supplied-p           "o1" glosses)
+                                            (list freqs-supplied-p             "02" freqs )
+                                            (list db-locations-supplied-p      "o3" db-locations)
+                                            (list lexical-file-info-supplied-p "o4" lexical-file-info)
+                                            (list lexical-file-nums-supplied-p "o5" lexical-file-nums)
+                                            (list sense-keys-supplied-p        "o6" sense-keys)
+                                            (list sense-nums-supplied-p        "o7" sense-nums))))))
+
 (define-configuration buffer
   ((default-modes `(emacs-mode ,@%slot-default))
    (conservative-word-move t)
@@ -139,24 +197,9 @@ Most sub-functions are replaced with shorter counterparts."
                                         :shortcut "yimg"
                                         :search-url "https://yandex.ru/images/search?text=~a"
                                         :fallback-url "https://yandex.ru/images/")
-                         (make-instance 'search-engine
-                                        :shortcut "wn"
-                                        ;; As this is an HTTP-only URL, you also need to add
-                                        ;; an auto-mode rule to not enable force-https-mode there.
-                                        :search-url (str:concat
-                                                     "http://wordnetweb.princeton.edu/perl/webwn?s=~a&"
-                                                     (str:join "&"
-                                                               '("o0=1"    ; Show Example sentences
-                                                                 "o1=1"    ; Show Glosses (explanations)
-                                                                 "02=1"    ; Show Frequency counts
-                                                                 ;; "o3="     ; Hide Database Locations
-                                                                 ;; "o4="     ; Hide Lexical File Info
-                                                                 ;; "o5="     ; Hide Lexical File Numbers
-                                                                 ;; "o6="     ; Hide Sense Keys
-                                                                 ;; "o7="     ; Hide Sense Numbers
-                                                                 ))
-                                                     )
-                                        :fallback-url "http://wordnetweb.princeton.edu/perl/webwn")
+                         (wordnet :shortcut "wn"
+                                  :freqs t
+                                  :sense-nums t)
                          (make-instance 'search-engine
                                         :shortcut "y"
                                         :search-url "https://yandex.com/search/?text=~a"
