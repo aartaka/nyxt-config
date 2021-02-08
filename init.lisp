@@ -119,8 +119,7 @@ This search engine, invokable with \"wn\", will show:
                                         :search-url "https://yandex.ru/images/search?text=~a"
                                         :fallback-url "https://yandex.ru/images/")
                          (wordnet :shortcut "wn"
-                                  :freqs t
-                                  :sense-nums t)
+                                  :freqs t)
                          (make-instance 'search-engine
                                         :shortcut "y"
                                         :search-url "https://yandex.com/search/?text=~a"
