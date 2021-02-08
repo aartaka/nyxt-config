@@ -19,3 +19,12 @@ some reverse image search engine through Nyxt search engines system
 and some [[http://www.lispworks.com/documentation/HyperSpec/Body/22_ced.htm][accidentally Turing-complete part of format]]. The obstacle is
 that you can't set the file-picker HTML element's value via script --
 it's only user that can do that.
+
+* A =setup-keepassxc= helper-command (=passwd.lisp=)
+
+This prompts you for the KeePassXC DB password until it's unlocked and
+saves the password to the interface. The raison d'être for this
+command is that you can't set the master-password for the database in
+the publicly available configuration file. The best you can do (except
+for closing the source of the configuration) is to have a one-shot
+command that will Do What You Mean most of the time.
