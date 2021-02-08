@@ -75,7 +75,7 @@ This search engine, invokable with \"wn\", will show:
                               (format nil "~:{~@[&~*~a=~:[~;1~]~]~}"
                                       (list (list examples-supplied-p          "o0" examples)
                                             (list glosses-supplied-p           "o1" glosses)
-                                            (list freqs-supplied-p             "02" freqs )
+                                            (list freqs-supplied-p             "o2" freqs )
                                             (list db-locations-supplied-p      "o3" db-locations)
                                             (list lexical-file-info-supplied-p "o4" lexical-file-info)
                                             (list lexical-file-nums-supplied-p "o5" lexical-file-nums)
