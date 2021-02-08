@@ -3,7 +3,7 @@
 This is my repo with small tweaks to Nyxt that make it more
 comfortable and personal. Things of interest here:
 
-* Alternative format for status-buffer
+* Alternative format for status-buffer (=status.lisp=)
 
 I don't like the default wordy version of status-buffer (especially
 with long mode names), so I define my own =short-format-status= to make
