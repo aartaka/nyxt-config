@@ -3,27 +3,10 @@
 (load-after-system :slynk (nyxt-init-file "slynk.lisp"))
 (load (nyxt-init-file "passwd.lisp"))
 (load (nyxt-init-file "status.lisp"))
+(load (nyxt-init-file "style.lisp"))
 
 (define-configuration browser
   ((session-restore-prompt :always-ask)))
-
-(define-configuration window
-  ((message-buffer-style
-    (str:concat
-     %slot-default
-     (cl-css:css
-      '((body
-         :background-color "black"
-         :color "white")))))))
-
-(define-configuration minibuffer
-  ((style
-    (str:concat
-     %slot-default
-     (cl-css:css
-      '((body
-         :background-color "black"
-         :color "#808080")))))))
 
 (defun wordnet (&key
                   ;; TODO: Support "Hide all" and "Show-all" args?
@@ -138,29 +121,6 @@ This search engine, invokable with \"wn\", will show:
 (define-configuration web-buffer
   ((default-modes `(emacs-mode auto-mode blocker-mode force-https-mode
                                ,@%slot-default))))
-
-(define-configuration internal-buffer
-  ((style
-    (str:concat
-     %slot-default
-     (cl-css:css
-      '((body
-         :background-color "black"
-         :color "lightgray")
-        (hr :color "darkgray")
-        (a :color "#556B2F")
-        (.button :color "#333333")))))))
-
-(define-configuration nyxt/history-tree-mode:history-tree-mode
-  ((nyxt/history-tree-mode:style
-    (str:concat
-     %slot-default
-     (cl-css:css
-      '((body
-         :background-color "black"
-         :color "lightgray")
-        (hr :color "darkgray")
-        (a :color "#556B2F")))))))
 
 (define-configuration nyxt/auto-mode:auto-mode
   ((nyxt/auto-mode:prompt-on-mode-toggle t)))
