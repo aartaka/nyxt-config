@@ -146,10 +146,20 @@ This search engine, invokable with \"wn\", will show:
       '((body
          :background-color "black"
          :color "lightgray")
-        (hr
-         :color "darkgray")
-        (.button
-         :color "#333333")))))))
+        (hr :color "darkgray")
+        (a :color "#556B2F")
+        (.button :color "#333333")))))))
+
+(define-configuration nyxt/history-tree-mode:history-tree-mode
+  ((nyxt/history-tree-mode:style
+    (str:concat
+     %slot-default
+     (cl-css:css
+      '((body
+         :background-color "black"
+         :color "lightgray")
+        (hr :color "darkgray")
+        (a :color "#556B2F")))))))
 
 (define-configuration nyxt/auto-mode:auto-mode
   ((nyxt/auto-mode:prompt-on-mode-toggle t)))
