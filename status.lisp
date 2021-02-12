@@ -48,7 +48,7 @@ slashes) off the URL."
                 (title buffer))))))
 
 (defun short-format-status (window)
-  "An alternative version of built-in `format-status'.
+  "An alternative version of built-in `nyxt::format-status'.
 Most sub-functions are replaced with shorter counterparts."
   (let ((buffer (current-buffer window)))
     (markup:markup
@@ -59,10 +59,14 @@ Most sub-functions are replaced with shorter counterparts."
            (:div :id "url" (markup:raw (format-short-status-url buffer)))
            (:div :class "arrow arrow-right"
                  :style "background-color:rgb(120,120,120)" "")
-           (:div :id "tabs" (markup:raw (format-status-tabs)))
+           (:div :id "tabs" (markup:raw ""))
            (:div :class "arrow arrow-left"
-                 :style "background-color:rgb(120,120,120)" "")
-           (:div :id "modes" (format-short-status-modes buffer))))))
+                 :style (format nil "background-color: ~:[#CD5C5C~;#556B2F~];"
+                                 (find-submode buffer 'nyxt/vi-mode:vi-insert-mode)) "")
+           (:div :id "modes"
+                 :style (format nil "background-color: ~:[#CD5C5C~;#556B2F~];"
+                                 (find-submode buffer 'nyxt/vi-mode:vi-insert-mode))
+                 (format-short-status-modes buffer))))))
 
 (define-configuration window
   ((status-formatter #'short-format-status)))
