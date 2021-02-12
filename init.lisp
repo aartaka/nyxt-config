@@ -90,7 +90,8 @@ This search engine, invokable with \"wn\", will show:
    (hints-alphabet "DSJKHLFAGNMXCWEIO")
    (override-map (keymap:define-key %slot-default
                    "C-c p c" 'copy-password
-                   "C-c p s" 'save-new-password))
+                   "C-c p s" 'save-new-password
+                   "C-f" 'nyxt/web-mode:history-forwards-maybe-query))
    (search-engines (list (make-instance 'search-engine
                                         :shortcut "whois"
                                         :search-url "https://whoisrequest.com/whois/~a"
