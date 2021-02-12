@@ -1,9 +1,10 @@
 (in-package #:nyxt-user)
 
 (load-after-system :slynk (nyxt-init-file "slynk.lisp"))
-(load (nyxt-init-file "passwd.lisp"))
-(load (nyxt-init-file "status.lisp"))
-(load (nyxt-init-file "style.lisp"))
+(dolist (file (list (nyxt-init-file "passwd.lisp")
+                    (nyxt-init-file "status.lisp")
+                    (nyxt-init-file "style.lisp")))
+  (load file))
 
 (define-configuration browser
   ((session-restore-prompt :always-ask)))
