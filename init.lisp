@@ -119,8 +119,8 @@ This search engine, invokable with \"wn\", will show:
                                         :search-url "https://duckduckgo.com/?q=~a&kae=d&kau=-1&kao=-1&kaq=-1&kap=-1&kax=-1&kak=-1&kaj=m&kk=1&k1=-1&kn=-1&kav=1&kp=-2&ks=m&ko=-1&kt=h&k7=000000&km=m"
                                         :fallback-url "https://duckduckgo.com/")))))
 
-(define-configuration web-buffer
-  ((default-modes `(emacs-mode auto-mode blocker-mode force-https-mode
+(define-configuration (web-buffer nosave-buffer)
+  ((default-modes `(emacs-mode auto-mode blocker-mode force-https-mode reduce-tracking-mode
                                ,@%slot-default))))
 
 (define-configuration nyxt/auto-mode:auto-mode
