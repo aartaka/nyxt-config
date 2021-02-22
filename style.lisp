@@ -24,13 +24,9 @@
      %slot-default
      (cl-css:css
       '((title
-         :background-color "#CD5C5C"
-         :color "black"
-         :padding 10)
+         :color "#CD5C5C")
         (h1
-         :background-color "#CD5C5C"
-         :color "black"
-         :padding 10)
+         :color "#CD5C5C")
         (body
          :background-color "black"
          :color "lightgray")
