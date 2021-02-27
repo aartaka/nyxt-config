@@ -7,7 +7,7 @@
   (load file))
 
 (define-configuration browser
-  ((session-restore-prompt :always-ask)))
+  ((session-restore-prompt :never-restore)))
 
 (defun wordnet (&key
                   ;; TODO: Support "Hide all" and "Show-all" args?
