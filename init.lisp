@@ -69,6 +69,7 @@ This search engine, invokable with \"wn\", will show:
 
 (define-configuration buffer
   ((default-modes `(emacs-mode ,@%slot-default))
+   (download-engine :renderer)
    (conservative-word-move t)
    ;; QWERTY home row.
    (hints-alphabet "DSJKHLFAGNMXCWEIO")
