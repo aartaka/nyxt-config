@@ -71,8 +71,6 @@ This search engine, invokable with \"wn\", will show:
   ((default-modes `(emacs-mode ,@%slot-default))
    (download-engine :renderer)
    (conservative-word-move t)
-   ;; QWERTY home row.
-   (hints-alphabet "DSJKHLFAGNMXCWEIO")
    (override-map (keymap:define-key %slot-default
                    "C-c p c" 'copy-password
                    "C-c p s" 'save-new-password
@@ -123,6 +121,10 @@ This search engine, invokable with \"wn\", will show:
 (define-configuration (web-buffer nosave-buffer)
   ((default-modes `(emacs-mode auto-mode blocker-mode force-https-mode reduce-tracking-mode
                                ,@%slot-default))))
+
+(define-configuration nyxt/web-mode:web-mode
+  ;; QWERTY home row.
+  ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")))
 
 (define-configuration nyxt/auto-mode:auto-mode
   ((nyxt/auto-mode:prompt-on-mode-toggle t)))
