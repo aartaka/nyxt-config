@@ -7,7 +7,12 @@
   (load file))
 
 (define-configuration browser
-  ((session-restore-prompt :never-restore)))
+  ((session-restore-prompt :never-restore)
+   (autofills (list (nyxt::make-autofill :key "Shrug" :fill "¯\_(ツ)_/¯")
+                    (nyxt::make-autofill :key "Name"  :fill "Artyom Bologov")
+                    (nyxt::make-autofill :key "Signature" :fill "Best of luck,
+--
+Artyom.")))))
 
 (defun wordnet (&key
                   ;; TODO: Support "Hide all" and "Show-all" args?
