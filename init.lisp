@@ -26,8 +26,12 @@ Artyom.")))))
                    "C-f" 'nyxt/web-mode:history-forwards-maybe-query))))
 
 (define-configuration (web-buffer nosave-buffer)
-  ((default-modes `(emacs-mode auto-mode blocker-mode force-https-mode reduce-tracking-mode
-                               ,@%slot-default))))
+  ((default-modes `(blocker-mode force-https-mode reduce-tracking-mode
+                                 emacs-mode auto-mode
+                                 ,@%slot-default))))
+
+(define-configuration nosave-buffer
+  ((default-modes `(proxy-mode ,@%slot-default))))
 
 (define-configuration nyxt/web-mode:web-mode
   ;; QWERTY home row.
