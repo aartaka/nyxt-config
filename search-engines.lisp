@@ -1,5 +1,25 @@
 (in-package #:nyxt-user)
 
+(defvar *duckduckgo-keywords*
+  '(:theme :dark
+    :help-improve-duckduckgo nil
+    :homepage-privacy-tips nil
+    :privacy-newsletter nil
+    :newsletter-reminders nil
+    :install-reminders nil
+    :install-duckduckgo nil
+    :units-of-measure :metric
+    :keyboard-shortcuts t
+    :advertisements nil
+    :open-in-new-tab nil
+    :infinite-scroll t
+    :safe-search :off
+    :font-size :medium
+    :header-behavior :off
+    :font :helvetica
+    :background-color "000000"
+    :center-alignment t))
+
 (define-configuration buffer
   ((search-engines (list
                     (make-instance 'search-engine
@@ -36,22 +56,15 @@
                                      :show-word-frequencies t)
                     (engines:google :shortcut "g"
                                     :safe-search nil)
-                    (engines:duckduckgo :shortcut "d"
-                                        :theme :dark
-                                        :help-improve-duckduckgo nil
-                                        :homepage-privacy-tips nil
-                                        :privacy-newsletter nil
-                                        :newsletter-reminders nil
-                                        :install-reminders nil
-                                        :install-duckduckgo nil
-                                        :units-of-measure :metric
-                                        :keyboard-shortcuts t
-                                        :advertisements nil
-                                        :open-in-new-tab nil
-                                        :infinite-scroll t
-                                        :safe-search :off
-                                        :font-size :medium
-                                        :header-behavior :off
-                                        :font :helvetica
-                                        :background-color "000000"
-                                        :center-alignment t)))))
+                    (apply #'engines:duckduckgo-images
+                           :shortcut "di" *duckduckgo-keywords*)
+                    (apply #'engines:duckduckgo
+                           :shortcut "d" *duckduckgo-keywords*)))))
+
+(define-configuration engines:search-engines-mode
+  ((engines:search-engine (apply #'engines:duckduckgo *duckduckgo-keywords*))
+   (engines:image-search-engine (apply #'engines:duckduckgo-images *duckduckgo-keywords*))))
+
+(define-configuration engines:search-engines-mode
+  ((engines:search-engine (engines:duckduckgo))
+   (engines:image-search-engine (engines:duckduckgo-images))))
