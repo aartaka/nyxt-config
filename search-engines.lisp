@@ -68,3 +68,6 @@
 (define-configuration engines:search-engines-mode
   ((engines:search-engine (engines:duckduckgo))
    (engines:image-search-engine (engines:duckduckgo-images))))
+
+(define-configuration web-buffer
+  ((default-modes `(engines:search-engines-mode ,@%slot-default))))
