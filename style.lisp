@@ -9,14 +9,33 @@
          :background-color "black"
          :color "white")))))))
 
-(define-configuration minibuffer
-  ((style
-    (str:concat
-     %slot-default
-     (cl-css:css
-      '((body
-         :background-color "black"
-         :color "#808080")))))))
+(define-configuration prompt-buffer
+  ((style (str:concat
+           %slot-default
+           (cl-css:css
+            '((body
+               :background-color "black"
+               :color "white")
+              ("#prompt-area"
+               :background-color "black")
+              ("#input"
+               :background-color "white")
+              (".source-name"
+               :color "black"
+               :background-color "#556B2F")
+              (".source-content"
+               :background-color "black")
+              (".source-content th"
+               :border "1px solid #556B2F"
+               :background-color "black")
+              ("#selection"
+                :background-color "#CD5C5C"
+                :color "black")
+              (.marked :background-color "#8B3A3A"
+                       :font-weight "bold"
+                       :color "white")
+              (.selected :background-color "black"
+                         :color "white")))))))
 
 (define-configuration internal-buffer
   ((style
