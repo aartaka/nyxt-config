@@ -36,16 +36,14 @@ Glyphs are used to reflect the `load-status' other than :finished."
 Strips all the obvious decorations (HTTPS scheme, WWW prefix, trailing
 slashes) off the URL."
   (markup:markup
-   (:a :class "button"
-       :href (lisp-url '(nyxt:set-url-from-current-url))
-       (str:concat
+   (str:concat
         (format-short-status-load-status buffer)
         (format nil " ~a — ~a"
                 (ppcre:regex-replace-all
                  "(https://|www\\.|/$)"
                  (object-display (url buffer))
                  "")
-                (title buffer))))))
+                (title buffer)))))
 
 (defun short-format-status (window)
   "An alternative version of built-in `nyxt::format-status'.
