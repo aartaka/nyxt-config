@@ -13,9 +13,9 @@ Prompt for `password::master-password' until the database is unlocked.
 Be wary that completion is not perfect ¯\_(ツ)_/¯"
   (loop :initially (unless (password::password-file interface)
                      (setf (password::password-file interface)
-                           (prompt-minibuffer
-                            :input-prompt "Password file"
-                            :input-buffer (namestring (uiop:getcwd)))))
+                           (prompt :sources (list (make-instance 'prompter:raw-source
+                                                                 :name "Password file")))))
         :until (password:password-correct-p interface)
         :do (setf (password::master-password interface)
-                  (prompt-minibuffer :input-prompt "Master pass" :invisible-input-p t))))
+                  (prompt :sources (list (make-instance 'prompter:raw-source :name "Password file"))
+                          :invisible-input-p t))))
