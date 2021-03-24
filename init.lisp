@@ -10,9 +10,9 @@
 
 (define-configuration browser
   ((session-restore-prompt :never-restore)
-   (autofills (list (nyxt::make-autofill :key "Shrug" :fill "¯\_(ツ)_/¯")
-                    (nyxt::make-autofill :key "Name"  :fill "Artyom Bologov")
-                    (nyxt::make-autofill :key "Signature" :fill "Best of luck,
+   (autofills (list (nyxt::make-autofill :name "Shrug" :fill "¯\_(ツ)_/¯")
+                    (nyxt::make-autofill :name "Name"  :fill "Artyom Bologov")
+                    (nyxt::make-autofill :name "Signature" :fill "Best of luck,
 --
 Artyom.")))))
 
