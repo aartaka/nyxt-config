@@ -65,9 +65,5 @@
   ((engines:search-engine (apply #'engines:duckduckgo *duckduckgo-keywords*))
    (engines:image-search-engine (apply #'engines:duckduckgo-images *duckduckgo-keywords*))))
 
-(define-configuration engines:search-engines-mode
-  ((engines:search-engine (engines:duckduckgo))
-   (engines:image-search-engine (engines:duckduckgo-images))))
-
 (define-configuration web-buffer
   ((default-modes `(engines:search-engines-mode ,@%slot-default))))
