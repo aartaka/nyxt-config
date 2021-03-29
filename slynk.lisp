@@ -7,7 +7,3 @@ Make sure you understand the security risks associated with this
 before running this command."
   (slynk:create-server :port slynk-port :dont-close t)
   (echo "Slynk server started at port ~a" slynk-port))
-
-;; Start slynk by default.
-(unless nyxt::*keep-alive*
-  (slynk:create-server :port 4006 :dont-close t))
