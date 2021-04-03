@@ -14,7 +14,7 @@
 
 (define-configuration browser
   ((session-restore-prompt :never-restore)
-   (autofills (list (make-autofill :key "shr " :name "Shrug" :fill "¯\_(ツ)_/¯")
+   (autofills (list (make-autofill :key "shr " :name "Shrug" :fill "¯\\_(ツ)_/¯")
                     (make-autofill :key "name" :name "Name"  :fill "Artyom Bologov")
                     (make-autofill :key "sign" :name "Signature" :fill "Best of luck,
 --
