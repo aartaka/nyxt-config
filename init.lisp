@@ -20,19 +20,18 @@
 --
 Artyom.")))))
 
-(define-configuration buffer
-  ((default-modes `(emacs-mode ,@%slot-default))
-   (download-engine :renderer)
-   (conservative-word-move t)
-   (override-map (keymap:define-key %slot-default
-                   "C-c p c" 'copy-password
-                   "C-c p s" 'save-new-password
-                   "C-f" 'nyxt/web-mode:history-forwards-maybe-query))))
+(define-configuration (buffer internal-buffer editor-buffer)
+  ((download-engine :renderer)
+   (conservative-word-move t)))
 
 (define-configuration (web-buffer nosave-buffer)
   ((default-modes `(blocker-mode force-https-mode reduce-tracking-mode
                                  emacs-mode auto-mode
-                                 ,@%slot-default))))
+                                 ,@%slot-default))
+   (override-map (keymap:define-key %slot-default
+                   "C-c p c" 'copy-password
+                   "C-c p s" 'save-new-password
+                   "C-f" 'nyxt/web-mode:history-forwards-maybe-query))))
 
 (define-configuration nosave-buffer
   ((default-modes `(proxy-mode ,@%slot-default))))
