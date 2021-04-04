@@ -21,7 +21,8 @@
 Artyom.")))))
 
 (define-configuration (buffer internal-buffer editor-buffer)
-  ((download-engine :renderer)
+  ((default-modes `(emacs-mode ,@%slot-default))
+   (download-engine :renderer)
    (conservative-word-move t)))
 
 (define-configuration (web-buffer nosave-buffer)
