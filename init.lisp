@@ -26,9 +26,10 @@ Artyom.")))))
    (conservative-word-move t)))
 
 (define-configuration (web-buffer nosave-buffer)
-  ((default-modes `(blocker-mode force-https-mode reduce-tracking-mode
-                                 emacs-mode auto-mode
-                                 ,@%slot-default))
+  ((default-modes `(emacs-mode
+                    blocker-mode force-https-mode reduce-tracking-mode
+                    auto-mode
+                    ,@%slot-default))
    (override-map (keymap:define-key %slot-default
                    "C-c p c" 'copy-password
                    "C-c p s" 'save-new-password
@@ -39,7 +40,9 @@ Artyom.")))))
 
 (define-configuration nyxt/web-mode:web-mode
   ;; QWERTY home row.
-  ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")))
+  ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")
+   (glyph "ω")))
 
 (define-configuration nyxt/auto-mode:auto-mode
-  ((nyxt/auto-mode:prompt-on-mode-toggle t)))
+  ((nyxt/auto-mode:prompt-on-mode-toggle t)
+   (glyph "α")))
