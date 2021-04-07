@@ -12,4 +12,3 @@
   ((glyph "χ")))
 (define-configuration nyxt/style-mode:style-mode ((glyph "ϕ")))
 (define-configuration nyxt/help-mode:help-mode ((glyph "?")))
-(define-configuration nx-search-engines:search-engines-mode ((glyph "σ")))
