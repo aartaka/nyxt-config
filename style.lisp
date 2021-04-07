@@ -29,8 +29,8 @@
                :border "1px solid #556B2F"
                :background-color "black")
               ("#selection"
-                :background-color "#CD5C5C"
-                :color "black")
+               :background-color "#CD5C5C"
+               :color "black")
               (.marked :background-color "#8B3A3A"
                        :font-weight "bold"
                        :color "white")
