@@ -44,8 +44,6 @@
      (cl-css:css
       '((title
          :color "#CD5C5C")
-        (h1
-         :color "#CD5C5C")
         (body
          :background-color "black"
          :color "lightgray")
@@ -62,11 +60,7 @@
     (str:concat
      %slot-default%
      (cl-css:css
-      '((title
-         :background-color "#CD5C5C"
-         :color "black"
-         :padding 10)
-        (body
+      '((body
          :background-color "black"
          :color "lightgray")
         (hr
