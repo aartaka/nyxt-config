@@ -21,7 +21,7 @@
 Artyom.")))))
 
 (define-configuration (buffer internal-buffer editor-buffer)
-  ((default-modes `(emacs-mode ,@%slot-default))
+  ((default-modes `(emacs-mode ,@%slot-default%))
    (download-engine :renderer)
    (conservative-word-move t)))
 
@@ -29,14 +29,14 @@ Artyom.")))))
   ((default-modes `(emacs-mode
                     blocker-mode force-https-mode reduce-tracking-mode
                     auto-mode
-                    ,@%slot-default))
-   (override-map (keymap:define-key %slot-default
+                    ,@%slot-default%))
+   (override-map (keymap:define-key %slot-default%
                    "C-c p c" 'copy-password
                    "C-c p s" 'save-new-password
                    "C-f" 'nyxt/web-mode:history-forwards-maybe-query))))
 
 (define-configuration nosave-buffer
-  ((default-modes `(proxy-mode ,@%slot-default))))
+  ((default-modes `(proxy-mode ,@%slot-default%))))
 
 (define-configuration nyxt/web-mode:web-mode
   ;; QWERTY home row.

@@ -3,7 +3,7 @@
 (define-configuration window
   ((message-buffer-style
     (str:concat
-     %slot-default
+     %slot-default%
      (cl-css:css
       '((body
          :background-color "black"
@@ -11,7 +11,7 @@
 
 (define-configuration prompt-buffer
   ((style (str:concat
-           %slot-default
+           %slot-default%
            (cl-css:css
             '((body
                :background-color "black"
@@ -40,7 +40,7 @@
 (define-configuration internal-buffer
   ((style
     (str:concat
-     %slot-default
+     %slot-default%
      (cl-css:css
       '((title
          :color "#CD5C5C")
@@ -60,7 +60,7 @@
 (define-configuration nyxt/history-tree-mode:history-tree-mode
   ((nyxt/history-tree-mode:style
     (str:concat
-     %slot-default
+     %slot-default%
      (cl-css:css
       '((title
          :background-color "#CD5C5C"

@@ -67,4 +67,4 @@
    (glyph "σ")))
 
 (define-configuration web-buffer
-  ((default-modes `(engines:search-engines-mode ,@%slot-default))))
+  ((default-modes `(engines:search-engines-mode ,@%slot-default%))))
