@@ -66,10 +66,6 @@
          :background-color "#CD5C5C"
          :color "black"
          :padding 10)
-        (h1
-         :background-color "#CD5C5C"
-         :color "black"
-         :padding 10)
         (body
          :background-color "black"
          :color "lightgray")
@@ -77,3 +73,10 @@
          :color "darkgray")
         (a
          :color "#556B2F")))))))
+
+(define-configuration nyxt/web-mode:web-mode
+  ((nyxt/web-mode:highlighted-box-style
+    (cl-css:css
+     '((".nyxt-hint.nyxt-highlight-hint"
+        :background "#CD5C5C")))
+    :documentation "The style of highlighted boxes, e.g. link hints.")))
