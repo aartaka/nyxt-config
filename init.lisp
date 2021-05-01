@@ -20,7 +20,7 @@
 --
 Artyom.")))))
 
-(define-configuration (buffer internal-buffer editor-buffer)
+(define-configuration (buffer internal-buffer editor-buffer prompt-buffer)
   ((default-modes `(emacs-mode ,@%slot-default%))
    (download-engine :renderer)
    (conservative-word-move t)))
