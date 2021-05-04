@@ -1,7 +1,7 @@
 (in-package #:nyxt-user)
 
-(define-configuration window
-  ((message-buffer-style
+(define-configuration nyxt::window
+  ((nyxt::message-buffer-style
     (str:concat
      %slot-default%
      (cl-css:css
