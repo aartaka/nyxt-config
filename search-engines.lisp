@@ -62,8 +62,8 @@
                            :shortcut "d" *duckduckgo-keywords*)))))
 
 (define-configuration engines:search-engines-mode
-  ((engines:search-engine (apply #'engines:duckduckgo *duckduckgo-keywords*))
-   (engines:image-search-engine (apply #'engines:duckduckgo-images *duckduckgo-keywords*))
+  ((engines::search-engine (apply #'engines:duckduckgo *duckduckgo-keywords*))
+   (engines::image-search-engine (apply #'engines:duckduckgo-images *duckduckgo-keywords*))
    (glyph "σ")))
 
 (define-configuration web-buffer

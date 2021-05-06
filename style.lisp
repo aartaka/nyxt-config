@@ -1,7 +1,7 @@
 (in-package #:nyxt-user)
 
-(define-configuration nyxt::window
-  ((nyxt::message-buffer-style
+(define-configuration window
+  ((message-buffer-style
     (str:concat
      %slot-default%
      (cl-css:css
@@ -56,7 +56,7 @@
          :background-color "#556B2F")))))))
 
 (define-configuration nyxt/history-tree-mode:history-tree-mode
-  ((nyxt/history-tree-mode:style
+  ((nyxt/history-tree-mode::style
     (str:concat
      %slot-default%
      (cl-css:css
