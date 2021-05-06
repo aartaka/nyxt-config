@@ -35,6 +35,11 @@ Artyom.")))))
                    "C-c p s" 'save-new-password
                    "C-f" 'nyxt/web-mode:history-forwards-maybe-query))))
 
+(define-configuration prompt-buffer
+  ((hide-single-source-header-p t)))
+(define-configuration prompter:prompter
+  ((prompter:hide-attribute-header-p :single)))
+
 (define-configuration nosave-buffer
   ((default-modes `(proxy-mode ,@%slot-default%))))
 
