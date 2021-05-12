@@ -4,11 +4,8 @@
                     (nyxt-init-file "status.lisp")
                     (nyxt-init-file "style.lisp")))
   (load file))
-(asdf:load-asd "/home/aartaka/git/nx-search-engines/nx-search-engines.asd")
 (load-after-system :nx-search-engines (nyxt-init-file "search-engines.lisp"))
-(asdf:load-asd "/home/aartaka/git/nx-kaomoji/nx-kaomoji.asd")
 (load-after-system :nx-kaomoji (nyxt-init-file "kaomoji.lisp"))
-(asdf:load-asd "/home/aartaka/git/nx-ace/nx-ace.asd")
 (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
 (load-after-system :slynk (nyxt-init-file "slynk.lisp"))
 
