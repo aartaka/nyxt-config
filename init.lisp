@@ -26,11 +26,7 @@ Artyom.")))))
   ((default-modes `(emacs-mode
                     blocker-mode force-https-mode reduce-tracking-mode
                     auto-mode
-                    ,@%slot-default%))
-   (override-map (keymap:define-key %slot-default%
-                   "C-c p c" 'copy-password
-                   "C-c p s" 'save-new-password
-                   "C-f" 'nyxt/web-mode:history-forwards-maybe-query))))
+                    ,@%slot-default%))))
 
 (define-configuration prompt-buffer
   ((hide-single-source-header-p t)))
@@ -41,7 +37,13 @@ Artyom.")))))
 (define-configuration nyxt/web-mode:web-mode
   ;; QWERTY home row.
   ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")
-   (glyph "ω")))
+   (glyph "ω")
+   (keymap-scheme (let ((scheme %slot-default%))
+                    (keymap:define-key (gethash scheme:emacs scheme)
+                      "C-c p c" 'copy-password
+                      "C-c p s" 'save-new-password
+                      "C-f" 'nyxt/web-mode:history-forwards-maybe-query)
+                    scheme))))
 
 (define-configuration nyxt/auto-mode:auto-mode
   ((nyxt/auto-mode:prompt-on-mode-toggle t)
