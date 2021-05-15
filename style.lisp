@@ -66,7 +66,13 @@
         (hr
          :color "darkgray")
         (a
-         :color "#556B2F")))))))
+         :color "#556B2F")
+        ("ul li::before"
+         :background-color "white")
+        ("ul li::after"
+         :background-color "white")
+        ("ul li:only-child::before"
+         :background-color "white")))))))
 
 (define-configuration nyxt/web-mode:web-mode
   ((nyxt/web-mode:highlighted-box-style
