@@ -22,14 +22,6 @@
 
 (define-configuration buffer
   ((search-engines (list
-                    (make-instance 'search-engine
-                                   :shortcut "whois"
-                                   :search-url "https://whoisrequest.com/whois/~a"
-                                   :fallback-url "https://whoisrequest.com/")
-                    (make-instance 'search-engine
-                                   :shortcut "ftp"
-                                   :search-url "http://www.freewareweb.com/cgi-bin/ftpsearch.pl?q=~a"
-                                   :fallback-url "http://www.freewareweb.com/ftpsearch.shtml")
                     (engines:google :shortcut "gmaps"
                                     :object :maps)
                     (make-instance 'search-engine
@@ -37,15 +29,11 @@
                                    :search-url "https://www.openstreetmap.org/search?query=~a"
                                    :fallback-url "https://www.openstreetmap.org/")
                     (make-instance 'search-engine
-                                   :shortcut "wikiwikiweb"
-                                   :search-url "https://proxy.c2.com/cgi/fullSearch?search=~a"
-                                   :fallback-url "http://wiki.c2.com/?FindPage")
-                    (make-instance 'search-engine
                                    :shortcut "wiki"
                                    :search-url "https://en.wikipedia.org/w/index.php?search=~a"
                                    :fallback-url "https://en.wikipedia.org/")
                     (make-instance 'search-engine
-                                   :shortcut "yimg"
+                                   :shortcut "yi"
                                    :search-url "https://yandex.ru/images/search?text=~a"
                                    :fallback-url "https://yandex.ru/images/")
                     (make-instance 'search-engine
@@ -57,7 +45,7 @@
                     (engines:google :shortcut "g"
                                     :safe-search nil)
                     (apply #'engines:duckduckgo-images
-                           :shortcut "di" *duckduckgo-keywords*)
+                           :shortcut "i" *duckduckgo-keywords*)
                     (apply #'engines:duckduckgo
                            :shortcut "d" *duckduckgo-keywords*)))))
 
