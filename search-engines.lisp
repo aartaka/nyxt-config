@@ -29,6 +29,25 @@
                                    :search-url "https://www.openstreetmap.org/search?query=~a"
                                    :fallback-url "https://www.openstreetmap.org/")
                     (make-instance 'search-engine
+                                   :shortcut "golang"
+                                   :search-url "https://golang.org/pkg/~a/"
+                                   :fallback-url (quri:uri "https://golang.org/pkg/")
+                                   :completion-function
+                                   (lambda (input)
+                                     (let ((installed-packages
+                                             (str:split nyxt::+newline+
+                                                        (uiop:run-program
+                                                         "go list all"
+                                                         :output '(:string :stripped t)))))
+                                       (sort
+                                        (serapeum:filter
+                                         #'(lambda (package)
+                                             (str:contains? input package :ignore-case t))
+                                         installed-packages)
+                                        #'(lambda (package1 package2)
+                                            (> (prompter::score-suggestion-string input package1)
+                                               (prompter::score-suggestion-string input package2)))))))
+                    (make-instance 'search-engine
                                    :shortcut "wiki"
                                    :search-url "https://en.wikipedia.org/w/index.php?search=~a"
                                    :fallback-url "https://en.wikipedia.org/")
