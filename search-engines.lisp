@@ -15,7 +15,7 @@
     :infinite-scroll t
     :safe-search :off
     :font-size :medium
-    :header-behavior :off
+    :header-behavior :on-fixed
     :font :helvetica
     :background-color "000000"
     :center-alignment t))
