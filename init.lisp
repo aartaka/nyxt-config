@@ -42,7 +42,9 @@ Artyom.")))))
                     (keymap:define-key (gethash scheme:emacs scheme)
                       "C-c p c" 'copy-password
                       "C-c p s" 'save-new-password
-                      "C-f" 'nyxt/web-mode:history-forwards-maybe-query)
+                      "C-c y" 'autofill
+                      "C-f" 'nyxt/web-mode:history-forwards-maybe-query
+                      "C-i" 'nyxt/input-edit-mode:input-edit-mode)
                     scheme))))
 
 (define-configuration nyxt/auto-mode:auto-mode
