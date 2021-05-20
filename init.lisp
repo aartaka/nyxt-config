@@ -40,8 +40,7 @@ Artyom.")))))
    (glyph "ω")
    (keymap-scheme (let ((scheme %slot-default%))
                     (keymap:define-key (gethash scheme:emacs scheme)
-                      "C-c p c" 'copy-password
-                      "C-c p s" 'save-new-password
+                      "C-c p" 'copy-password
                       "C-c y" 'autofill
                       "C-f" 'nyxt/web-mode:history-forwards-maybe-query
                       "C-i" 'nyxt/input-edit-mode:input-edit-mode
