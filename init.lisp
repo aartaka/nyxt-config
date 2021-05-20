@@ -44,7 +44,9 @@ Artyom.")))))
                       "C-c p s" 'save-new-password
                       "C-c y" 'autofill
                       "C-f" 'nyxt/web-mode:history-forwards-maybe-query
-                      "C-i" 'nyxt/input-edit-mode:input-edit-mode)
+                      "C-i" 'nyxt/input-edit-mode:input-edit-mode
+                      "C-R" 'reload-current-buffer
+                      "C-M-R" 'reload-buffers)
                     scheme))))
 
 (define-configuration nyxt/auto-mode:auto-mode
