@@ -1,6 +1,7 @@
 (in-package #:nyxt-user)
 
-(dolist (file (list (nyxt-init-file "passwd.lisp")
+(dolist (file (list (nyxt-init-file "keybinds.lisp")
+                    (nyxt-init-file "passwd.lisp")
                     (nyxt-init-file "status.lisp")
                     (nyxt-init-file "style.lisp")))
   (load file))
@@ -32,21 +33,7 @@
 (define-configuration nyxt/web-mode:web-mode
   ;; QWERTY home row.
   ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")
-   (glyph "ω")
-   (keymap-scheme (let ((scheme %slot-default%))
-                    (keymap:define-key (gethash scheme:emacs scheme)
-                      "C-c p" 'copy-password
-                      "C-c y" 'autofill
-                      "C-f" 'nyxt/web-mode:history-forwards-maybe-query
-                      "C-i" 'nyxt/input-edit-mode:input-edit-mode)
-                    scheme))))
-
-(define-configuration nyxt::base-mode
-  ((keymap-scheme (let ((scheme %slot-default%))
-                    (keymap:define-key (gethash scheme:emacs scheme)
-                      "C-R" 'reload-current-buffer
-                      "C-M-R" 'reload-buffers)
-                    scheme))))
+   (glyph "ω")))
 
 (define-configuration nyxt/auto-mode:auto-mode
   ((nyxt/auto-mode:prompt-on-mode-toggle t)
