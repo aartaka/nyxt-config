@@ -10,12 +10,7 @@
 (load-after-system :slynk (nyxt-init-file "slynk.lisp"))
 
 (define-configuration browser
-  ((session-restore-prompt :never-restore)
-   (autofills (list (make-autofill :key "shr " :name "Shrug" :fill "¯\\_(ツ)_/¯")
-                    (make-autofill :key "name" :name "Name"  :fill "Artyom Bologov")
-                    (make-autofill :key "sign" :name "Signature" :fill "Best of luck,
---
-Artyom.")))))
+  ((session-restore-prompt :never-restore)))
 
 (define-configuration (buffer internal-buffer editor-buffer prompt-buffer)
   ((default-modes `(emacs-mode ,@%slot-default%))
