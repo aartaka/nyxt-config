@@ -42,7 +42,7 @@
                                        (sort
                                         (serapeum:filter
                                          #'(lambda (package)
-                                             (str:contains? input package :ignore-case t))
+                                             (str:containsp input package :ignore-case t))
                                          installed-packages)
                                         #'(lambda (package1 package2)
                                             (> (prompter::score-suggestion-string input package1)
