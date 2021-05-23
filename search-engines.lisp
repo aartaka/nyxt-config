@@ -40,13 +40,10 @@
                                                          "go list all"
                                                          :output '(:string :stripped t)))))
                                        (sort
-                                        (serapeum:filter
-                                         #'(lambda (package)
-                                             (str:containsp input package :ignore-case t))
-                                         installed-packages)
-                                        #'(lambda (package1 package2)
-                                            (> (prompter::score-suggestion-string input package1)
-                                               (prompter::score-suggestion-string input package2)))))))
+                                        (serapeum:filter (alexandria:curry #'str:containsp input)
+                                                         installed-packages)
+                                        #'> :key (alexandria:curry
+                                                  #'prompter::score-suggestion-string input)))))
                     (make-instance 'search-engine
                                    :shortcut "wiki"
                                    :search-url "https://en.wikipedia.org/w/index.php?search=~a"
