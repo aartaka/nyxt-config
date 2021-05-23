@@ -33,12 +33,12 @@
                                    :search-url "https://golang.org/pkg/~a/"
                                    :fallback-url (quri:uri "https://golang.org/pkg/")
                                    :completion-function
-                                   (lambda (input)
-                                     (let ((installed-packages
-                                             (str:split nyxt::+newline+
-                                                        (uiop:run-program
-                                                         "go list all"
-                                                         :output '(:string :stripped t)))))
+                                   (let ((installed-packages
+                                           (str:split nyxt::+newline+
+                                                      (uiop:run-program
+                                                       "go list all"
+                                                       :output '(:string :stripped t)))))
+                                     (lambda (input)
                                        (sort
                                         (serapeum:filter (alexandria:curry #'str:containsp input)
                                                          installed-packages)
