@@ -80,3 +80,17 @@
      '((".nyxt-hint.nyxt-highlight-hint"
         :background "#CD5C5C")))
     :documentation "The style of highlighted boxes, e.g. link hints.")))
+
+(define-configuration status-buffer
+  ((style (str:concat
+           %slot-default%
+           (cl-css:css
+            '(("#container"
+               ;; Columns: controls, arrow, url, arrow, tabs, arrow, modes
+               :grid-template-columns "10px 10px 1fr 10px 2fr 10px 250px")
+              ("#url"
+               :background-color "rgb(0,0,0)"
+               :border-top "1px solid white")
+              ("#modes"
+               :background-color "rgb(0,0,0)"
+               :border-top "1px solid white")))))))
