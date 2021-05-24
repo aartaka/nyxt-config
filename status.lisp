@@ -14,18 +14,18 @@
 (define-configuration nyxt/help-mode:help-mode ((glyph "?")))
 
 (defun laconic-format-status-load-status (buffer)
-  (markup:markup
-   (:span (if (web-buffer-p buffer)
-              (case (slot-value buffer 'nyxt::load-status)
-                (:unloaded "∅")
-                (:loading "∞")
-                (:finished ""))
-              ""))))
+  (if (web-buffer-p buffer)
+      (case (slot-value buffer 'nyxt::load-status)
+        (:unloaded "∅")
+        (:loading "∞")
+        (:finished ""))
+      ""))
 
 (defun laconic-format-status-url (buffer)
   (markup:markup
    (:a :class "button"
-       (format nil " ~a — ~a"
+       (format nil "~a ~a — ~a"
+               (laconic-format-status-load-status buffer)
                (ppcre:regex-replace-all
                 "(https://|www\\.|/$)"
                 (render-url (url buffer))
@@ -55,7 +55,6 @@
                    :style (input-indicating-background) "")
              (:div :id "url"
                    (markup:raw
-                    (laconic-format-status-load-status buffer)
                     (laconic-format-status-url buffer)))
              (:div :class "arrow arrow-right"
                    :style "background-color:rgb(0,0,0)" "")
