@@ -92,10 +92,12 @@
                 :border-top "1px solid white")
               ("#url"
                :background-color "black"
+               :color "white"
                :border-top "1px solid white")
               ("#modes"
                :background-color "black"
                :border-top "1px solid white")
               ("#tabs"
                :background-color "#CD5C5C"
+               :color "black"
                :border-top "1px solid white")))))))
