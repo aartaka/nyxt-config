@@ -88,9 +88,14 @@
             '(("#container"
                ;; Columns: controls, arrow, url, arrow, tabs, arrow, modes
                :grid-template-columns "10px 10px 1fr 10px 2fr 10px 250px")
+              ("#controls"
+                :border-top "1px solid white")
               ("#url"
-               :background-color "rgb(0,0,0)"
+               :background-color "black"
                :border-top "1px solid white")
               ("#modes"
-               :background-color "rgb(0,0,0)"
+               :background-color "black"
+               :border-top "1px solid white")
+              ("#tabs"
+               :background-color "#CD5C5C"
                :border-top "1px solid white")))))))
