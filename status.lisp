@@ -36,7 +36,7 @@
    (format-status-modes buffer window)
    " | "
    (format nil "~d:~d"
-           (local-time:timestamp-hour (local-time:now))
+           (mod (+ 5 (local-time:timestamp-hour (local-time:now))) 24)
            (local-time:timestamp-minute (local-time:now)))))
 
 (defun laconic-format-status (window)
