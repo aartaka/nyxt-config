@@ -23,14 +23,13 @@
 
 (defun laconic-format-status-url (buffer)
   (markup:markup
-   (:a :class "button"
-       (format nil "~a ~a — ~a"
+   (:span
+       (format nil "~a ~a"
                (laconic-format-status-load-status buffer)
                (ppcre:regex-replace-all
                 "(https://|www\\.|/$)"
                 (render-url (url buffer))
-                "")
-               (title buffer)))))
+                "")))))
 
 (defun laconic-format-status-modes (buffer window)
   (str:concat
@@ -58,9 +57,8 @@
                     (laconic-format-status-url buffer)))
              (:div :class "arrow arrow-right"
                    :style "background-color:rgb(0,0,0)" "")
-             ;; Need to figure out what to put there.
              (:div :id "tabs"
-                   :style "background-color: darkdray" "")
+                   (title buffer))
              (:div :class "arrow arrow-left"
                    :style "background-color:rgb(0,0,0)" "")
              (:div :id "modes"
