@@ -35,9 +35,10 @@
                                    :completion-function
                                    (let ((installed-packages
                                            (str:split nyxt::+newline+
-                                                      (uiop:run-program
-                                                       "go list all"
-                                                       :output '(:string :stripped t)))))
+                                                      (ignore-errors
+                                                       (uiop:run-program
+                                                        "go list all"
+                                                        :output '(:string :stripped t))))))
                                      (lambda (input)
                                        (sort
                                         (serapeum:filter (alexandria:curry #'str:containsp input)
