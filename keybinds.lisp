@@ -9,3 +9,10 @@
                       "C-f" 'nyxt/web-mode:history-forwards-maybe-query
                       "C-i" 'nyxt/input-edit-mode:input-edit-mode)
                     scheme))))
+
+(define-configuration nyxt/auto-mode:auto-mode
+  ;; Need to override the C-R for reload-with-modes.
+  ((keymap-scheme (let ((scheme %slot-default%))
+                    (keymap:define-key (gethash scheme:cua scheme)
+                      "C-R" nil)
+                    scheme))))
