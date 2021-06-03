@@ -61,6 +61,10 @@
                                      :show-word-frequencies t)
                     (engines:google :shortcut "g"
                                     :safe-search nil)
+                    (engines:startpage
+                     :shortcut "sp"
+                     :family-filter nil
+                     :settings-string "806f879950cd466952c5379f2307693b30b87ef2da8e631a6b9c190cf0251f48de50be0202b48b0fa76beefe9b7427b693baeb77c4d24660dc6799469afc24785a974987168e79ce297ca202ad28")
                     (apply #'engines:duckduckgo-images
                            :shortcut "i" *duckduckgo-keywords*)
                     (apply #'engines:duckduckgo
