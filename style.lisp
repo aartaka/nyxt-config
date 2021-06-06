@@ -85,10 +85,7 @@
   ((style (str:concat
            %slot-default%
            (cl-css:css
-            '(("#container"
-               ;; Columns: controls, arrow, url, arrow, tabs, arrow, modes
-               :grid-template-columns "10px 10px 1fr 10px 2fr 10px 250px")
-              ("#controls"
+            '(("#controls"
                 :border-top "1px solid white")
               ("#url"
                :background-color "black"

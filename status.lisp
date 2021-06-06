@@ -47,21 +47,15 @@
     (let ((buffer (current-buffer window)))
       (markup:markup
        (:div :id "container"
-             (:div :id "controls"
+             (:div :id "controls" :class "arrow-right"
                    :style (input-indicating-background)
                    (markup:raw ""))
-             (:div :class "arrow arrow-right"
-                   :style (input-indicating-background) "")
-             (:div :id "url"
+             (:div :id "url" :class "arrow-right"
                    (markup:raw
                     (laconic-format-status-url buffer)))
-             (:div :class "arrow arrow-right"
-                   :style "background-color:rgb(0,0,0)" "")
              (:div :id "tabs"
                    (title buffer))
-             (:div :class "arrow arrow-left"
-                   :style "background-color:rgb(0,0,0)" "")
-             (:div :id "modes"
+             (:div :id "modes" :class "arrow-left"
                    :title (nyxt::list-modes buffer)
                    (laconic-format-status-modes buffer window)))))))
 
