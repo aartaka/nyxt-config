@@ -3,28 +3,71 @@
 This is my repo with small tweaks to Nyxt that make it more
 comfortable and personal. Things of interest here:
 
-* Alternative format for status-buffer (=status.lisp=)
+* The hub of configuration (init.lisp)
+This loads other configuration files:
+- Nyxt-dependent:
+  - keybinds.lisp,
+  - passwd.lisp,
+  - slynk.lisp,
+  -status.lisp,
+  - style.lisp;
+- and extension-dependent:
+  - ace.lisp
+  - kaomoji.lisp
+  - search-engines.lisp
+And configures some basic things, like default modes for buffers.
+
+Everything interesting is in other files.
+
+* Some custom keybindings (keybinds.lisp)
+There are some things that irritate me in default keybindings (like
+=C-R= in =auto-mode=) and I want to unbind/rebind these.
+
+There are some commands that I lack keybindings for (e.g., password
+management, prompting history movement) and I want to add these.
+
+A good example of how you can redefine mode keybinding there!
+
+* Alternative format for status-buffer (status.lisp)
 
 I don't like the default wordy version of status-buffer (especially
-with long mode names), so I define my own =short-format-status= to make
+with long mode names), so I define my own =laconic-format-status= to make
 modeline a bit more minimalistic. Several helper functions
-(=format-short-status-*=) are there to make things easier. 
+(=laconic-format-status-*=) are there to make things easier.
 
 This can evolve into an extension someday.
 
-* Lots of search engines for different things
-I've just added several search engines to quickly search through
-Internet when I need to. One plan I haven't yet implemented is to use
-some reverse image search engine through Nyxt search engines system
-and some [[http://www.lispworks.com/documentation/HyperSpec/Body/22_ced.htm][accidentally Turing-complete part of format]]. The obstacle is
-that you can't set the file-picker HTML element's value via script --
-it's only user that can do that.
+* Styling (style.lisp)
+I love dark themes everywhere, and I _don't_ like blue and green. This
+have made me to do black-red-and-green [[https://github.com/aartaka/laconia-theme][laconia-theme]]. I'm trying to
+reproduce it in style.lisp.
+* Lots of search engines for different things (search-engines.lisp)
+This file has actually evolved from small configuration to an
+extension: [[https://github.com/aartaka/nx-search-engines][nx-search-engines]], so now it's basically an extension
+configuration. To use it, you need to do
+``` lisp
+(load-after-system :nx-search-engines (nyxt-init-file "search-engines.lisp"))
+```
+in your init.lisp.
 
-* A =setup-keepassxc= helper-command (=passwd.lisp=)
+* A KeePassXC configuration (passwd.lisp)
 
-This prompts you for the KeePassXC DB password until it's unlocked and
-saves the password to the interface. The raison d'être for this
-command is that you can't set the master-password for the database in
-the publicly available configuration file. The best you can do (except
-for closing the source of the configuration) is to have a one-shot
-command that will Do What You Mean most of the time.
+This used to contain a =setup-keepassxc= function to setup KeePassXC to
+better work with built-in password interface. Now this function is
+merged upstream as part of this password interface, so what's left is
+just a simple re-configuration of defaults.
+* Ace editor inside Nyxt (ace.lisp)
+This configures [[https://github.com/atlas-engineer/nx-ace][nx-ace]] to work as a default =editor-mode=. To enable it, you need to use
+``` lisp
+(load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
+```
+in your init.lisp.
+* Easy-to-paste Kaomojis (kaomoji.lisp)
+I fell in love with Kaomojis, and I need an easy way to paste these in
+my browser. That's why I made [[https://github.com/aartaka/nx-kaomoji][nx-kaomoji]]! Now I can paste
+over-emotional responses everywhere!
+
+This file is simply a keybinding configuration.
+* Using SLY with Nyxt (slynk.lisp)
+This is a simple copy-paste from the [[https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#sly][developer manual]], nothing
+interesting.
