@@ -86,7 +86,7 @@
            %slot-default%
            (cl-css:css
             '(("#controls"
-                :border-top "1px solid white")
+               :border-top "1px solid white")
               ("#url"
                :background-color "black"
                :color "white"
