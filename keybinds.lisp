@@ -1,7 +1,6 @@
 (in-package #:nyxt-user)
 
 (define-configuration nyxt/web-mode:web-mode
-  ;; QWERTY home row.
   ((keymap-scheme (let ((scheme %slot-default%))
                     (keymap:define-key (gethash scheme:emacs scheme)
                       "C-c p" 'copy-password
