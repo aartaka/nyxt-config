@@ -70,10 +70,10 @@
                     (apply #'engines:duckduckgo
                            :shortcut "d" *duckduckgo-keywords*)))))
 
-(define-configuration engines:search-engines-mode
-  ((engines::search-engine (apply #'engines:duckduckgo *duckduckgo-keywords*))
-   (engines::image-search-engine (apply #'engines:duckduckgo-images *duckduckgo-keywords*))
-   (glyph "σ")))
+;; (define-configuration engines:search-engines-mode
+;;   ((engines::search-engine (apply #'engines:duckduckgo *duckduckgo-keywords*))
+;;    (engines::image-search-engine (apply #'engines:duckduckgo-images *duckduckgo-keywords*))
+;;    (glyph "σ")))
 
-(define-configuration web-buffer
-  ((default-modes `(engines:search-engines-mode ,@%slot-default%))))
+;; (define-configuration web-buffer
+;;   ((default-modes `(engines:search-engines-mode ,@%slot-default%))))
