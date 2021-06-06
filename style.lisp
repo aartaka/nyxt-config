@@ -98,3 +98,14 @@
                :background-color "#CD5C5C"
                :color "black"
                :border-top "1px solid white")))))))
+
+(define-configuration nyxt/style-mode:dark-mode
+  ((style #.(cl-css:css
+             '((*
+                :background-color "black !important"
+                :background-image "none !important"
+                :color "white")
+               (a
+                :background-color "black !important"
+                :background-image "none !important"
+                :color "#556B2F !important"))))))
