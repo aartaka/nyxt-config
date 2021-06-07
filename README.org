@@ -9,7 +9,7 @@ This loads other configuration files:
   - keybinds.lisp,
   - passwd.lisp,
   - slynk.lisp,
-  -status.lisp,
+  - status.lisp,
   - style.lisp;
 - and extension-dependent:
   - ace.lisp
@@ -45,9 +45,9 @@ reproduce it in style.lisp.
 This file has actually evolved from small configuration to an
 extension: [[https://github.com/aartaka/nx-search-engines][nx-search-engines]], so now it's basically an extension
 configuration. To use it, you need to do
-``` lisp
+#+BEGIN_SRC lisp
 (load-after-system :nx-search-engines (nyxt-init-file "search-engines.lisp"))
-```
+#+END_SRC
 in your init.lisp.
 
 * A KeePassXC configuration (passwd.lisp)
@@ -58,9 +58,9 @@ merged upstream as part of this password interface, so what's left is
 just a simple re-configuration of defaults.
 * Ace editor inside Nyxt (ace.lisp)
 This configures [[https://github.com/atlas-engineer/nx-ace][nx-ace]] to work as a default =editor-mode=. To enable it, you need to use
-``` lisp
+#+BEGIN_SRC lisp
 (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
-```
+#+END_SRC
 in your init.lisp.
 * Easy-to-paste Kaomojis (kaomoji.lisp)
 I fell in love with Kaomojis, and I need an easy way to paste these in
@@ -68,6 +68,11 @@ my browser. That's why I made [[https://github.com/aartaka/nx-kaomoji][nx-kaomoj
 over-emotional responses everywhere!
 
 This file is simply a keybinding configuration.
+To enable nx-kaomoji, you need to use
+#+BEGIN_SRC lisp
+(load-after-system :nx-kaomoji (nyxt-init-file "kaomoji.lisp"))
+#+END_SRC
+in your init.lisp.
 * Using SLY with Nyxt (slynk.lisp)
 This is a simple copy-paste from the [[https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#sly][developer manual]], nothing
 interesting.
