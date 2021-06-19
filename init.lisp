@@ -16,8 +16,7 @@
 (define-configuration (buffer internal-buffer editor-buffer prompt-buffer)
   ((default-modes `(emacs-mode ,@%slot-default%))
    (download-engine :renderer)
-   (current-zoom-ratio 1.25)
-   (conservative-word-move t)))
+   (current-zoom-ratio 1.25)))
 
 (define-configuration (web-buffer nosave-buffer)
   ((default-modes `(emacs-mode
