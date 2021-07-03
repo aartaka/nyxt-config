@@ -38,3 +38,12 @@
 (define-configuration nyxt/auto-mode:auto-mode
   ((nyxt/auto-mode:prompt-on-mode-toggle t)
    (glyph "α")))
+
+(define-command-global eval-expression ()
+  "Prompt for the expression and evaluate it, echoing result to the `message-area'."
+  (let ((expression-string
+          ;; Read an arbitrary expression. No error checking, though.
+          (first (prompt :prompt "Expression to evaluate"
+                         :sources (list (make-instance 'prompter:raw-source))))))
+    ;; Message the evaluation result to the message-area down below.
+    (echo "~S" (eval (read-from-string expression-string)))))

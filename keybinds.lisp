@@ -6,7 +6,8 @@
                       "C-c p" 'copy-password
                       "C-c y" 'autofill
                       "C-f" 'nyxt/web-mode:history-forwards-maybe-query
-                      "C-i" 'nyxt/input-edit-mode:input-edit-mode)
+                      "C-i" 'nyxt/input-edit-mode:input-edit-mode
+                      "M-:" 'eval-expression)
                     scheme))))
 
 (define-configuration nyxt/auto-mode:auto-mode
