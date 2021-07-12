@@ -45,18 +45,15 @@
                                                          installed-packages)
                                         #'> :key (alexandria:curry
                                                   #'prompter::score-suggestion-string input)))))
-                    (make-instance 'search-engine
-                                   :shortcut "wiki"
-                                   :search-url "https://en.wikipedia.org/w/index.php?search=~a"
-                                   :fallback-url "https://en.wikipedia.org/")
+                    (engines:wikipedia)
                     (make-instance 'search-engine
                                    :shortcut "yi"
                                    :search-url "https://yandex.ru/images/search?text=~a"
-                                   :fallback-url "https://yandex.ru/images/")
+                                   :fallback-url (quri:uri "https://yandex.ru/images/"))
                     (make-instance 'search-engine
                                    :shortcut "y"
                                    :search-url "https://yandex.com/search/?text=~a"
-                                   :fallback-url "https://yandex.com/search/")
+                                   :fallback-url (quri:uri "https://yandex.com/search/"))
                     (engines:wordnet :shortcut "wn"
                                      :show-word-frequencies t)
                     (engines:google :shortcut "g"
