@@ -24,18 +24,18 @@
 (defun laconic-format-status-url (buffer)
   (markup:markup
    (:span
-       (format nil "~a ~a"
-               (laconic-format-status-load-status buffer)
-               (ppcre:regex-replace-all
-                "(https://|www\\.|/$)"
-                (render-url (url buffer))
-                "")))))
+    (format nil "~a ~a"
+            (laconic-format-status-load-status buffer)
+            (ppcre:regex-replace-all
+             "(https://|www\\.|/$)"
+             (render-url (url buffer))
+             "")))))
 
 (defun laconic-format-status-modes (buffer window)
-  (str:concat
+  (markup:raw
    (format-status-modes buffer window)
    " | "
-   (format nil "~d:~d"
+   (format nil "~2d:~2d"
            (mod (+ 5 (local-time:timestamp-hour (local-time:now))) 24)
            (local-time:timestamp-minute (local-time:now)))))
 
