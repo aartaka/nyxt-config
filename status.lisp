@@ -12,6 +12,8 @@
   ((glyph "χ")))
 (define-configuration nyxt/style-mode:style-mode ((glyph "ϕ")))
 (define-configuration nyxt/help-mode:help-mode ((glyph "?")))
+(define-configuration nyxt/web-mode:web-mode ((glyph "ω")))
+(define-configuration nyxt/auto-mode:auto-mode ((glyph "α")))
 
 (defun laconic-format-status-load-status (buffer)
   (if (web-buffer-p buffer)

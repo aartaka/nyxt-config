@@ -32,12 +32,10 @@
 
 (define-configuration nyxt/web-mode:web-mode
   ;; QWERTY home row.
-  ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")
-   (glyph "ω")))
+  ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")))
 
 (define-configuration nyxt/auto-mode:auto-mode
-  ((nyxt/auto-mode:prompt-on-mode-toggle t)
-   (glyph "α")))
+  ((nyxt/auto-mode:prompt-on-mode-toggle t)))
 
 (define-command-global eval-expression ()
   "Prompt for the expression and evaluate it, echoing result to the `message-area'."
