@@ -1,5 +1,9 @@
 (in-package #:nyxt-user)
 
+(eval-when (:compile-toplevel :load-toplevel :execute)
+  (trivial-package-local-nicknames:add-package-local-nickname :alex :alexandria)
+  (trivial-package-local-nicknames:add-package-local-nickname :sera :serapeum))
+
 (dolist (file (list (nyxt-init-file "keybinds.lisp")
                     (nyxt-init-file "passwd.lisp")
                     (nyxt-init-file "status.lisp")
