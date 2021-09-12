@@ -1,5 +1,10 @@
 (in-package #:nyxt-user)
 
+;;;; This is a file with settings for my nx-search-engines extension.
+;;;; You can find it at https://github.com/aartaka/nx-search-engines
+
+;;; My DDG settings, shared between the usual, image-search and other
+;;; types of DuckDuckGo.
 (defvar *duckduckgo-keywords*
   '(:theme :dark
     :help-improve-duckduckgo nil
@@ -22,6 +27,8 @@
 
 (define-configuration buffer
   ((search-engines (list
+                    ;; engines: is a prefix for `nx-search-engines',
+                    ;; it only works if you load nx-search-engines.
                     (engines:google :shortcut "gmaps"
                                     :object :maps)
                     (make-instance 'search-engine
@@ -32,6 +39,11 @@
                                    :shortcut "golang"
                                    :search-url "https://golang.org/pkg/~a/"
                                    :fallback-url (quri:uri "https://golang.org/pkg/")
+                                   ;; A good example of a custom
+                                   ;; completion function. You can do
+                                   ;; crazy stuff in completion
+                                   ;; function (like reading shell
+                                   ;; commands or files here).
                                    :completion-function
                                    (let ((installed-packages
                                            (str:split nyxt::+newline+
@@ -67,6 +79,8 @@
                     (engines:duckduckgo-html-only :shortcut "dho")
                     (apply #'engines:duckduckgo
                            :shortcut "d" *duckduckgo-keywords*)))))
+
+;;; Deprecated nx-search-engines features.
 
 ;; (define-configuration engines:search-engines-mode
 ;;   ((engines::search-engine (apply #'engines:duckduckgo *duckduckgo-keywords*))

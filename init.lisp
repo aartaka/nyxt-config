@@ -15,7 +15,12 @@
                (nyxt-init-file "style.lisp")))
   (load file))
 
-;;; Loading extensions and third-party-dependent configs.
+;;; Loading extensions and third-party-dependent configs. See the
+;;; matching files for where to find those extensions.
+;;;
+;;; Usually, though, it boils down to cloning a git repository into
+;;; your `*extensions-path*' and adding a `load-after-system' line
+;;; mentioning a config file for this extension.
 (load-after-system :nx-search-engines (nyxt-init-file "search-engines.lisp"))
 (load-after-system :nx-kaomoji (nyxt-init-file "kaomoji.lisp"))
 ;; ;; (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
