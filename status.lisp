@@ -1,5 +1,7 @@
 (in-package #:nyxt-user)
 
+;;; Display modes as short glyphs (listed below) in the mode line
+;;; (bottom-right of the screen).
 (define-configuration status-buffer
   ((glyph-mode-presentation-p t)))
 
