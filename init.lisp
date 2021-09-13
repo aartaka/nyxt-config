@@ -70,3 +70,30 @@
                          :sources (list (make-instance 'prompter:raw-source))))))
     ;; Message the evaluation result to the message-area down below.
     (echo "~S" (eval (read-from-string expression-string)))))
+
+(define-command-global describe-all ()
+  "Prompt for a symbol in any Nyxt-accessible package and describe it in the best way Nyxt can."
+  (let* ((all-symbols (apply #'append (loop for package in (list-all-packages)
+                                            collect (loop for sym being the symbols in package
+                                                          collect sym))))
+         ;; All copied from /nyxt/source/help.lisp with `describe-any' as a reference.
+         (classes (remove-if (lambda (sym)
+                               (not (and (find-class sym nil)
+                                         (mopu:subclassp (find-class sym) (find-class 'standard-object)))))
+                             all-symbols))
+         (slots (alex:mappend (lambda (class-sym)
+                                (mapcar (lambda (slot) (make-instance 'nyxt::slot
+                                                                      :name slot
+                                                                      :class-sym class-sym))
+                                        (nyxt::class-public-slots class-sym)))
+                              classes))
+         (functions (remove-if (complement #'fboundp) all-symbols))
+         (variables (remove-if (complement #'boundp) all-symbols)))
+    (prompt
+     :prompt "Describe:"
+     :sources (list (make-instance 'nyxt::variable-source :constructor variables)
+                    (make-instance 'nyxt::function-source :constructor functions)
+                    (make-instance 'nyxt::user-command-source
+                                   :actions (list (make-unmapped-command describe-command)))
+                    (make-instance 'nyxt::class-source :constructor classes)
+                    (make-instance 'nyxt::slot-source :constructor slots)))))
