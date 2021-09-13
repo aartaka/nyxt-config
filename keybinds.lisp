@@ -2,10 +2,10 @@
 
 ;;; Add basic keybindings.
 ;;;
-;;; If you want to have VI bindings overriden, just use `scheme:vi'
+;;; If you want to have VI bindings overriden, just use `scheme:vi-normal' or `scheme:vi-insert'
 ;;; instead of `scheme:emacs'.
 ;;;
-;;; `keymap-scheme' hosts several schemes inside a has-table, thus the
+;;; `keymap-scheme' hosts several schemes inside a hash-table, thus the
 ;;; `gethash' business
 (define-configuration nyxt/web-mode:web-mode
   ((keymap-scheme (let ((scheme %slot-default%))
