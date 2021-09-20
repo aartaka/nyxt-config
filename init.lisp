@@ -74,7 +74,7 @@
 (define-command-global describe-all ()
   "Prompt for a symbol in any Nyxt-accessible package and describe it in the best way Nyxt can."
   (let* ((all-symbols (apply #'append (loop for package in (list-all-packages)
-                                            collect (loop for sym being the symbols in package
+                                            collect (loop for sym being the external-symbols in package
                                                           collect sym))))
          ;; All copied from /nyxt/source/help.lisp with `describe-any' as a reference.
          (classes (remove-if (lambda (sym)
