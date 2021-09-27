@@ -1,11 +1,5 @@
 (in-package #:nyxt-user)
 
-;;; This adds fancy short nicknames to the often used packages.
-;;; I.e. `alexandria:iota' becomes `alex:iota'.
-(eval-when (:compile-toplevel :load-toplevel :execute)
-  (trivial-package-local-nicknames:add-package-local-nickname :alex :alexandria)
-  (trivial-package-local-nicknames:add-package-local-nickname :sera :serapeum))
-
 ;;; Loading files from the same directory.
 ;;; Can be done individually per file, dolist is there to simplify it.
 (dolist (file (list
@@ -81,12 +75,12 @@
                                (not (and (find-class sym nil)
                                          (mopu:subclassp (find-class sym) (find-class 'standard-object)))))
                              all-symbols))
-         (slots (alex:mappend (lambda (class-sym)
-                                (mapcar (lambda (slot) (make-instance 'nyxt::slot
-                                                                      :name slot
-                                                                      :class-sym class-sym))
-                                        (nyxt::class-public-slots class-sym)))
-                              classes))
+         (slots (alexandria:mappend (lambda (class-sym)
+                                      (mapcar (lambda (slot) (make-instance 'nyxt::slot
+                                                                            :name slot
+                                                                            :class-sym class-sym))
+                                              (nyxt::class-public-slots class-sym)))
+                                    classes))
          (functions (remove-if (complement #'fboundp) all-symbols))
          (variables (remove-if (complement #'boundp) all-symbols)))
     (prompt

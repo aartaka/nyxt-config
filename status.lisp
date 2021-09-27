@@ -26,7 +26,7 @@
 ;;     (:a :class "button"
 ;;         :href (lisp-url '(nyxt:toggle-modes))
 ;;         :title (str:concat "Enabled modes: " (nyxt::list-modes buffer)) "⊕")
-;;     (loop for mode in (sera:filter #'visible-in-status-p (modes buffer))
+;;     (loop for mode in (serapeum:filter #'visible-in-status-p (modes buffer))
 ;;           collect (:a :class "button" :href (lisp-url `(describe-class ',(mode-name mode)))
 ;;                       :title (format nil "Describe ~a" (mode-name mode))
 ;;                       (if (glyph-mode-presentation-p (status-buffer window))
