@@ -13,7 +13,7 @@
   ;;   (unless (gethash scheme:vi-insert scheme)
   ;;     (setf (gethash scheme:vi-insert scheme)
   ;;           (make-keymap (format nil "~a-~a-map" "web" (keymap:name scheme:vi-insert)))))
-  ((nyxt/web-mode:keymap-scheme
+  ((nyxt/web-mode::keymap-scheme
     (define-scheme (:name-prefix "web" :import %slot-default%)
       scheme:emacs
       (list
@@ -27,7 +27,7 @@
   ;; An example of manual keymap modification.
   ;; `keymap-scheme' hosts several schemes inside a hash-table, thus the
   ;; `gethash' business.
-  ((nyxt/auto-mode:keymap-scheme
+  ((nyxt/auto-mode::keymap-scheme
     (let ((scheme %slot-default%))
       (keymap:define-key (gethash scheme:cua scheme)
         ;; Need to override the C-R for reload-with-modes.
