@@ -4,6 +4,9 @@
 ;;;; wrote mine: Laconia (https://github.com/aartaka/laconia). This
 ;;;; file is simply a translation of Laconia colors to Nyxt interface.
 
+;; TODO: Use all the Laconia colors: #FF0000, #6B8E23 in addition to
+;; the already used ones and for color contrast.
+
 ;;; Message buffer is the small line down below where all the messages
 ;;; are displayed. echo-area in Emacs parlance?
 (define-configuration window
