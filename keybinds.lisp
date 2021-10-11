@@ -14,6 +14,8 @@
   ;;     (setf (gethash scheme:vi-insert scheme)
   ;;           (make-keymap (format nil "~a-~a-map" "web" (keymap:name scheme:vi-insert)))))
   ((nyxt/web-mode::keymap-scheme
+    ;; This will only works in 3.0. Change it to the hash-table way
+    ;; below to make it work in 2.1/2.2.
     (define-scheme (:name-prefix "web" :import %slot-default%)
       scheme:emacs
       (list
