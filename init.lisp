@@ -43,6 +43,13 @@
   ;; more minimalist, but those are internal APIs :(
   ((hide-single-source-header-p t)))
 
+;; Basic modes setup for web-buffer.
+(define-configuration web-buffer
+  ((default-modes `(emacs-mode
+                    auto-mode
+                    blocker-mode force-https-mode reduce-tracking-mode
+                    ,@%slot-default%))))
+
 ;;; Enable proxy in nosave (private, incognito) buffers.
 (define-configuration nosave-buffer
   ((default-modes `(proxy-mode ,@%slot-default%))))
