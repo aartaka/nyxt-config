@@ -8,14 +8,9 @@
 ;;; nyxt/web-mode: is the package prefix. Usually is just nyxt/ and mode name.
 ;;; Think of it as Emacs' package prefixes e.g. `org-' in `org-agenda' etc.
 (define-configuration nyxt/web-mode:web-mode
-  ;; An example of define-scheme configuration.
-  ;; Beware: you'll need to create the missing schemes:
-  ;;   (unless (gethash scheme:vi-insert scheme)
-  ;;     (setf (gethash scheme:vi-insert scheme)
-  ;;           (make-keymap (format nil "~a-~a-map" "web" (keymap:name scheme:vi-insert)))))
   ((nyxt/web-mode::keymap-scheme
-    ;; This will only works in 3.0. Change it to the hash-table way
-    ;; below to make it work in 2.1/2.2.
+    ;; This will only works in >2.2.1. Change it to the hash-table way
+    ;; below to make it work in <2.2.
     (define-scheme (:name-prefix "web" :import %slot-default%)
       scheme:emacs
       (list
@@ -26,9 +21,13 @@
         "M-:" 'eval-expression)))))
 
 (define-configuration nyxt/auto-mode:auto-mode
-  ;; An example of manual keymap modification.
+  ;; An example of define-scheme configuration.
   ;; `keymap-scheme' hosts several schemes inside a hash-table, thus the
   ;; `gethash' business.
+  ;; Beware: you'll need to create the missing schemes:
+  ;;   (unless (gethash scheme:vi-insert scheme)
+  ;;     (setf (gethash scheme:vi-insert scheme)
+  ;;           (make-keymap (format nil "~a-~a-map" "web" (keymap:name scheme:vi-insert)))))
   ((nyxt/auto-mode::keymap-scheme
     (let ((scheme %slot-default%))
       (keymap:define-key (gethash scheme:cua scheme)
