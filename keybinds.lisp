@@ -15,10 +15,10 @@
       scheme:emacs
       (list
        "C-c p" 'copy-password
-        "C-c y" 'autofill
-        "C-f" 'nyxt/web-mode:history-forwards-maybe-query
-        "C-i" 'nyxt/input-edit-mode:input-edit-mode
-        "M-:" 'eval-expression)))))
+       "C-c y" 'autofill
+       "C-f" 'nyxt/web-mode:history-forwards-maybe-query
+       "C-i" 'nyxt/input-edit-mode:input-edit-mode
+       "M-:" 'eval-expression)))))
 
 (define-configuration nyxt/auto-mode:auto-mode
   ;; An example of define-scheme configuration.
@@ -33,4 +33,14 @@
       (keymap:define-key (gethash scheme:cua scheme)
         ;; Need to override the C-R for reload-with-modes.
         "C-R" nil)
+      scheme))))
+
+;;; Disable C-w, as it leads my Emacs muscle memory to shoot me in the foot.
+(define-configuration base-mode
+  ((keymap-scheme
+    ;; Alternatively, from 2.2.1 on, use the new syntax (see web-mode config above).
+    (let ((scheme %slot-default%))
+      (keymap:define-key (gethash scheme:cua scheme)
+        ;; Alternatively, bind it to nil.
+        "C-w" 'nothing)
       scheme))))
