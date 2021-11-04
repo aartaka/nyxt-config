@@ -43,7 +43,7 @@
                                    ;; completion function. You can do
                                    ;; crazy stuff in completion
                                    ;; function (like reading shell
-                                   ;; commands or files here).
+                                   ;; commands or files).
                                    :completion-function
                                    (let ((installed-packages
                                            (str:split nyxt::+newline+
@@ -57,7 +57,7 @@
                                                          installed-packages)
                                         #'> :key (alexandria:curry
                                                   #'prompter::score-suggestion-string input)))))
-                    (engines:wikipedia)
+                    (engines:wikipedia :shortcut "w")
                     (make-instance 'search-engine
                                    :shortcut "yi"
                                    :search-url "https://yandex.ru/images/search?text=~a"
