@@ -1,5 +1,12 @@
 (in-package #:nyxt-user)
 
+;;; Load quicklisp. Not sure it works.
+#-quicklisp
+(let ((quicklisp-init
+       (merge-pathnames "quicklisp/setup.lisp" (user-homedir-pathname))))
+  (when (probe-file quicklisp-init)
+    (load quicklisp-init)))
+
 ;;; Loading files from the same directory.
 ;;; Can be done individually per file, dolist is there to simplify it.
 (dolist (file (list
