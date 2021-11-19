@@ -13,8 +13,7 @@
     ;; below to make it work in <2.2.
     (let ((scheme %slot-default%))
       (keymap:define-key (gethash scheme:emacs scheme)
-        ;; Need to override the C-R for reload-with-modes.
-        "C-c p" 'copy-password
+       "C-c p" 'copy-password
        "C-c y" 'autofill
        "C-f" 'nyxt/web-mode:history-forwards-maybe-query
        "C-i" 'nyxt/input-edit-mode:input-edit-mode
