@@ -70,47 +70,19 @@
 (define-configuration nyxt/auto-mode:auto-mode
   ((nyxt/auto-mode:prompt-on-mode-toggle t)))
 
-;;; Extend reduce-tracking-mode to swap user agent.
-(define-configuration nyxt/reduce-tracking-mode:reduce-tracking-mode
-  ((nyxt/reduce-tracking-mode::constructor
-    (lambda (mode)
-     (funcall* %slot-default% mode)
-     (ffi-buffer-user-agent
-      (buffer mode)
-      ;; It's Safari on MacOS, because we break less websites while
-      ;; still being less noticeable in the crowd.
-      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Safari/605.1.15")))))
+;;; reduce-tracking-mode has a preferred-user-agent slot that it uses
+;;; as the User Agent to set when enabled. What I want here is to have
+;;; the same thing as reduce-tracking-mode, but with a different User
+;;; Agent.
+(define-mode chrome-mimick-mode (nyxt/reduce-tracking-mode:reduce-tracking-mode)
+  "A simple mode to set Chrome-like Windows user agent."
+  ((nyxt/reduce-tracking-mode:preferred-user-agent
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36")))
 
-(define-mode chrome-mimick-mode ()
-  "A simple mode to set Chrome-like MacOS user agent."
-  ((old-user-agent nil)
-   (constructor
-    (lambda (mode)
-      (setf (old-user-agent mode)
-            (webkit:webkit-settings-user-agent
-             (webkit:webkit-web-view-get-settings (nyxt::gtk-object (buffer mode)))))
-      (ffi-buffer-user-agent
-       (buffer mode)
-       ;; Yeah, it's Chrome on Windows.
-       "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36")))
-   (destructor
-    (lambda (mode)
-      (ffi-buffer-user-agent (buffer mode) (old-user-agent mode))))))
-
-(define-mode firefox-mimick-mode ()
+(define-mode firefox-mimick-mode (nyxt/reduce-tracking-mode:reduce-tracking-mode)
   "A simple mode to set Firefox-like Linux user agent."
-  ((old-user-agent nil)
-   (constructor
-    (lambda (mode)
-      (setf (old-user-agent mode)
-            (webkit:webkit-settings-user-agent
-             (webkit:webkit-web-view-get-settings (nyxt::gtk-object (buffer mode)))))
-      (ffi-buffer-user-agent
-       (buffer mode)
-       "Mozilla/5.0 (X11; Linux x86_64; rv:94.0) Gecko/20100101 Firefox/94.0")))
-   (destructor
-    (lambda (mode)
-      (ffi-buffer-user-agent (buffer mode) (old-user-agent mode))))))
+  ((nyxt/reduce-tracking-mode:preferred-user-agent
+    "Mozilla/5.0 (X11; Linux x86_64; rv:94.0) Gecko/20100101 Firefox/94.0")))
 
 (define-command-global eval-expression ()
   "Prompt for the expression and evaluate it, echoing result to the `message-area'."
