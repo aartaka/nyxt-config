@@ -57,6 +57,9 @@
                     blocker-mode force-https-mode reduce-tracking-mode
                     ,@%slot-default%))))
 
+(define-configuration file-source
+  ((supported-media-types '("mp3" "ogg" "mp4" "flv" "wmv" "webm" "mkv" "html"))))
+
 ;;; Enable proxy in nosave (private, incognito) buffers.
 (define-configuration nosave-buffer
   ((default-modes `(proxy-mode ,@%slot-default%))))
