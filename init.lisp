@@ -57,8 +57,9 @@
                     blocker-mode force-https-mode reduce-tracking-mode
                     ,@%slot-default%))))
 
+;;; Open HTML files in Nyxt, in addition to default MP3 & friends.
 (define-configuration file-source
-  ((supported-media-types '("mp3" "ogg" "mp4" "flv" "wmv" "webm" "mkv" "html"))))
+  ((supported-media-types `("html" ,@%slot-default%))))
 
 ;;; Enable proxy in nosave (private, incognito) buffers.
 (define-configuration nosave-buffer
