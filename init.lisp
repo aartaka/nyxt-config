@@ -26,6 +26,7 @@
 (load-after-system :nx-kaomoji (nyxt-init-file "kaomoji.lisp"))
 ;; ;; (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
 (load-after-system :slynk (nyxt-init-file "slynk.lisp"))
+(load-after-system :nx-freestance-handler (nyxt-init-file "freestance.lisp"))
 
 (define-configuration browser
   ;; This is for Nyxt to never prompt me about restoring the previous session.
