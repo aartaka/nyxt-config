@@ -15,6 +15,7 @@ This loads other configuration files:
   - ace.lisp
   - kaomoji.lisp
   - search-engines.lisp
+  - freestance.lisp
 And configures some basic things, like default modes for buffers.
 
 Everything interesting is in other files.
@@ -76,3 +77,5 @@ in your init.lisp.
 * Using SLY with Nyxt (slynk.lisp)
 This is a simple copy-paste from the [[https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#sly][developer manual]], nothing
 interesting.
+* Redirections to free alternatives for Twitter/YouTube
+I rely on [[https://github.com/kssytsrk/nx-freestance-handler][kssytsrk/nx-freestance-handler]] here. It's mostly plug-n-play, so not much configuration there.
