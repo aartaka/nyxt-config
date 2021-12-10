@@ -74,7 +74,7 @@
   ;; QWERTY home row.
   ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")))
 
-;;; This make auto-mode to prompt me about remembering this or that
+;;; This makes auto-mode to prompt me about remembering this or that
 ;;; mode when I toggle it.
 (define-configuration nyxt/auto-mode:auto-mode
   ((nyxt/auto-mode:prompt-on-mode-toggle t)))
