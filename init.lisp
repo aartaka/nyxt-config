@@ -43,7 +43,11 @@
    (download-engine :renderer)
    ;; I'm weak on the eyes, so I want everything to be a bit
    ;; zoomed-in.
-   (current-zoom-ratio 1.25)))
+   (current-zoom-ratio 1.25)
+   ;; I don't like search completion when I don't need it.
+   ;;
+   ;; Works only after 2.2.3, remove if it breaks Nyxt.
+   (search-always-auto-complete-p nil)))
 
 (define-configuration prompt-buffer
   ;; This is to hide the header is there's only one source.
