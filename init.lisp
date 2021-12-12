@@ -93,6 +93,40 @@
      ;; "Inspect element" context menu option available at any moment.
      (webkit:webkit-settings-enable-developer-extras settings) t)))
 
+;; (define-configuration browser
+;;   ;; This is the hook for window initialization.
+;;   ((window-make-hook
+;;     (hooks:add-hook
+;;      %slot-default%
+;;      (nyxt::make-handler-window
+;;       (lambda (window)
+;;         ;; Status bar hiding.
+;;         ;; Works by setting height of the GTK widget
+;;         ;; that status-bar is rendered in, to 0. Does
+;;         ;; not delete status bar, so you can use
+;;         ;;  (setf (gtk:gtk-widget-size-request (status-container window))
+;;         ;;        (list -1 (height status-buffer))
+;;         ;; and
+;;         ;;  (setf (gtk:gtk-widget-size-request (message-container window))
+;;         ;;        (list -1 (message-buffer-height window))
+;;         ;; to toggle it back on.
+;;         ;;
+;;         ;; I also wouldn't recommend using GTK guts
+;;         ;; of Nyxt in such a way, as it could break
+;;         ;; in horrible ways the moment we change
+;;         ;; these guts. However, there's no way to
+;;         ;; accomplish what you want without hooking
+;;         ;; into Nyxt/GTK guts.
+;;         (setf (gtk:gtk-widget-size-request (status-container window))
+;;               (list -1 0))
+;;         ;; Message area hiding. I don't recommend
+;;         ;; doing it, as you could miss some important
+;;         ;; messages.
+;;         ;; (setf (gtk:gtk-widget-size-request (message-container window))
+;;         ;;       (list -1 0))
+;;         )
+;;       :name 'hide-status-bar)))))
+
 ;;; reduce-tracking-mode has a preferred-user-agent slot that it uses
 ;;; as the User Agent to set when enabled. What I want here is to have
 ;;; the same thing as reduce-tracking-mode, but with a different User
