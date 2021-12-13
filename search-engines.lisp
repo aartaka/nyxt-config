@@ -58,6 +58,10 @@
                                         #'> :key (alexandria:curry
                                                   #'prompter::score-suggestion-string input)))))
                     (engines:wikipedia :shortcut "w")
+                    (engines:arch)
+                    (engines:arch-aur)
+                    (engines:debian)
+                    (engines:pkgs)
                     (make-instance 'search-engine
                                    :shortcut "yi"
                                    :search-url "https://yandex.ru/images/search?text=~a"
