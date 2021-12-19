@@ -167,7 +167,9 @@
                                               (nyxt::class-public-slots class-sym)))
                                     classes))
          (functions (remove-if (complement #'fboundp) all-symbols))
-         (variables (remove-if (complement #'boundp) all-symbols)))
+         (variables (remove-if (lambda (sym) (or (not (boundp sym))
+                                                 (keywordp sym)))
+                               all-symbols)))
     (prompt
      :prompt "Describe:"
      :sources (list (make-instance 'nyxt::variable-source :constructor variables)
