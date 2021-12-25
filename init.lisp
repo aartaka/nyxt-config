@@ -91,7 +91,20 @@
      ;; Write console errors/warnings to the shell, to ease debugging.
      (webkit:webkit-settings-enable-write-console-messages-to-stdout settings) t
      ;; "Inspect element" context menu option available at any moment.
-     (webkit:webkit-settings-enable-developer-extras settings) t)))
+     (webkit:webkit-settings-enable-developer-extras settings) t
+     ;; Use Cantarell as the default font.
+     (webkit:webkit-settings-default-font-family settings) "Cantarell")
+    ;; Set the view background to black.
+    (cffi:foreign-funcall
+     "webkit_web_view_set_background_color"
+     :pointer (g:pointer (gtk-object buffer))
+     ;; GdkRgba is simply an array of four doubles.
+     :pointer (cffi:foreign-alloc
+               :double
+               :count 4
+               ;; red green blue alpha
+               :initial-contents '(0d0 0d0 0d0 1d0))
+     :void)))
 
 ;; (define-configuration browser
 ;;   ;; This is the hook for window initialization.
