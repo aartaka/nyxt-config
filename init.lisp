@@ -1,5 +1,9 @@
 (in-package #:nyxt-user)
 
+;;; Reset ASDF registries to allow loading Lisp systems from
+;;; everywhere.
+(reset-asdf-registries)
+
 ;;; Load quicklisp. Not sure it works.
 #-quicklisp
 (let ((quicklisp-init
