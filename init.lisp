@@ -35,7 +35,9 @@
 (define-configuration browser
   ;; This is for Nyxt to never prompt me about restoring the previous session.
   ((session-restore-prompt :never-restore)
-   (external-editor-program (list "gedit"))))
+   (external-editor-program
+    (list "emacsclient" "-cn" "-a" "" "-F"
+          "((font . \"IBM Plex Mono-17\") (vertical-scroll-bars)(tool-bar-lines) (menu-bar-lines))"))))
 
 ;;; Those are settings that every type of buffer should share.
 (define-configuration (buffer internal-buffer editor-buffer prompt-buffer)
