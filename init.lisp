@@ -24,8 +24,9 @@
 ;;; matching files for where to find those extensions.
 ;;;
 ;;; Usually, though, it boils down to cloning a git repository into
-;;; your `*extensions-path*' and adding a `load-after-system' line
-;;; mentioning a config file for this extension.
+;;; your `*extensions-path*' (usually ~/.local/share/nyxt/extensions)
+;;; and adding a `load-after-system' line mentioning a config file for
+;;; this extension.
 (load-after-system :nx-search-engines (nyxt-init-file "search-engines.lisp"))
 (load-after-system :nx-kaomoji (nyxt-init-file "kaomoji.lisp"))
 ;; ;; (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
