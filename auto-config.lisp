@@ -1,0 +1,1 @@
+(LOAD-AFTER-SYSTEM :NX-FRUIT (NYXT-INIT-FILE "nx-fruit.lisp"))
