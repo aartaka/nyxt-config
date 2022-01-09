@@ -99,8 +99,9 @@
      (webkit:webkit-settings-enable-write-console-messages-to-stdout settings) t
      ;; "Inspect element" context menu option available at any moment.
      (webkit:webkit-settings-enable-developer-extras settings) t
-     ;; Use Cantarell as the default font.
-     (webkit:webkit-settings-default-font-family settings) "Cantarell")
+     ;; Use Cantarell-18 as the default font.
+     (webkit:webkit-settings-default-font-family settings) "Cantarell"
+     (webkit:webkit-settings-default-font-size settings) 18)
     ;; Set the view background to black.
     (cffi:foreign-funcall
      "webkit_web_view_set_background_color"
