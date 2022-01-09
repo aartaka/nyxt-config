@@ -74,6 +74,9 @@
                                      :show-word-frequencies t)
                     (engines:google :shortcut "g"
                                     :safe-search nil)
+                    (engines:google-scholar :shortcut "gs")
+                    (engines:google-scholar :shortcut "scholar-new"
+                                            :starting-time 2015)
                     (engines:startpage
                      :shortcut "sp"
                      :family-filter nil
