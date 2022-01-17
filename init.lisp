@@ -107,6 +107,9 @@
      (webkit:webkit-settings-default-font-family settings) "Cantarell"
      (webkit:webkit-settings-default-font-size settings) 18)
     ;; Set the view background to black.
+    ;;
+    ;; Be careful: it breaks lots of plain background-less HTML
+    ;; websites and is not quite user-friendly, it seems.
     (cffi:foreign-funcall
      "webkit_web_view_set_background_color"
      :pointer (g:pointer (gtk-object buffer))
