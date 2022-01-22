@@ -127,11 +127,13 @@
 ;;; as the User Agent to set when enabled. What I want here is to have
 ;;; the same thing as reduce-tracking-mode, but with a different User
 ;;; Agent.
+#+nyxt-unstable
 (define-mode chrome-mimick-mode (nyxt/reduce-tracking-mode:reduce-tracking-mode)
   "A simple mode to set Chrome-like Windows user agent."
   ((nyxt/reduce-tracking-mode:preferred-user-agent
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36")))
 
+#+nyxt-unstable
 (define-mode firefox-mimick-mode (nyxt/reduce-tracking-mode:reduce-tracking-mode)
   "A simple mode to set Firefox-like Linux user agent."
   ((nyxt/reduce-tracking-mode:preferred-user-agent
