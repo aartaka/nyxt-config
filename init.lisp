@@ -34,6 +34,8 @@
 (load-after-system :slynk (nyxt-init-file "slynk.lisp"))
 (load-after-system :nx-freestance-handler (nyxt-init-file "freestance.lisp"))
 
+(toggle-debug-on-error :value t)
+
 (define-configuration browser
   ;; This is for Nyxt to never prompt me about restoring the previous session.
   ((session-restore-prompt :never-restore)
