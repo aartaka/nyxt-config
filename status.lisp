@@ -16,6 +16,7 @@
 (define-configuration nyxt/help-mode:help-mode ((glyph "?")))
 (define-configuration nyxt/web-mode:web-mode ((glyph "ω")))
 (define-configuration nyxt/auto-mode:auto-mode ((glyph "α")))
+(define-configuration nyxt/cruise-control-mode:cruise-control-mode ((glyph "σ")))
 
 ;; (defun laconic-format-status-modes (buffer window)
 ;;   (spinneret:with-html-string
