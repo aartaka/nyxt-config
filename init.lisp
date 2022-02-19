@@ -33,6 +33,7 @@
 ;; ;; (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
 (load-after-system :slynk (nyxt-init-file "slynk.lisp"))
 (load-after-system :nx-freestance-handler (nyxt-init-file "freestance.lisp"))
+(load-after-system :nx-dark-reader (nyxt-init-file "dark-reader.lisp"))
 
 (toggle-debug-on-error :value t)
 
@@ -74,7 +75,8 @@
   ((default-modes `(emacs-mode
                     auto-mode
                     blocker-mode force-https-mode reduce-tracking-mode
-                    dark-reader-mode
+                    ;; Fails if nx-dark-reader is not loaded. So bad.
+                    nx-dark-reader:dark-reader-mode
                     ,@%slot-default%))))
 
 ;;; Open HTML files in Nyxt, in addition to default MP3 & friends.
