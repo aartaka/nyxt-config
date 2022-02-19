@@ -74,6 +74,7 @@
   ((default-modes `(emacs-mode
                     auto-mode
                     blocker-mode force-https-mode reduce-tracking-mode
+                    dark-reader-mode
                     ,@%slot-default%))))
 
 ;;; Open HTML files in Nyxt, in addition to default MP3 & friends.
