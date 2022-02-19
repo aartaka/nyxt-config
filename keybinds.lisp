@@ -2,6 +2,9 @@
 
 ;;; Add basic keybindings.
 
+(define-parenscript insert-text (text)
+  (nyxt/ps:insert-at (ps:@ document active-element) (ps:lisp text)))
+
 ;; nyxt/web-mode: is the package prefix. Usually is just nyxt/ and mode name.
 ;; Think of it as Emacs' package prefixes e.g. `org-' in `org-agenda' etc.
 (define-configuration nyxt/web-mode:web-mode
@@ -18,7 +21,11 @@
        "C-c y" 'autofill
        "C-f" 'nyxt/web-mode:history-forwards-maybe-query
        "C-i" 'nyxt/input-edit-mode:input-edit-mode
-       "M-:" 'eval-expression)))))
+       "M-:" 'eval-expression
+       "C-M-'"  (make-command insert-left-angle-quote () (insert-text "«"))
+       "C-M-\"" (make-command insert-left-angle-quote () (insert-text "»"))
+       "C-M-hyphen" (make-command insert-left-angle-quote () (insert-text "—"))
+       "C-M-_" (make-command insert-left-angle-quote () (insert-text "–")))))))
 
 (define-configuration nyxt/auto-mode:auto-mode
   ;; An example of a low-level keybinding configuration.
