@@ -32,3 +32,27 @@
                 :background-color "black !important"
                 :background-image "none !important"
                 :color "#556B2F !important"))))))
+
+(define-mode dark-reader-mode ()
+  "A mode to load Dark Reader script and run it on the page."
+  ((script nil)
+   (destructor (lambda (mode)
+                 (ffi-buffer-remove-user-script (buffer mode) (script mode))))
+   (constructor (lambda (mode)
+                  (setf (script mode)
+                        (ffi-buffer-add-user-script
+                         (buffer mode)
+                         (str:concat (uiop:read-file-string
+                                      (nyxt-init-file "darkreader.min.js"))
+                                     "
+DarkReader.enable({
+	brightness: 100,
+	contrast: 100,
+	sepia: 0,
+    darkSchemeBackgroundColor: 'black',
+    darkSchemeTextColor: 'white',
+    selectionColor: '#CD5C5C'
+});")
+                         :all-frames-p nil
+                         :at-document-start-p nil
+                         :allow-list '("http://*/*" "https://*/*")))))))
