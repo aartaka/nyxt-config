@@ -7,5 +7,5 @@
 (define-configuration nyxt/web-mode:web-mode
   ((keymap-scheme (let ((scheme %slot-default%))
                     (keymap:define-key (gethash scheme:emacs scheme)
-                      "C-c K" 'kaomoji-fill)
+                      "C-c K" 'nx-kaomoji:kaomoji-fill)
                     scheme))))
