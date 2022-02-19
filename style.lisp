@@ -35,7 +35,8 @@
 
 (define-mode dark-reader-mode ()
   "A mode to load Dark Reader script and run it on the page."
-  ((script nil)
+  ((glyph "Δ")
+   (script nil)
    (destructor (lambda (mode)
                  (ffi-buffer-remove-user-script (buffer mode) (script mode))))
    (constructor (lambda (mode)
