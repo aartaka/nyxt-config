@@ -110,21 +110,7 @@
      (webkit:webkit-settings-enable-developer-extras settings) t
      ;; Use Cantarell-18 as the default font.
      (webkit:webkit-settings-default-font-family settings) "Cantarell"
-     (webkit:webkit-settings-default-font-size settings) 18)
-    ;; Set the view background to black.
-    ;;
-    ;; Be careful: it breaks lots of plain background-less HTML
-    ;; websites and is not quite user-friendly, it seems.
-    (cffi:foreign-funcall
-     "webkit_web_view_set_background_color"
-     :pointer (g:pointer (gtk-object buffer))
-     ;; GdkRgba is simply an array of four doubles.
-     :pointer (cffi:foreign-alloc
-               :double
-               :count 4
-               ;; red green blue alpha
-               :initial-contents '(0d0 0d0 0d0 1d0))
-     :void)))
+     (webkit:webkit-settings-default-font-size settings) 18)))
 
 ;;; reduce-tracking-mode has a preferred-user-agent slot that it uses
 ;;; as the User Agent to set when enabled. What I want here is to have
