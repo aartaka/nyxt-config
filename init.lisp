@@ -17,8 +17,7 @@
                (nyxt-init-file "keybinds.lisp")
                (nyxt-init-file "passwd.lisp")
                (nyxt-init-file "status.lisp")
-               (nyxt-init-file "style.lisp")
-               (nyxt-init-file "redmine-mode.lisp")))
+               (nyxt-init-file "style.lisp")))
   (load file))
 
 ;;; Loading extensions and third-party-dependent configs. See the
