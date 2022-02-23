@@ -74,10 +74,6 @@ only after it's done.")
   ;; more minimalist, but those are internal APIs :(
   ((hide-single-source-header-p t)))
 
-;; Disable status-buffer (modeline).
-(define-configuration status-buffer
-  ((height 0)))
-
 ;; Basic modes setup for web-buffer.
 (define-configuration web-buffer
   ((default-modes (append *web-buffer-modes* %slot-default%))))
