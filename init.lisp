@@ -11,6 +11,11 @@
   (when (probe-file quicklisp-init)
     (load quicklisp-init)))
 
+(defvar *web-buffer-modes*
+  '(emacs-mode auto-mode blocker-mode force-https-mode reduce-tracking-mode)
+  "The modes to enable in web-buffer by default.
+Extension files (like dark-reader.lisp) are to append to this list.")
+
 ;;; Loading files from the same directory.
 ;;; Can be done individually per file, dolist is there to simplify it.
 (dolist (file (list
@@ -71,12 +76,7 @@
 
 ;; Basic modes setup for web-buffer.
 (define-configuration web-buffer
-  ((default-modes `(emacs-mode
-                    auto-mode
-                    blocker-mode force-https-mode reduce-tracking-mode
-                    ;; Fails if nx-dark-reader is not loaded. So bad.
-                    nx-dark-reader:dark-reader-mode
-                    ,@%slot-default%))))
+  ((default-modes (append *web-buffer-modes* %slot-default%))))
 
 ;;; Open HTML files in Nyxt, in addition to default MP3 & friends.
 ;;; Use plain `file-source' and `supported-media-types' if you're on 2.x.
@@ -85,7 +85,7 @@
 
 ;;; Enable proxy in nosave (private, incognito) buffers.
 (define-configuration nosave-buffer
-  ((default-modes `(proxy-mode ,@%slot-default%))))
+  ((default-modes (append '(proxy-mode) *web-buffer-modes* %slot-default%))))
 
 (define-configuration nyxt/web-mode:web-mode
   ;; QWERTY home row.
