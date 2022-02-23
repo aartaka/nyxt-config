@@ -1,7 +1,6 @@
 #+TITLE:My Nyxt Configuration Files
 
-This is my repo with small tweaks to Nyxt that make it more
-comfortable and personal. Things of interest here:
+This is my repo with small tweaks to Nyxt that make it more comfortable and personal. Things of interest here:
 
 * The hub of configuration (init.lisp)
 This loads other configuration files:
@@ -16,47 +15,38 @@ This loads other configuration files:
   - kaomoji.lisp
   - search-engines.lisp
   - freestance.lisp
+  - dark-reader.lisp
 And configures some basic things, like default modes for buffers.
 
 Everything interesting is in other files.
 
 * Some custom keybindings (keybinds.lisp)
-There are some things that irritate me in default keybindings (like
-=C-R= in =auto-mode=) and I want to unbind/rebind these.
+There are some things that irritate me in default keybindings (like =C-R= in =auto-mode=) and I want to unbind/rebind these.
 
-There are some commands that I lack keybindings for (e.g., password
-management, prompting history movement) and I want to add these.
+There are some commands that I lack keybindings for (e.g., password management, prompting history movement) and I want to add these.
 
 A good example of how you can redefine mode keybinding there!
 
 * Alternative format for status-buffer (status.lisp)
 
-I don't like the default wordy version of status-buffer (especially
-with long mode names), so I define my own =laconic-format-status= to make
-modeline a bit more minimalistic. Several helper functions
-(=laconic-format-status-*=) are there to make things easier.
+I don't like the default wordy version of status-buffer (especially with long mode names), so I define my own =laconic-format-status= to make modeline a bit more minimalistic. Several helper functions (=laconic-format-status-*=) are there to make things easier.
+
+It's currently all commented out as Nyxt's status bar is a moving target that I cannot fully track.
 
 This can evolve into an extension someday.
-
 * Styling (style.lisp)
-I love dark themes everywhere, and I _don't_ like blue and green. This
-have made me to do black-red-and-green [[https://github.com/aartaka/laconia-theme][laconia-theme]]. I'm trying to
-reproduce it in style.lisp.
+I love dark themes everywhere, and I _don't_ like blue and green. This have made me to do black-red-and-green [[https://github.com/aartaka/laconia-theme][laconia-theme]]. I'm trying to reproduce it in style.lisp.
+
+Right now it uses the 3.0 =theme= library. If you're on 2.* Nyxt, see 1416f93927f6e91050da82e81dafe37e3e713ebf for the way of configuration that might work for you.
 * Lots of search engines for different things (search-engines.lisp)
-This file has actually evolved from small configuration to an
-extension: [[https://github.com/aartaka/nx-search-engines][nx-search-engines]], so now it's basically an extension
-configuration. To use it, you need to do
+This file has actually evolved from small configuration to an extension: [[https://github.com/aartaka/nx-search-engines][nx-search-engines]], so now it's basically an extension configuration. To use it, you need to do
 #+BEGIN_SRC lisp
 (load-after-system :nx-search-engines (nyxt-init-file "search-engines.lisp"))
 #+END_SRC
 in your init.lisp.
 
-* A KeePassXC configuration (passwd.lisp)
-
-This used to contain a =setup-keepassxc= function to setup KeePassXC to
-better work with built-in password interface. Now this function is
-merged upstream as part of this password interface, so what's left is
-just a simple re-configuration of defaults.
+* A KeePassXC configuration (passwd.lisp) 
+This used to contain a =setup-keepassxc= function to setup KeePassXC to better work with built-in password interface. Now this function is merged upstream as part of this password interface, so what's left is just a simple re-configuration of defaults.
 * Ace editor inside Nyxt (ace.lisp)
 This configures [[https://github.com/atlas-engineer/nx-ace][nx-ace]] to work as a default =editor-mode=. To enable it, you need to use
 #+BEGIN_SRC lisp
@@ -75,7 +65,8 @@ To enable nx-kaomoji, you need to use
 #+END_SRC
 in your init.lisp.
 * Using SLY with Nyxt (slynk.lisp)
-This is a simple copy-paste from the [[https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#sly][developer manual]], nothing
-interesting.
+This is a simple copy-paste from the [[https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#sly][developer manual]], nothing interesting.
 * Redirections to free alternatives for Twitter/YouTube
 I rely on [[https://github.com/kssytsrk/nx-freestance-handler][kssytsrk/nx-freestance-handler]] here. It's mostly plug-n-play, so not much configuration there.
+* A reasonable dark theme via Dark Reader
+This is based on [[https://github.com/aartaka/nx-dark-reader][my extension]] using [[https://github.com/darkreader/darkreader][Dark Reader]] to offer a good dark theme for almost any website. Does nothing special -- simply configures some colors for Dark Reader to work better with my theme from [[Styling (style.lisp)][style.lisp]].
