@@ -14,7 +14,11 @@
 (defvar *web-buffer-modes*
   '(emacs-mode auto-mode blocker-mode force-https-mode reduce-tracking-mode)
   "The modes to enable in web-buffer by default.
-Extension files (like dark-reader.lisp) are to append to this list.")
+Extension files (like dark-reader.lisp) are to append to this list.
+
+Why the variable? Because one can only set `default-modes' once, so I
+need to dynamically construct a list of modes and configure the slot
+only after it's done.")
 
 ;;; Loading files from the same directory.
 ;;; Can be done individually per file, dolist is there to simplify it.
