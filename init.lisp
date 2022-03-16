@@ -2,6 +2,7 @@
 
 ;;; Reset ASDF registries to allow loading Lisp systems from
 ;;; everywhere.
+#+nyxt-3
 (reset-asdf-registries)
 
 ;;; Load quicklisp. Not sure it works.
@@ -26,6 +27,8 @@ only after it's done.")
                (nyxt-init-file "keybinds.lisp")
                (nyxt-init-file "passwd.lisp")
                (nyxt-init-file "status.lisp")
+               #+nyxt-3
+               ;; My styling depends on `theme' introduced in Nyxt 3.
                (nyxt-init-file "style.lisp")))
   (load file))
 
@@ -41,8 +44,11 @@ only after it's done.")
 ;; ;; (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
 (load-after-system :slynk (nyxt-init-file "slynk.lisp"))
 (load-after-system :nx-freestance-handler (nyxt-init-file "freestance.lisp"))
+#+nyxt-3
 (load-after-system :nx-dark-reader (nyxt-init-file "dark-reader.lisp"))
 
+#+nyxt-3
+;; Turn the Nyxt-native debugging on. Only works in Nyxt 3.
 (toggle-debug-on-error :value t)
 
 (define-configuration browser
@@ -64,8 +70,7 @@ only after it's done.")
    ;; zoomed-in.
    (current-zoom-ratio 1.25)
    ;; I don't like search completion when I don't need it.
-   ;;
-   ;; Works only after 2.2.3, remove if it breaks Nyxt.
+   #+nyxt-3
    (search-always-auto-complete-p nil)))
 
 (define-configuration prompt-buffer
@@ -78,6 +83,7 @@ only after it's done.")
 (define-configuration web-buffer
   ((default-modes (append *web-buffer-modes* %slot-default%))))
 
+#+nyxt-3
 ;;; Open HTML files in Nyxt, in addition to default MP3 & friends.
 ;;; Use plain `file-source' and `supported-media-types' if you're on 2.x.
 (define-configuration nyxt/file-manager-mode:file-source
@@ -89,7 +95,11 @@ only after it's done.")
 
 (define-configuration nyxt/web-mode:web-mode
   ;; QWERTY home row.
-  ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")))
+  ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")
+   ;; (nyxt/web-mode:user-scripts
+   ;;  (list (make-greasemonkey-script
+   ;;         "https://greasyfork.org/scripts/7543-google-search-extra-buttons/code/Google%20Search%20Extra%20Buttons.user.js")))
+   ))
 
 ;;; This makes auto-mode to prompt me about remembering this or that
 ;;; mode when I toggle it.
@@ -113,15 +123,24 @@ only after it's done.")
      (webkit:webkit-settings-default-font-family settings) "Cantarell"
      (webkit:webkit-settings-default-font-size settings) 18)))
 
+#+nyxt-3
+(define-configuration nyxt/reduce-tracking-mode:reduce-tracking-mode
+  ((nyxt/reduce-tracking-mode:preferred-user-agent
+    ;; Safari on Mac. Taken from
+    ;; https://techblog.willshouse.com/2012/01/03/most-common-user-agents
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.3 Safari/605.1.15")))
+
 ;;; reduce-tracking-mode has a preferred-user-agent slot that it uses
 ;;; as the User Agent to set when enabled. What I want here is to have
 ;;; the same thing as reduce-tracking-mode, but with a different User
 ;;; Agent.
+#+nyxt-3
 (define-mode chrome-mimick-mode (nyxt/reduce-tracking-mode:reduce-tracking-mode)
   "A simple mode to set Chrome-like Windows user agent."
   ((nyxt/reduce-tracking-mode:preferred-user-agent
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36")))
 
+#+nyxt-3
 (define-mode firefox-mimick-mode (nyxt/reduce-tracking-mode:reduce-tracking-mode)
   "A simple mode to set Firefox-like Linux user agent."
   ((nyxt/reduce-tracking-mode:preferred-user-agent
