@@ -21,6 +21,10 @@ Why the variable? Because one can only set `default-modes' once, so I
 need to dynamically construct a list of modes and configure the slot
 only after it's done.")
 
+(defvar *request-resource-handlers*
+  nil
+  "The list of handlers to add to `request-resource-hook'.")
+
 ;;; Loading files from the same directory.
 ;;; Can be done individually per file, dolist is there to simplify it.
 (dolist (file (list
@@ -81,8 +85,11 @@ only after it's done.")
 
 ;; Basic modes setup for web-buffer.
 (define-configuration web-buffer
-  ((default-modes (append *web-buffer-modes* %slot-default%))))
-
+  ((default-modes (append *web-buffer-modes* %slot-default%))
+   (request-resource-hook
+    (reduce #'hooks:add-hook
+            *request-resource-handlers*
+            :initial-value %slot-default%))))
 #+nyxt-3
 ;;; Open HTML files in Nyxt, in addition to default MP3 & friends.
 ;;; Use plain `file-source' and `supported-media-types' if you're on 2.x.
