@@ -51,9 +51,8 @@ only after it's done.")
 #+nyxt-3
 (load-after-system :nx-dark-reader (nyxt-init-file "dark-reader.lisp"))
 
-#+nyxt-3
 ;; Turn the Nyxt-native debugging on. Only works in Nyxt 3.
-(toggle-debug-on-error :value t)
+#+nyxt-3 (toggle-debug-on-error :value t)
 
 (define-configuration browser
   ;; This is for Nyxt to never prompt me about restoring the previous session.
