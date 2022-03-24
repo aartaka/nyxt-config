@@ -1,5 +1,7 @@
 (in-package #:nyxt-user)
 
+(setf (uiop:getenv "GTK_THEME") "Adwaita:dark")
+
 ;;; Reset ASDF registries to allow loading Lisp systems from
 ;;; everywhere.
 #+nyxt-3
