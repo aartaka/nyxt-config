@@ -8,7 +8,7 @@
 ;;;; wrote mine: Laconia (https://github.com/aartaka/laconia). This
 ;;;; file is simply a translation of Laconia colors to Nyxt interface.
 ;;;;
-;;;; This only works on the versions of Nyxt after 2.2.4. For the
+;;;; This only works on the versions of Nyxt after 3.0. For the
 ;;;; backwards-compatible solution, see previous versions of this
 ;;;; file.
 (define-configuration browser

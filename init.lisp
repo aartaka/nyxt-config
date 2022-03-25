@@ -2,8 +2,7 @@
 
 ;;; Reset ASDF registries to allow loading Lisp systems from
 ;;; everywhere.
-#+nyxt-3
-(reset-asdf-registries)
+#+nyxt-3 (reset-asdf-registries)
 
 ;;; Load quicklisp. Not sure it works.
 #-quicklisp
@@ -23,7 +22,9 @@ only after it's done.")
 
 (defvar *request-resource-handlers*
   nil
-  "The list of handlers to add to `request-resource-hook'.")
+  "The list of handlers to add to `request-resource-hook'.
+
+These handlers are usually used to block/redirect the requests.")
 
 ;;; Loading files from the same directory.
 ;;; Can be done individually per file, dolist is there to simplify it.
@@ -103,8 +104,15 @@ only after it's done.")
   ;; QWERTY home row.
   ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")
    ;; (nyxt/web-mode:user-scripts
-   ;;  (list (make-greasemonkey-script
-   ;;         "https://greasyfork.org/scripts/7543-google-search-extra-buttons/code/Google%20Search%20Extra%20Buttons.user.js")))
+   ;;  (mapcar
+   ;;   #'make-greasemonkey-script
+   ;;   (list
+   ;;    "https://greasyfork.org/scripts/7543-google-search-extra-buttons/code/Google%20Search%20Extra%20Buttons.user.js"
+   ;;    (quri:url-encode "https://greasyfork.org/scripts/14146-网页限制解除/code/网页限制解除.user.js")
+   ;;    "https://greasyfork.org/scripts/423851-simple-youtube-age-restriction-bypass/code/Simple%20YouTube%20Age%20Restriction%20Bypass.user.js"
+   ;;    "https://greasyfork.org/scripts/38182-hide-youtube-google-ad/code/Hide%20youtube%20google%20ad.user.js"
+   ;;    "https://greasyfork.org/scripts/4870-maximize-video/code/Maximize%20Video.user.js"
+   ;;    "https://greasyfork.org/scripts/370246-sci-hub-button/code/Sci-hub%20button.user.js")))
    ))
 
 ;;; This makes auto-mode to prompt me about remembering this or that
