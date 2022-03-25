@@ -1,5 +1,9 @@
 (in-package #:nyxt-user)
 
+;; This automatically darkens WebKit-native interfaces and sends the
+;; "prefers-color-scheme: dark" to all the supporting websites.
+(setf (uiop:getenv "GTK_THEME") "Adwaita:dark")
+
 ;;;; My color preferences weren't satisfied by any Emacs theme, so I
 ;;;; wrote mine: Laconia (https://github.com/aartaka/laconia). This
 ;;;; file is simply a translation of Laconia colors to Nyxt interface.
