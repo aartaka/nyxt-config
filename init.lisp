@@ -90,11 +90,6 @@ These handlers are usually used to block/redirect the requests.")
     (reduce #'hooks:add-hook
             *request-resource-handlers*
             :initial-value %slot-default%))))
-#+nyxt-3
-;;; Open HTML files in Nyxt, in addition to default MP3 & friends.
-;;; Use plain `file-source' and `supported-media-types' if you're on 2.x.
-(define-configuration nyxt/file-manager-mode:file-source
-  ((nyxt/file-manager-mode:supported-media-types `("html" ,@%slot-default%))))
 
 ;;; Enable proxy in nosave (private, incognito) buffers.
 (define-configuration nosave-buffer
