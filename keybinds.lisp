@@ -22,6 +22,7 @@
        "C-f" 'nyxt/web-mode:history-forwards-maybe-query
        "C-i" 'nyxt/input-edit-mode:input-edit-mode
        "M-:" 'eval-expression
+       "C-s" 'nyxt/web-mode:search-buffer
        "C-M-'"  (make-command insert-left-angle-quote () (insert-text "«"))
        "C-M-\"" (make-command insert-left-angle-quote () (insert-text "»"))
        "C-M-hyphen" (make-command insert-left-angle-quote () (insert-text "—"))
