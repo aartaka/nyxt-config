@@ -163,3 +163,15 @@ These handlers are usually used to block/redirect the requests.")
                          :sources (list (make-instance 'prompter:raw-source))))))
     ;; Message the evaluation result to the message-area down below.
     (echo "~S" (eval (read-from-string expression-string)))))
+
+#+nyxt-3
+(nyxt::define-panel-global duplicate (&key (buffer (id (current-buffer))))
+    (panel "Duplicate panel" :right)
+  "Duplicate the current buffer URL in the panel buffer on the right.
+
+A poor man's hsplit :)"
+  (progn
+    (ffi-window-set-panel-buffer-width (current-window) panel 750)
+    (run-thread "URL loader"
+      (buffer-load (url (nyxt::buffers-get buffer)) :buffer panel))
+    nil))
