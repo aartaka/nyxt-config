@@ -165,7 +165,7 @@ These handlers are usually used to block/redirect the requests.")
     (echo "~S" (eval (read-from-string expression-string)))))
 
 #+nyxt-3
-(nyxt::define-panel-global duplicate (&key (buffer (id (current-buffer))))
+(nyxt::define-panel-global hsplit (&key (buffer (id (current-buffer))))
     (panel "Duplicate panel" :right)
   "Duplicate the current buffer URL in the panel buffer on the right.
 
@@ -174,4 +174,19 @@ A poor man's hsplit :)"
     (ffi-window-set-panel-buffer-width (current-window) panel 750)
     (run-thread "URL loader"
       (buffer-load (url (nyxt::buffers-get buffer)) :buffer panel))
-    nil))
+    ""))
+
+#+nyxt-3
+(define-command-global hsplit ()
+  "Based on `hsplit-panel' above.
+Cleans the existing panel buffers before doing hsplit."
+  (when (panel-buffers-right (current-window))
+    (delete-panel-buffer :window (current-window) :panels (panel-buffers-right (current-window))))
+  (hsplit-panel))
+
+(define-command-global close-all-panels ()
+  "Close all the panel buffers there are."
+  (when (panel-buffers-right (current-window))
+    (delete-panel-buffer :window (current-window) :panels (panel-buffers-right (current-window))))
+  (when (panel-buffers-left (current-window))
+    (delete-panel-buffer :window (current-window) :panels (panel-buffers-left (current-window)))))

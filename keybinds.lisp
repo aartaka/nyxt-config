@@ -23,6 +23,8 @@
        "C-i" 'nyxt/input-edit-mode:input-edit-mode
        "M-:" 'eval-expression
        "C-s" 'nyxt/web-mode:search-buffer
+       "C-x 3" 'hsplit
+       "C-x 1" 'close-all-panels
        "C-M-'"  (make-command insert-left-angle-quote () (insert-text "«"))
        "C-M-\"" (make-command insert-left-angle-quote () (insert-text "»"))
        "C-M-hyphen" (make-command insert-left-angle-quote () (insert-text "—"))
