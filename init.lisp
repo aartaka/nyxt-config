@@ -58,6 +58,7 @@ These handlers are usually used to block/redirect the requests.")
 (define-configuration browser
   ;; This is for Nyxt to never prompt me about restoring the previous session.
   ((session-restore-prompt :never-restore)
+   (autofills (list (make-autofill :name "Crunch" :fill "Ну что, кранчим сегодня в Дискорде?")))
    (external-editor-program
     (list "emacsclient" "-cn" "-a" "" "-F"
           "((font . \"IBM Plex Mono-17\") (vertical-scroll-bars)(tool-bar-lines) (menu-bar-lines))"))))
