@@ -178,16 +178,16 @@ A poor man's hsplit :)"
     ""))
 
 #+nyxt-3
-(define-command-global hsplit ()
-  "Based on `hsplit-panel' above.
-Cleans the existing panel buffers before doing hsplit."
-  (when (panel-buffers-right (current-window))
-    (delete-panel-buffer :window (current-window) :panels (panel-buffers-right (current-window))))
-  (hsplit-panel))
-
 (define-command-global close-all-panels ()
   "Close all the panel buffers there are."
   (when (panel-buffers-right (current-window))
     (delete-panel-buffer :window (current-window) :panels (panel-buffers-right (current-window))))
   (when (panel-buffers-left (current-window))
     (delete-panel-buffer :window (current-window) :panels (panel-buffers-left (current-window)))))
+
+#+nyxt-3
+(define-command-global hsplit ()
+  "Based on `hsplit-panel' above.
+Cleans the existing panel buffers before doing hsplit."
+  (close-all-panels)
+  (hsplit-panel))
