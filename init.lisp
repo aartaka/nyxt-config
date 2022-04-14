@@ -95,9 +95,11 @@ These handlers are usually used to block/redirect the requests.")
 
 ;;; Set new buffer URL (a.k.a. start page, new tab page).
 ;;; It does not change the first buffer opened if you're on 2.*.
-(define-configuration
-  #+nyxt-2 buffer
-  #+nyxt-3 browser
+#+nyxt-2
+(define-configuration buffer
+  ((default-new-buffer-url "https://github.com")))
+#+nyxt-3
+(define-configuration browser
   ((default-new-buffer-url (quri:uri "https://github.com"))))
 
 ;;; Enable proxy in nosave (private, incognito) buffers.
