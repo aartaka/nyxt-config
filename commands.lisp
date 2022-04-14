@@ -1,3 +1,5 @@
+(in-package #:nyxt-user)
+
 (define-command-global eval-expression ()
   "Prompt for the expression and evaluate it, echoing result to the `message-area'."
   (let ((expression-string
