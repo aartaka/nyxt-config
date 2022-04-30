@@ -8,4 +8,5 @@
 ;; This is to emphasize that I use KeePassXC, as Nyxt is not always
 ;; smart enough to guess that.
 (define-configuration buffer
-  ((password-interface (make-instance 'password:user-keepassxc-interface))))
+    ((password-interface (make-instance #+nyxt-3 'password:keepassxc-interface
+                                        #+nyxt-2 'password:user-keepassxc-interface))))
