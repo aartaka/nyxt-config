@@ -5,6 +5,12 @@
 (define-parenscript insert-text (text)
   (nyxt/ps:insert-at (ps:@ document active-element) (ps:lisp text)))
 
+(defmacro construct-command (name (&rest args) &body body)
+  `(#+nyxt-2 make-command
+    #+nyxt-3 lambda-command
+    ,name
+    (,@args) ,@body))
+
 ;; nyxt/web-mode: is the package prefix. Usually is just nyxt/ and mode name.
 ;; Think of it as Emacs' package prefixes e.g. `org-' in `org-agenda' etc.
 (define-configuration nyxt/web-mode:web-mode
@@ -25,10 +31,10 @@
        "C-s" 'nyxt/web-mode:search-buffer
        "C-x 3" 'hsplit
        "C-x 1" 'close-all-panels
-       "C-M-'"  (make-command insert-left-angle-quote () (insert-text "«"))
-       "C-M-\"" (make-command insert-left-angle-quote () (insert-text "»"))
-       "C-M-hyphen" (make-command insert-left-angle-quote () (insert-text "—"))
-       "C-M-_" (make-command insert-left-angle-quote () (insert-text "–")))))))
+       "C-M-'"  (construct-command insert-left-angle-quote () (insert-text "«"))
+       "C-M-\"" (construct-command insert-left-angle-quote () (insert-text "»"))
+       "C-M-hyphen" (construct-command insert-left-angle-quote () (insert-text "—"))
+       "C-M-_" (construct-command insert-left-angle-quote () (insert-text "–")))))))
 
 (define-configuration nyxt/auto-mode:auto-mode
   ;; An example of a low-level keybinding configuration.
