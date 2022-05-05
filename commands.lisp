@@ -31,7 +31,7 @@ A poor man's hsplit :)"
 
 #+nyxt-3
 (define-command-global hsplit ()
-  "Based on `hsplit-panel' above.
-Cleans the existing panel buffers before doing hsplit."
-  (close-all-panels)
-  (hsplit-panel))
+  "Based on `hsplit-panel' above."
+  (if (panel-buffers-right (current-window))
+      (close-all-panels)
+      (hsplit-panel)))
