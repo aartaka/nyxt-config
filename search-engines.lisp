@@ -85,6 +85,7 @@
                            :shortcut "i" *duckduckgo-keywords*)
                     (engines:duckduckgo-html-only :shortcut "dho")
                     (engines:github :shortcut "git")
+                    (engines:brave :shortcut "b")
                     (apply #'engines:duckduckgo
                            :shortcut "d" *duckduckgo-keywords*)))))
 
