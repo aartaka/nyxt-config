@@ -1,5 +1,7 @@
 #+TITLE:My Nyxt Configuration Files
 
+BEWARE: I'm always using most recent Nyxt possible, often building from master branch. While I try to make my configuration portable, I may fail to do so for your version, especially if you're using any version other than latest stable or latest master.
+
 This is my repo with small tweaks to Nyxt that make it more comfortable and personal. Things of interest here:
 
 * The hub of configuration (init.lisp)
@@ -9,7 +11,8 @@ This loads other configuration files:
   - passwd.lisp,
   - slynk.lisp,
   - status.lisp,
-  - style.lisp;
+  - style.lisp,
+  - commands.lisp;
 - and extension-dependent:
   - ace.lisp
   - kaomoji.lisp
@@ -35,9 +38,14 @@ It's currently all commented out as Nyxt's status bar is a moving target that I 
 
 This can evolve into an extension someday.
 * Styling (style.lisp)
-I love dark themes everywhere, and I _don't_ like blue and green. This have made me to do black-red-and-green [[https://github.com/aartaka/laconia-theme][laconia-theme]]. I'm trying to reproduce it in style.lisp.
+I love dark themes everywhere, and I _don't_ like any colors but red. This have made me to do black-red-and-green [[https://github.com/aartaka/laconia-theme][laconia-theme]]. I'm trying to reproduce it in style.lisp.
 
 Right now it uses the 3.0 =theme= library. If you're on 2.* Nyxt, see 1416f93927f6e91050da82e81dafe37e3e713ebf for the way of configuration that might work for you.
+
+* Additional commands (commands.lisp)
+
+I lack some things in Nyxt, like the ability to evaluate arbitrary Lisp expression without a REPL (there used to be a command for that in 1.5, but it was phased out) and horisontal split (a long-awaited feature), so I hack those with some possibly non-protable things and internal Nyxt APIs. It's mostly 3.*
+
 * Lots of search engines for different things (search-engines.lisp)
 This file has actually evolved from small configuration to an extension: [[https://github.com/aartaka/nx-search-engines][nx-search-engines]], so now it's basically an extension configuration. To use it, you need to do
 #+BEGIN_SRC lisp
@@ -53,6 +61,7 @@ This configures [[https://github.com/atlas-engineer/nx-ace][nx-ace]] to work as 
 (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
 #+END_SRC
 in your init.lisp.
+
 * Easy-to-paste Kaomojis (kaomoji.lisp)
 I fell in love with Kaomojis, and I need an easy way to paste these in
 my browser. That's why I made [[https://github.com/aartaka/nx-kaomoji][nx-kaomoji]]! Now I can paste
@@ -64,9 +73,12 @@ To enable nx-kaomoji, you need to use
 (load-after-system :nx-kaomoji (nyxt-init-file "kaomoji.lisp"))
 #+END_SRC
 in your init.lisp.
+
 * Using SLY with Nyxt (slynk.lisp)
 This is a simple copy-paste from the [[https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#sly][developer manual]], nothing interesting.
+
 * Redirections to free alternatives for Twitter/YouTube
 I rely on [[https://github.com/kssytsrk/nx-freestance-handler][kssytsrk/nx-freestance-handler]] here. It's mostly plug-n-play, so not much configuration there.
+
 * A reasonable dark theme via Dark Reader
 This is based on [[https://github.com/aartaka/nx-dark-reader][my extension]] using [[https://github.com/darkreader/darkreader][Dark Reader]] to offer a good dark theme for almost any website. Does nothing special -- simply configures some colors for Dark Reader to work better with my theme from [[Styling (style.lisp)][style.lisp]].
