@@ -56,18 +56,25 @@ These handlers are usually used to block/redirect the requests.")
 (load-after-system :nx-dark-reader (nyxt-init-file "dark-reader.lisp"))
 
 ;; Turn the Nyxt-native debugging on. Only works in Nyxt 3.
-#+nyxt-3 (toggle-debug-on-error :value t)
+#+nyxt-3 (toggle-debug-on-error t)
 
 (define-configuration browser
   ;; This is for Nyxt to never prompt me about restoring the previous session.
   ((session-restore-prompt :never-restore)
+   #+nyxt-2
    (autofills (list (make-autofill :name "Crunch" :fill "Ну что, кранчим сегодня в Дискорде?")))
    (external-editor-program
     (list "emacsclient" "-cn" "-a" "" "-F"
           "((font . \"IBM Plex Mono-17\") (vertical-scroll-bars)(tool-bar-lines) (menu-bar-lines))"))))
 
+;;; Autofils are abstracted into a mode of their own on 3.*.
+#+nyxt-3
+(define-configuration nyxt/autofill-mode:autofill-mode
+  ((nyxt/autofill-mode:autofills (list (make-instance 'nyxt/autofill-mode:autofill
+                                                      :name "Crunch" :fill "Ну что, кранчим сегодня в Дискорде?")))))
+
 ;;; Those are settings that every type of buffer should share.
-(define-configuration (buffer internal-buffer editor-buffer prompt-buffer)
+(define-configuration (buffer prompt-buffer)
   ;; Emacs keybindings.
   ((default-modes `(nyxt/emacs-mode:emacs-mode ,@%slot-default%))
    ;; This overrides download engine to use WebKit instead of
@@ -108,20 +115,15 @@ These handlers are usually used to block/redirect the requests.")
 (define-configuration nosave-buffer
   ((default-modes (append '(nyxt/proxy-mode:proxy-mode) *web-buffer-modes* %slot-default%))))
 
+;;; Set up QWERTY home row as the hint keys.
+#+nyxt-2
 (define-configuration nyxt/web-mode:web-mode
-  ;; QWERTY home row.
-  ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")
-   ;; (nyxt/web-mode:user-scripts
-   ;;  (mapcar
-   ;;   #'make-greasemonkey-script
-   ;;   (list
-   ;;    "https://greasyfork.org/scripts/7543-google-search-extra-buttons/code/Google%20Search%20Extra%20Buttons.user.js"
-   ;;    (quri:url-encode "https://greasyfork.org/scripts/14146-网页限制解除/code/网页限制解除.user.js")
-   ;;    "https://greasyfork.org/scripts/423851-simple-youtube-age-restriction-bypass/code/Simple%20YouTube%20Age%20Restriction%20Bypass.user.js"
-   ;;    "https://greasyfork.org/scripts/38182-hide-youtube-google-ad/code/Hide%20youtube%20google%20ad.user.js"
-   ;;    "https://greasyfork.org/scripts/4870-maximize-video/code/Maximize%20Video.user.js"
-   ;;    "https://greasyfork.org/scripts/370246-sci-hub-button/code/Sci-hub%20button.user.js")))
-   ))
+  ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")))
+#+nyxt-3
+(define-configuration nyxt/hint-mode:hint-mode
+  ((nyxt/hint-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")
+   ;; Same as default except it doesn't hint images
+   (nyxt/hint-mode:hints-selector "a, button, input, textarea, details, select")))
 
 ;;; This makes auto-mode to prompt me about remembering this or that
 ;;; mode when I toggle it.
