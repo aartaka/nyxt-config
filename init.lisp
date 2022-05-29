@@ -58,11 +58,19 @@ These handlers are usually used to block/redirect the requests.")
 ;; Turn the Nyxt-native debugging on. Only works in Nyxt 3.
 #+nyxt-3 (toggle-debug-on-error t)
 
+(flet ((construct-autofill (&rest args)
+         (apply #+nyxt-2 #'make-autofill
+                #+nyxt-3 #'nyxt/autofill-mode:make-autofill
+                args)))
+  (defvar *autofills*
+    (list (construct-autofill :name "Crunch" :fill "Ну что, кранчим сегодня в Дискорде?")
+          *debug-autofill*)))
+
 (define-configuration browser
   ;; This is for Nyxt to never prompt me about restoring the previous session.
   ((session-restore-prompt :never-restore)
    #+nyxt-2
-   (autofills (list (make-autofill :name "Crunch" :fill "Ну что, кранчим сегодня в Дискорде?")))
+   (autofills *autofills*)
    (external-editor-program
     (list "emacsclient" "-cn" "-a" "" "-F"
           "((font . \"IBM Plex Mono-17\") (vertical-scroll-bars)(tool-bar-lines) (menu-bar-lines))"))))
@@ -70,8 +78,7 @@ These handlers are usually used to block/redirect the requests.")
 ;;; Autofils are abstracted into a mode of their own on 3.*.
 #+nyxt-3
 (define-configuration nyxt/autofill-mode:autofill-mode
-  ((nyxt/autofill-mode:autofills (list (make-instance 'nyxt/autofill-mode:autofill
-                                                      :name "Crunch" :fill "Ну что, кранчим сегодня в Дискорде?")))))
+  ((nyxt/autofill-mode:autofills *autofills*)))
 
 ;;; Those are settings that every type of buffer should share.
 (define-configuration (buffer prompt-buffer)
