@@ -86,6 +86,10 @@
                     (engines:duckduckgo-html-only :shortcut "dho")
                     (engines:github :shortcut "git")
                     (engines:brave :shortcut "b")
+                    (engines:teddit :shortcut "red")
+                    (engines:libgen :shortcut "l")
+                    (engines:invidious :shortcut "yt")
+                    (engines:hacker-news :shortcut "hn")
                     (apply #'engines:duckduckgo
                            :shortcut "d" *duckduckgo-keywords*)))))
 
