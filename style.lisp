@@ -16,12 +16,12 @@
            'theme:theme
            :dark-p t
            :background-color "black"
-           :text-color "white"
+           :on-background-color "white"
            :accent-color "#CD5C5C"
            :primary-color "rgb(170, 170, 170)"
-           :secondary-color "rgb(140, 140, 140)"
-           :tertiary-color "rgb(115, 115, 115)"
-           :quaternary-color "rgb(85, 85, 85)"))))
+           :on-primary-color "black"
+           :secondary-color "rgb(100, 100, 100)"
+           :on-secondary-color "white"))))
 
 ;;; Dark-mode is a simple mode for simple HTML pages to color those in
 ;;; a darker palette. I don't like the default gray-ish colors,
