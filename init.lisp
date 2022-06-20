@@ -48,13 +48,12 @@ These handlers are usually used to block/redirect the requests.")
 ;;; your `*extensions-path*' (usually ~/.local/share/nyxt/extensions)
 ;;; and adding a `load-after-system' line mentioning a config file for
 ;;; this extension.
-(load-after-system :nx-search-engines (nyxt-init-file "search-engines.lisp"))
-(load-after-system :nx-kaomoji (nyxt-init-file "kaomoji.lisp"))
-;; ;; (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
+;; (load-after-system :nx-search-engines (nyxt-init-file "search-engines.lisp"))
+;; (load-after-system :nx-kaomoji (nyxt-init-file "kaomoji.lisp"))
+;; ;; ;; (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
 (load-after-system :slynk (nyxt-init-file "slynk.lisp"))
 (load-after-system :nx-freestance-handler (nyxt-init-file "freestance.lisp"))
-#+nyxt-3
-(load-after-system :nx-dark-reader (nyxt-init-file "dark-reader.lisp"))
+;; #+nyxt-3 (load-after-system :nx-dark-reader (nyxt-init-file "dark-reader.lisp"))
 
 ;; Turn the Nyxt-native debugging on. Only works in Nyxt 3.
 #+nyxt-3 (toggle-debug-on-error t)
