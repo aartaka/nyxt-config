@@ -58,7 +58,7 @@ $ lspci -v
          (buffer (make-buffer-focus
                   :url (quri:uri (format nil "https://github.com/atlas-engineer/nyxt/issues/new?&template=bug_report.md&title=~a"
                                          title)))))
-    (nyxt:once-on (buffer-loaded-hook buffer)
+    (nyxt::once-on (buffer-loaded-hook buffer)
         (buffer)
       (nyxt:peval (ps:chain (nyxt/ps:qs document "#issue_body") (focus)))
       (%paste :input-text (funcall (nyxt/autofill-mode:autofill-fill *debug-autofill*))))))
@@ -73,13 +73,13 @@ $ lspci -v
     (echo "~S" (eval (read-from-string expression-string)))))
 
 #+nyxt-3
-(nyxt::define-panel-global hsplit (&key (buffer (id (current-buffer))))
-    (panel "Duplicate panel" :right)
+(define-panel-command hsplit-internal (&key (buffer (id (current-buffer))))
+    (panel "Duplicate panel" :rigth)
   "Duplicate the current buffer URL in the panel buffer on the right.
 
 A poor man's hsplit :)"
   (progn
-    (ffi-window-set-panel-buffer-width (current-window) panel 750)
+    (setf (ffi-window-panel-buffer-width (current-window) panel) 500)
     (run-thread "URL loader"
       (buffer-load (url (nyxt::buffers-get buffer)) :buffer panel))
     ""))
@@ -97,4 +97,4 @@ A poor man's hsplit :)"
   "Based on `hsplit-panel' above."
   (if (panel-buffers-right (current-window))
       (close-all-panels)
-      (hsplit-panel)))
+      (hsplit-internal)))
