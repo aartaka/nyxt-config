@@ -141,8 +141,8 @@ These handlers are usually used to block/redirect the requests.")
 ;;; configure Nyxt. See
 ;;; https://webkitgtk.org/reference/webkit2gtk/stable/WebKitSettings.html
 ;;; for the full list of settings you can tweak this way.
-(defmethod ffi-buffer-make :after ((buffer gtk-buffer))
-  (let ((settings (webkit:webkit-web-view-get-settings (nyxt::gtk-object buffer))))
+(defmethod ffi-buffer-make :after ((buffer nyxt::gtk-buffer))
+  (let* ((settings (webkit:webkit-web-view-get-settings (nyxt::gtk-object buffer))))
     (setf
      ;; Resizeable textareas. It's not perfect, but still a cool feature to have.
      (webkit:webkit-settings-enable-resizable-text-areas settings) t
