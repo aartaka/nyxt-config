@@ -31,14 +31,16 @@ These handlers are usually used to block/redirect the requests.")
 
 ;;; Loading files from the same directory.
 ;;; Can be done individually per file, dolist is there to simplify it.
+#+nyxt-3
+(define-nyxt-user-system-and-load #:nyxt/user/basic-config
+  :pathname #.(uiop:pathname-directory-pathname (files:expand *config-file*))
+  :components ("keybinds" "passwd" "status" "commands" "style"))
+#+nyxt-2
 (dolist (file (list
                (nyxt-init-file "keybinds.lisp")
                (nyxt-init-file "passwd.lisp")
                (nyxt-init-file "status.lisp")
-               (nyxt-init-file "commands.lisp")
-               #+nyxt-3
-               ;; My styling depends on `theme' introduced in Nyxt 3.
-               (nyxt-init-file "style.lisp")))
+               (nyxt-init-file "commands.lisp")))
   (load file))
 
 ;;; Loading extensions and third-party-dependent configs. See the
@@ -48,12 +50,21 @@ These handlers are usually used to block/redirect the requests.")
 ;;; your `*extensions-path*' (usually ~/.local/share/nyxt/extensions)
 ;;; and adding a `load-after-system' line mentioning a config file for
 ;;; this extension.
-;; (load-after-system :nx-search-engines (nyxt-init-file "search-engines.lisp"))
-;; (load-after-system :nx-kaomoji (nyxt-init-file "kaomoji.lisp"))
-;; ;; ;; (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
-(load-after-system :slynk (nyxt-init-file "slynk.lisp"))
-(load-after-system :nx-freestance-handler (nyxt-init-file "freestance.lisp"))
-;; #+nyxt-3 (load-after-system :nx-dark-reader (nyxt-init-file "dark-reader.lisp"))
+(defmacro load-after-system* (system file)
+  #+nyxt-2
+  `(load-after-system ,system (nyxt-init-file ,(if (str:ends-with-p ".lisp" file)
+                                                   file
+                                                   (str:concat file ".lisp"))))
+  #+nyxt-3
+  ` (define-nyxt-user-system-and-load ,(gensym "NYXT/USER/")
+      :depends-on (,system) :components (,file)))
+
+;; (load-after-system* :nx-search-engines "search-engines")
+;; (load-after-system* :nx-kaomoji "kaomoji")
+;; ;; (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
+(load-after-system* :slynk "slynk")
+(load-after-system* :nx-freestance-handler "freestance")
+;; #+nyxt-3 (load-after-system* :nx-dark-reader "dark-reader")
 
 ;; Turn the Nyxt-native debugging on. Only works in Nyxt 3.
 #+nyxt-3 (toggle-debug-on-error t)

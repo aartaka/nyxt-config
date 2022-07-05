@@ -1,6 +1,5 @@
 (in-package #:nyxt-user)
 
-(defun nyxt-init-file (filename)
-  (nyxt-config-file filename))
+(setf *default-pathname-defaults* (uiop:pathname-directory-pathname (files:expand *config-file*)))
 
-(load (nyxt-config-file "init.lisp"))
+(load "init")
