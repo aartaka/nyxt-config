@@ -18,7 +18,7 @@
        ,@bindings)
      scheme)
   #+nyxt-3
-  `(nyxt::define-scheme (:name-prefix "custom" :import ,keyscheme)
+  `(nkeymaps/core:define-keyscheme-map "custom" (list :import ,keyscheme)
      ,scheme-name
      (list ,@bindings)))
 
@@ -27,7 +27,8 @@
 (define-configuration
     (#+nyxt-2 nyxt/web-mode:web-mode
      #+nyxt-3 nyxt/document-mode:document-mode)
-  ((keymap-scheme
+  ((#+nyxt-2 keymap-scheme
+    #+nyxt-3 keyscheme-map
     (alter-keyscheme
         %slot-default%
         ;; If you want to have VI bindings overriden, just use
@@ -36,7 +37,7 @@
         ;;
         ;; For 3.*, use `nyxt/scheme:' prefix instead.
         #+nyxt-2 scheme:emacs
-      #+nyxt-3 nyxt/scheme:emacs
+      #+nyxt-3 nyxt/keyscheme:emacs
       "C-c p" 'copy-password
       "C-c y" 'autofill
       "C-f"
@@ -54,12 +55,12 @@
       "C-M-hyphen" (construct-command insert-left-angle-quote () (insert-text "—"))
       "C-M-_" (construct-command insert-left-angle-quote () (insert-text "–"))))))
 
+#+nyxt-2
 (define-configuration nyxt/auto-mode:auto-mode
   ((keymap-scheme
     (alter-keyscheme
         %slot-default%
-        #+nyxt-2 scheme:cua
-      #+nyxt-3 nyxt/scheme:cua
+        scheme:cua
       "C-R" nil))))
 
 ;;; Disable C-w, as it leads my Emacs muscle memory to shoot me in the foot.
