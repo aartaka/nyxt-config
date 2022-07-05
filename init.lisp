@@ -32,7 +32,7 @@ These handlers are usually used to block/redirect the requests.")
 ;;; Loading files from the same directory.
 ;;; Can be done individually per file, dolist is there to simplify it.
 #+nyxt-3
-(define-nyxt-user-system-and-load #:nyxt/user/basic-config
+(define-nyxt-user-system-and-load nyxt-user-basic-config
   :pathname #.(uiop:pathname-directory-pathname (files:expand *config-file*))
   :components ("keybinds" "passwd" "status" "commands" "style"))
 #+nyxt-2
@@ -48,22 +48,23 @@ These handlers are usually used to block/redirect the requests.")
 ;;;
 ;;; Usually, though, it boils down to cloning a git repository into
 ;;; your `*extensions-path*' (usually ~/.local/share/nyxt/extensions)
-;;; and adding a `load-after-system' line mentioning a config file for
-;;; this extension.
+;;; and adding a `load-after-system' (Nyxt 2) /
+;;; `define-nyxt-user-system-and-load' (Nyxt 3) line mentioning a
+;;; config file for this extension.
 (defmacro load-after-system* (system file)
   #+nyxt-2
   `(load-after-system ,system (nyxt-init-file ,(if (str:ends-with-p ".lisp" file)
                                                    file
                                                    (str:concat file ".lisp"))))
   #+nyxt-3
-  ` (define-nyxt-user-system-and-load ,(gensym "NYXT/USER/")
-      :depends-on (,system) :components (,file)))
+  `(define-nyxt-user-system-and-load ,(gensym "NYXT-USER-")
+     :depends-on (,system) :components (,file)))
 
 ;; (load-after-system* :nx-search-engines "search-engines")
 ;; (load-after-system* :nx-kaomoji "kaomoji")
 ;; ;; (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
-(load-after-system* :slynk "slynk")
-(load-after-system* :nx-freestance-handler "freestance")
+(load-after-system* #:slynk "slynk")
+;; (load-after-system* :nx-freestance-handler "freestance")
 ;; #+nyxt-3 (load-after-system* :nx-dark-reader "dark-reader")
 
 ;; Turn the Nyxt-native debugging on. Only works in Nyxt 3.
