@@ -32,8 +32,7 @@ These handlers are usually used to block/redirect the requests.")
 ;;; Loading files from the same directory.
 ;;; Can be done individually per file, dolist is there to simplify it.
 #+nyxt-3
-(define-nyxt-user-system-and-load nyxt-user-basic-config
-  :pathname #.(uiop:pathname-directory-pathname (files:expand *config-file*))
+(define-nyxt-user-system-and-load nyxt-user/basic-config
   :components ("keybinds" "passwd" "status" "commands" "style"))
 #+nyxt-2
 (dolist (file (list
@@ -57,18 +56,18 @@ These handlers are usually used to block/redirect the requests.")
                                                    file
                                                    (str:concat file ".lisp"))))
   #+nyxt-3
-  `(define-nyxt-user-system-and-load ,(gensym "NYXT-USER-")
+  `(define-nyxt-user-system-and-load ,(gensym "NYXT-USER/")
      :depends-on (,system) :components (,file)))
 
-;; (load-after-system* :nx-search-engines "search-engines")
-;; (load-after-system* :nx-kaomoji "kaomoji")
+(load-after-system* :nx-search-engines "search-engines")
+(load-after-system* :nx-kaomoji "kaomoji")
 ;; ;; (load-after-system :nx-ace (nyxt-init-file "ace.lisp"))
-(load-after-system* #:slynk "slynk")
-;; (load-after-system* :nx-freestance-handler "freestance")
-;; #+nyxt-3 (load-after-system* :nx-dark-reader "dark-reader")
+(load-after-system* :slynk "slynk")
+(load-after-system* :nx-freestance-handler "freestance")
+#+nyxt-3 (load-after-system* :nx-dark-reader "dark-reader")
 
 ;; Turn the Nyxt-native debugging on. Only works in Nyxt 3.
-#+nyxt-3 (toggle-debug-on-error t)
+;; #+nyxt-3 (toggle-debug-on-error t)
 
 (flet ((construct-autofill (&rest args)
          (apply #+nyxt-2 #'make-autofill
