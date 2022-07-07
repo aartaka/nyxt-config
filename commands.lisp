@@ -74,7 +74,7 @@ $ lspci -v
 
 #+nyxt-3
 (define-panel-command hsplit-internal (&key (buffer (id (current-buffer))))
-    (panel "Duplicate panel" :rigth)
+    (panel "Duplicate panel" :right)
   "Duplicate the current buffer URL in the panel buffer on the right.
 
 A poor man's hsplit :)"
