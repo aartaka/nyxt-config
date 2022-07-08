@@ -27,12 +27,25 @@
 ;;; a darker palette. I don't like the default gray-ish colors,
 ;;; though. Thus, I'm overriding those to be a bit more laconia-like.
 (define-configuration nyxt/style-mode:dark-mode
-  ((style #.(cl-css:css
-             '((*
-                :background-color "black !important"
-                :background-image "none !important"
-                :color "white")
-               (a
-                :background-color "black !important"
-                :background-image "none !important"
-                :color "#556B2F !important"))))))
+  ((style
+    (theme:themed-css (theme *browser*)
+      (*
+       :background-color (str:concat
+                          (if (theme:dark-p theme:theme)
+                              theme:background
+                              theme:on-background)
+                          " !important")
+       :background-image "none !important"
+       :color (str:concat
+               (if (theme:dark-p theme:theme)
+                   theme:on-background
+                   theme:background)
+               " !important"))
+      (a
+       :background-color (str:concat
+                          (if (theme:dark-p theme:theme)
+                              theme:background
+                              theme:on-background)
+                          " !important")
+       :background-image "none !important"
+       :color (str:concat theme:primary " !important"))))))
