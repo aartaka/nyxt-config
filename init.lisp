@@ -79,7 +79,8 @@ These handlers are usually used to block/redirect the requests.")
 
 (define-configuration browser
   ;; This is for Nyxt to never prompt me about restoring the previous session.
-  ((session-restore-prompt :never-restore)
+  (#+nyxt-2 (session-restore-prompt :never-restore)
+   #+nyxt-3 (restore-session-on-startup-p nil)
    #+nyxt-2
    (autofills *autofills*)
    (external-editor-program
