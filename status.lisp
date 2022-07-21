@@ -6,6 +6,8 @@
   ((glyph-mode-presentation-p t)))
 
 (define-configuration nyxt/force-https-mode:force-https-mode ((glyph "ϕ")))
+#+nyxt-3
+(define-configuration nyxt/user-script-mode:user-script-mode ((glyph "u")))
 (define-configuration nyxt/blocker-mode:blocker-mode ((glyph "β")))
 (define-configuration nyxt/proxy-mode:proxy-mode ((glyph "π")))
 (define-configuration nyxt/reduce-tracking-mode:reduce-tracking-mode
