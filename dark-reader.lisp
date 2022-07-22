@@ -8,4 +8,5 @@
    (nxdr:contrast 100)
    (nxdr:brightness 100)))
 
-(push 'nx-dark-reader:dark-reader-mode *web-buffer-modes*)
+(define-configuration web-buffer
+  ((default-modes `(nx-dark-reader:dark-reader-mode ,@%slot-value%))))
