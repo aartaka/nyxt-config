@@ -4,13 +4,13 @@
 ;; "prefers-color-scheme: dark" to all the supporting websites.
 (setf (uiop:getenv "GTK_THEME") "Adwaita:dark")
 
-;;;; My color preferences weren't satisfied by any Emacs theme, so I
-;;;; wrote mine: Laconia (https://github.com/aartaka/laconia). This
-;;;; file is simply a translation of Laconia colors to Nyxt interface.
-;;;;
-;;;; This only works on the versions of Nyxt after 3.0. For the
-;;;; backwards-compatible solution, see previous versions of this
-;;;; file.
+;; My color preferences weren't satisfied by any Emacs theme, so I
+;; wrote mine: Laconia (https://github.com/aartaka/laconia). This
+;; file is simply a translation of Laconia colors to Nyxt interface.
+;;
+;; This only works on the versions of Nyxt after 3.0. For the
+;; backwards-compatible solution, see previous versions of this
+;; file.
 (define-configuration browser
   ((theme (make-instance
            'theme:theme
