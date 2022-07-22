@@ -15,7 +15,7 @@
   '(nyxt/emacs-mode:emacs-mode nyxt/auto-mode:auto-mode
     nyxt/blocker-mode:blocker-mode nyxt/force-https-mode:force-https-mode
     nyxt/reduce-tracking-mode:reduce-tracking-mode
-    nyxt/user-script-mode:user-script-mode)
+    #+nyxt-3 nyxt/user-script-mode:user-script-mode)
   "The modes to enable in web-buffer by default.
 Extension files (like dark-reader.lisp) are to append to this list.
 
@@ -95,7 +95,9 @@ These handlers are usually used to block/redirect the requests.")
 ;;; Those are settings that every type of buffer should share.
 (define-configuration (buffer prompt-buffer)
   ;; Emacs keybindings.
-  ((default-modes `(nyxt/emacs-mode:emacs-mode ,@%slot-default%))
+  ((default-modes `(nyxt/emacs-mode:emacs-mode
+                    #+nyxt-3 ,@%slot-value%
+                    #+nyxt-2 ,@%slot-default%))
    ;; This overrides download engine to use WebKit instead of
    ;; Nyxt-native Dexador-based download engine. I don't remember why
    ;; I switched, though.
@@ -115,7 +117,9 @@ These handlers are usually used to block/redirect the requests.")
 
 ;; Basic modes setup for web-buffer.
 (define-configuration web-buffer
-  ((default-modes (append *web-buffer-modes* %slot-default%))
+  ((default-modes `(,@*web-buffer-modes*
+                    #+nyxt-3 ,@%slot-value%
+                    #+nyxt-2 ,@%slot-default%))
    (request-resource-hook
     (reduce #'hooks:add-hook
             *request-resource-handlers*
@@ -132,7 +136,10 @@ These handlers are usually used to block/redirect the requests.")
 
 ;;; Enable proxy in nosave (private, incognito) buffers.
 (define-configuration nosave-buffer
-  ((default-modes (append '(nyxt/proxy-mode:proxy-mode) *web-buffer-modes* %slot-default%))))
+  ((default-modes `(nyxt/proxy-mode:proxy-mode
+                    ,@*web-buffer-modes*
+                    #+nyxt-3 ,@%slot-value%
+                    #+nyxt-2 ,@%slot-default%))))
 
 ;;; Set up QWERTY home row as the hint keys.
 #+nyxt-2
