@@ -172,9 +172,9 @@ These handlers are usually used to block/redirect the requests.")
      ;; Use Cantarell-18 as the default font.
      (webkit:webkit-settings-default-font-family settings) "Cantarell"
      (webkit:webkit-settings-default-font-size settings) 18
-     ;; Use Hack-18 as the monospace font.
+     ;; Use Hack-17 as the monospace font.
      (webkit:webkit-settings-monospace-font-family settings) "Hack"
-     (webkit:webkit-settings-default-monospace-font-size settings) 18)))
+     (webkit:webkit-settings-default-monospace-font-size settings) 17)))
 
 #+nyxt-3
 (define-configuration nyxt/reduce-tracking-mode:reduce-tracking-mode
