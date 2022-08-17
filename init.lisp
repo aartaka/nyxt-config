@@ -93,7 +93,7 @@ These handlers are usually used to block/redirect the requests.")
   ((nyxt/autofill-mode:autofills *autofills*)))
 
 ;;; Those are settings that every type of buffer should share.
-(define-configuration (web-buffer prompt-buffer)
+(define-configuration (web-buffer prompt-buffer nyxt/editor-mode:editor-buffer)
   ;; Emacs keybindings.
   ((default-modes `(nyxt/emacs-mode:emacs-mode
                     #+nyxt-3 ,@%slot-value%
