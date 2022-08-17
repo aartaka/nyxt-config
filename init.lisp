@@ -93,15 +93,17 @@ These handlers are usually used to block/redirect the requests.")
   ((nyxt/autofill-mode:autofills *autofills*)))
 
 ;;; Those are settings that every type of buffer should share.
-(define-configuration (buffer prompt-buffer)
+(define-configuration (web-buffer prompt-buffer)
   ;; Emacs keybindings.
   ((default-modes `(nyxt/emacs-mode:emacs-mode
                     #+nyxt-3 ,@%slot-value%
-                    #+nyxt-2 ,@%slot-default%))
-   ;; This overrides download engine to use WebKit instead of
-   ;; Nyxt-native Dexador-based download engine. I don't remember why
-   ;; I switched, though.
-   (download-engine :renderer)
+                    #+nyxt-2 ,@%slot-default%))))
+
+(define-configuration web-buffer
+  ;; This overrides download engine to use WebKit instead of
+  ;; Nyxt-native Dexador-based download engine. I don't remember why
+  ;; I switched, though.
+  ((download-engine :renderer)
    ;; I'm weak on the eyes, so I want everything to be a bit
    ;; zoomed-in.
    (current-zoom-ratio 1.25)
