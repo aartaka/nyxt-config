@@ -19,15 +19,7 @@
   "The modes to enable in web-buffer by default.
 Extension files (like dark-reader.lisp) are to append to this list.
 
-Why the variable? Because one can only set `default-modes' once, so I
-need to dynamically construct a list of modes and configure the slot
-only after it's done.")
-
-(defvar *request-resource-handlers*
-  nil
-  "The list of handlers to add to `request-resource-hook'.
-
-These handlers are usually used to block/redirect the requests.")
+Why the variable? Because it's too much hassle copying it everywhere.")
 
 ;;; Loading files from the same directory.
 ;;; Can be done individually per file, dolist is there to simplify it.
@@ -121,11 +113,7 @@ These handlers are usually used to block/redirect the requests.")
 (define-configuration web-buffer
   ((default-modes `(,@*web-buffer-modes*
                     #+nyxt-3 ,@%slot-value%
-                    #+nyxt-2 ,@%slot-default%))
-   (request-resource-hook
-    (reduce #'hooks:add-hook
-            *request-resource-handlers*
-            :initial-value %slot-default%))))
+                    #+nyxt-2 ,@%slot-default%))))
 
 ;;; Set new buffer URL (a.k.a. start page, new tab page).
 ;;; It does not change the first buffer opened if you're on 2.*.

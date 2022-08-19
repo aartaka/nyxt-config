@@ -26,4 +26,5 @@
         nil)
       request-data))
 
-(push 'redirect-pdf *request-resource-handlers*)
+(define-configuration web-buffer
+  ((request-resource-hook (hooks:add-hook %slot-value% 'redirect-pdf))))
