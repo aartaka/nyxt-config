@@ -1,5 +1,10 @@
 (in-package #:nyxt-user)
 
+;; I'm definining a new scheme to redirect PDF requests to. What it does it:
+;; - Get the original file.
+;; - Save it to disk.
+;; - Run pdftotext over it.
+;; - Display pdftotext output in a nice <pre> tag.
 (define-internal-scheme "unpdf"
     (lambda (url buffer)
       (let* ((url (quri:uri url))
@@ -17,12 +22,26 @@
               (:pre (or text "")))))))
   :local-p t)
 
+(define-command-global unpdf-download-this ()
+  "A helper for unpdf: pages to download the original PDF to the regular destination.
+
+Unpdf redirects all requests, even those that you need to read
+elsewhere, thus I need this command."
+  (let* ((buffer (current-buffer))
+         (url (url buffer)))
+    (if (string= "unpdf" (quri:uri-scheme url))
+        (ffi-buffer-download buffer (quri:uri-path url))
+        ;; I need to turn it into a mode someday...
+        (echo-warning "This command is for unpdf: pages only, it's useless elsewhere!"))))
+
 (defun redirect-pdf (request-data)
   (echo "MIME type is ~a" (mime-type request-data))
   (if (uiop:string-prefix-p "application/pdf" (mime-type request-data))
+      ;; I should somehow prompt about downloading instead...
       (progn
         (echo "Redirecting to the unpdf URL...")
         (make-buffer-focus :url (quri:uri (str:concat "unpdf:" (render-url (url request-data)))))
+        ;; Return nil to prevent Nyxt from downloading this PDF.
         nil)
       request-data))
 
