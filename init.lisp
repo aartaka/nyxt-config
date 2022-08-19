@@ -53,7 +53,7 @@ Why the variable? Because it's too much hassle copying it everywhere.")
 
 (load-after-system* :nx-search-engines "search-engines")
 (load-after-system* :nx-kaomoji "kaomoji")
-;; (load-after-system* :nx-ace "ace.lisp")
+(load-after-system* :nx-ace "ace.lisp")
 (load-after-system* :slynk "slynk")
 (load-after-system* :nx-freestance-handler "freestance")
 #+nyxt-3 (load-after-system* :nx-dark-reader "dark-reader")
