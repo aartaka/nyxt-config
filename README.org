@@ -1,8 +1,8 @@
 #+TITLE:My Nyxt Configuration Files
 
-BEWARE: I'm always using most recent Nyxt possible, often building from master branch. While I try to make my configuration portable, I may fail to do so for your version, especially if you're using any version other than latest stable or latest master.
-
 This is my repo with small tweaks to Nyxt that make it more comfortable and personal. Things of interest here:
+
+BEWARE: I'm always using most recent Nyxt possible, often building from master branch. While I try to make my configuration portable, I may fail to do so for your version, especially if you're using any version other than latest stable or latest master. In particular, I'm going to drop all Nyxt 2.* configuration after the 3.0.0 release, so clone this if necessary.
 
 * The hub of configuration (init.lisp for 2.*, config.lisp AND init.lisp for 3.*)
 This loads other configuration files:
