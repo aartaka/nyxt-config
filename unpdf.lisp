@@ -1,6 +1,6 @@
 (in-package #:nyxt-user)
 
-;; I'm definining a new scheme to redirect PDF requests to. What it does it:
+;; I'm definining a new scheme to redirect PDF requests to. What it does is:
 ;; - Get the original file.
 ;; - Save it to disk.
 ;; - Run pdftotext over it.
