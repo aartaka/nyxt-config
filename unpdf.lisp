@@ -35,7 +35,6 @@ elsewhere, thus I need this command."
         (echo-warning "This command is for unpdf: pages only, it's useless elsewhere!"))))
 
 (defun redirect-pdf (request-data)
-  (echo "MIME type is ~a" (mime-type request-data))
   (if (uiop:string-prefix-p "application/pdf" (mime-type request-data))
       ;; I should somehow prompt about downloading instead...
       (progn
