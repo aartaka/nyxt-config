@@ -77,7 +77,7 @@ Why the variable? Because it's too much hassle copying it everywhere.")
    (autofills *autofills*)
    (external-editor-program
     (list "emacsclient" "-cn" "-a" "" "-F"
-          "((font . \"IBM Plex Mono-17\") (vertical-scroll-bars)(tool-bar-lines) (menu-bar-lines))"))))
+          "((font . \"IBM Plex Mono-17\") (vertical-scroll-bars) (tool-bar-lines) (menu-bar-lines))"))))
 
 ;;; Autofils are abstracted into a mode of their own on 3.*.
 #+nyxt-3
