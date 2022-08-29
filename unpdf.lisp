@@ -10,9 +10,8 @@
       (let* ((url (quri:uri url))
              (original-url (quri:uri-path url))
              (original-content (dex:get original-url :force-binary t)))
-        (echo "Content is ~a" original-content)
         (uiop:with-temporary-file (:pathname path :type "pdf" :keep t)
-          (echo "Temp file is ~a" path)
+          (log:debug "Temp file for ~a is ~a" url path)
           (alexandria:write-byte-vector-into-file
            (coerce original-content '(vector (unsigned-byte 8))) path :if-exists :supersede)
           (let ((text (uiop:run-program `("pdftotext" ,(uiop:native-namestring path) "-")
