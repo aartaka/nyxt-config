@@ -6,7 +6,7 @@
    #+nyxt-3 'nyxt/autofill-mode:autofill
    :name "Debug"
    :fill (lambda ()
-           (nyxt:peval (setf (ps:@ document active-element value) ""))
+           (nyxt:ps-eval (setf (ps:@ document active-element value) ""))
            (format
             nil "**Describe the bug**
 
@@ -60,7 +60,7 @@ $ lspci -v
                                          title)))))
     (hooks:once-on (buffer-loaded-hook buffer)
         (buffer)
-      (nyxt:peval (ps:chain (nyxt/ps:qs document "#issue_body") (focus)))
+      (nyxt:ps-eval (ps:chain (nyxt/ps:qs document "#issue_body") (focus)))
       (%paste :input-text (funcall (nyxt/autofill-mode:autofill-fill *debug-autofill*))))))
 
 (define-command-global eval-expression ()
