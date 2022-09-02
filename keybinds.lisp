@@ -50,8 +50,8 @@
       #+nyxt-3 'nyxt/search-buffer-mode:search-buffer
       "C-x 3" 'hsplit
       "C-x 1" 'close-all-panels
-      "C-M-'"  (construct-command insert-left-angle-quote () (insert-text "«"))
-      "C-M-\"" (construct-command insert-left-angle-quote () (insert-text "»"))
+      "C-'"  (construct-command insert-left-angle-quote () (insert-text "«"))
+      "C-M-'" (construct-command insert-left-angle-quote () (insert-text "»"))
       "C-M-hyphen" (construct-command insert-left-angle-quote () (insert-text "—"))
       "C-M-_" (construct-command insert-left-angle-quote () (insert-text "–"))))))
 
