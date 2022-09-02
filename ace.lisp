@@ -97,7 +97,9 @@
        "ext-themelist.min.js"
        "ext-beautify.min.js"
        "ext-prompt.min.js"
-       "ext-split.min.js")))))
+       "ext-split.min.js"
+       "ext-whitespace.min.js"
+       "ext-statusbar.min.js")))))
 
 (define-configuration nx-ace:ace-mode
   ((nx-ace::theme "ace/theme/twilight")
@@ -117,7 +119,7 @@
          (req "ace/ext/emmet")
          (req "ace/ext/language_tools")
          (req "ace/worker/javascript")
-         (ps:chain editor (set-option "fantasize" 18))
+         (ps:chain editor (set-option "fontSize" 18))
          (ps:chain editor (set-option "enableBasicAutocompletion" t))
          (ps:chain editor (set-option "enableSnippets" t))
          (ps:chain editor session
@@ -130,6 +132,7 @@
          (bind "Ctrl-Alt-f" "jumptomatching")
          (bind "Alt-space" "expandToMatching")
          (bind "Alt-%" "replace")
+         (req "ace/ext/split")
          (ps:chain (req "ace/ext/settings_menu") (init editor))
          (ps:chain (req "ace/ext/keybinding_menu") (init editor))
          (bind "Ctrl-h m" (lambda (editor)
