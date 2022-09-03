@@ -70,10 +70,7 @@ Why the variable? Because it's too much hassle copying it everywhere.")
           *debug-autofill*)))
 
 (define-configuration browser
-  ;; This is for Nyxt to never prompt me about restoring the previous session.
-  (#+nyxt-2 (session-restore-prompt :never-restore)
-   #+nyxt-3 (restore-session-on-startup-p nil)
-   #+nyxt-2
+  (#+nyxt-2
    (autofills *autofills*)
    (external-editor-program
     (list "emacsclient" "-cn" "-a" "" "-F"
