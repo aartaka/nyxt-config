@@ -8,17 +8,34 @@
 (define-internal-scheme "unpdf"
     (lambda (url buffer)
       (let* ((url (quri:uri url))
-             (original-url (quri:uri-path url))
-             (original-content (dex:get original-url :force-binary t)))
-        (uiop:with-temporary-file (:pathname path :type "pdf" :keep t)
-          (log:debug "Temp file for ~a is ~a" url path)
-          (alexandria:write-byte-vector-into-file
-           (coerce original-content '(vector (unsigned-byte 8))) path :if-exists :supersede)
-          (let ((text (uiop:run-program `("pdftotext" ,(uiop:native-namestring path) "-")
-                                        :output '(:string :stripped t))))
-            (spinneret:with-html-string
-              (:head (:style (style buffer)))
-              (:pre (or text "")))))))
+             (original-url (quri:uri (quri:uri-path url)))
+             (local-p (null (quri:uri-scheme original-url)))
+             (original-content (unless local-p
+                                 (dex:get (quri:render-uri original-url) :force-binary t))))
+        (flet ((display-pdf-contents (file)
+                 (if (uiop:file-exists-p file)
+                     (let ((pages (ignore-errors
+                                   (uiop:split-string
+                                    (uiop:run-program `("pdftotext" ,(uiop:native-namestring file) "-")
+                                                      :output '(:string :stripped t))
+                                    :separator '(#\Page)))))
+                       (spinneret:with-html-string
+                         (:head (:style (style buffer)))
+                         (loop for page in pages
+                               for number from 0
+                               do (:section
+                                   :id (princ-to-string number)
+                                   (:a :href (format nil "#~d" number)
+                                       (princ-to-string number))
+                                   (:pre (or page ""))))))
+                     "")))
+          (if local-p
+              (display-pdf-contents (pathname (quri:uri-path original-url)))
+              (uiop:with-temporary-file (:pathname path :type "pdf" :keep t)
+                (log:debug "Temp file for ~a is ~a" url path)
+                (alexandria:write-byte-vector-into-file
+                 (coerce original-content '(vector (unsigned-byte 8))) path :if-exists :supersede)
+                (display-pdf-contents path))))))
   :local-p t)
 
 (define-command-global unpdf-download-this ()
