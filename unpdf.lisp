@@ -10,7 +10,8 @@
     (lambda (url buffer)
       (let* ((url (quri:uri url))
              (original-url (quri:uri (quri:uri-path url)))
-             (local-p (null (quri:uri-scheme original-url)))
+             (local-p (or (null (quri:uri-scheme original-url))
+                          (string= "file" (quri:uri-scheme original-url))))
              (original-content (unless local-p
                                  (dex:get (quri:render-uri original-url) :force-binary t))))
         (flet ((display-pdf-contents (file)
