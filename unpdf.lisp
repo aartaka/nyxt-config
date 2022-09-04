@@ -22,7 +22,13 @@
                                                       :output '(:string :stripped t))
                                     :separator '(#\Page)))))
                        (spinneret:with-html-string
-                         (:head (:style (style buffer)))
+                         (:head
+                          (:style (style buffer))
+                          (:style (theme:themed-css (theme *browser*)
+                                    (.override ;; A class to override the <pre> colors.
+                                     :background-color theme:background
+                                     :color theme:on-background
+                                     :font-size "150%"))))
                          (loop for page in pages
                                for number from 1
                                unless (uiop:emptyp page)
@@ -30,7 +36,7 @@
                                      :id (princ-to-string number)
                                      (:a :href (format nil "#~d" number)
                                          (princ-to-string number))
-                                     (:pre (or page ""))))))
+                                     (:pre.override (or page ""))))))
                      "")))
           (if local-p
               (display-pdf-contents (pathname (quri:uri-path original-url)))
