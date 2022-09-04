@@ -22,12 +22,13 @@
                        (spinneret:with-html-string
                          (:head (:style (style buffer)))
                          (loop for page in pages
-                               for number from 0
-                               do (:section
-                                   :id (princ-to-string number)
-                                   (:a :href (format nil "#~d" number)
-                                       (princ-to-string number))
-                                   (:pre (or page ""))))))
+                               for number from 1
+                               unless (uiop:emptyp page)
+                                 do (:section
+                                     :id (princ-to-string number)
+                                     (:a :href (format nil "#~d" number)
+                                         (princ-to-string number))
+                                     (:pre (or page ""))))))
                      "")))
           (if local-p
               (display-pdf-contents (pathname (quri:uri-path original-url)))
