@@ -59,6 +59,11 @@
       "C-M-_" (construct-command insert-left-angle-quote ()
                                  #+nyxt-3
                                  (ffi-buffer-paste (current-buffer) "–"))))))
+#+nyxt-3
+(define-configuration base-mode
+  ((keyscheme-map
+    (alter-keyscheme %slot-default% nyxt/keyscheme:emacs
+      "C-x C-b" nil))))
 
 #+nyxt-2
 (define-configuration nyxt/auto-mode:auto-mode
