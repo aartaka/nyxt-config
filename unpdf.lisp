@@ -1,10 +1,11 @@
 (in-package #:nyxt-user)
 
 ;; I'm definining a new scheme to redirect PDF requests to. What it does is:
-;; - Get the original file.
-;; - Save it to disk.
-;; - Run pdftotext over it.
-;; - Display pdftotext output in a nice <pre> tag.
+;; - Get the original file (if the URL is a filesystem path, simply use it).
+;; - Save it to disk (if remote).
+;; - Run pdftotext over the file.
+;; - Display pdftotext output in a nice HTML page with interlinkable
+;;   page numbers and page contents as <pre> tags.
 (define-internal-scheme "unpdf"
     (lambda (url buffer)
       (let* ((url (quri:uri url))
@@ -52,7 +53,8 @@ elsewhere, thus I need this command."
         (echo-warning "This command is for unpdf: pages only, it's useless elsewhere!"))))
 
 (defun redirect-pdf (request-data)
-  (if (uiop:string-prefix-p "application/pdf" (mime-type request-data))
+  (if (and (toplevel-p request-data)
+           (uiop:string-prefix-p "application/pdf" (mime-type request-data)))
       ;; I should somehow prompt about downloading instead...
       (progn
         (echo "Redirecting to the unpdf URL...")
