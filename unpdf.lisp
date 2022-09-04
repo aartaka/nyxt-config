@@ -28,7 +28,8 @@
                                     (.override ;; A class to override the <pre> colors.
                                      :background-color theme:background
                                      :color theme:on-background
-                                     :font-size "150%"))))
+                                     :font-size "150%"
+                                     :line-height "150%"))))
                          (loop for page in pages
                                for number from 1
                                unless (uiop:emptyp page)
