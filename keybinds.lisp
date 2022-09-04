@@ -2,9 +2,6 @@
 
 ;;; Add basic keybindings.
 
-(define-parenscript insert-text (text)
-  (nyxt/ps:insert-at (ps:@ document active-element) (ps:lisp text)))
-
 (defmacro construct-command (name (&rest args) &body body)
   `(#+nyxt-2 make-command
     #+nyxt-3 lambda-command
@@ -50,10 +47,18 @@
       #+nyxt-3 'nyxt/search-buffer-mode:search-buffer
       "C-x 3" 'hsplit
       "C-x 1" 'close-all-panels
-      "C-'"  (construct-command insert-left-angle-quote () (insert-text "«"))
-      "C-M-'" (construct-command insert-left-angle-quote () (insert-text "»"))
-      "C-M-hyphen" (construct-command insert-left-angle-quote () (insert-text "—"))
-      "C-M-_" (construct-command insert-left-angle-quote () (insert-text "–"))))))
+      "C-'"  (construct-command insert-left-angle-quote ()
+                                #+nyxt-3
+                                (ffi-buffer-paste (current-buffer) "«"))
+      "C-M-'" (construct-command insert-left-angle-quote ()
+                                 #+nyxt-3
+                                 (ffi-buffer-paste (current-buffer) "»"))
+      "C-M-hyphen" (construct-command insert-left-angle-quote ()
+                                      #+nyxt-3
+                                      (ffi-buffer-paste (current-buffer) "—"))
+      "C-M-_" (construct-command insert-left-angle-quote ()
+                                 #+nyxt-3
+                                 (ffi-buffer-paste (current-buffer) "–"))))))
 
 #+nyxt-2
 (define-configuration nyxt/auto-mode:auto-mode
