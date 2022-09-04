@@ -16,7 +16,7 @@
                  (if (uiop:file-exists-p file)
                      (let ((pages (ignore-errors
                                    (uiop:split-string
-                                    (uiop:run-program `("pdftotext" ,(uiop:native-namestring file) "-")
+                                    (uiop:run-program `("pdftotext" "-nodiag" ,(uiop:native-namestring file) "-")
                                                       :output '(:string :stripped t))
                                     :separator '(#\Page)))))
                        (spinneret:with-html-string
