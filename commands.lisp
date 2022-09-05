@@ -75,14 +75,14 @@ $ lspci -v
     (echo "~S" (eval (read-from-string expression-string)))))
 
 #+nyxt-3
-(define-panel-command hsplit-internal (&key (buffer (id (current-buffer))))
-    (panel "Duplicate panel" :right)
+(define-panel-command hsplit-internal (&key (url (quri:render-uri (url (current-buffer)))))
+    (panel "*Duplicate panel*" :right)
   "Duplicate the current buffer URL in the panel buffer on the right.
 
 A poor man's hsplit :)"
-  (setf (ffi-window-panel-buffer-width (current-window) panel) 700)
+  (setf (ffi-window-panel-buffer-width (current-window) panel) 550)
   (run-thread "URL loader"
-    (buffer-load (url (nyxt::buffers-get buffer)) :buffer panel))
+    (buffer-load (quri:uri url) :buffer panel))
   "")
 
 #+nyxt-3
