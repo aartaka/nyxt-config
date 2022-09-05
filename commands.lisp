@@ -63,6 +63,8 @@ $ lspci -v
       (nyxt:ps-eval (ps:chain (nyxt/ps:qs document "#issue_body") (focus)))
       (%paste :input-text (funcall (nyxt/autofill-mode:autofill-fill *debug-autofill*))))))
 
+;; This is built into execute-command on 3.*.
+#+nyxt-2
 (define-command-global eval-expression ()
   "Prompt for the expression and evaluate it, echoing result to the `message-area'."
   (let ((expression-string
