@@ -35,8 +35,8 @@
                                unless (uiop:emptyp page)
                                  do (:section
                                      :id (princ-to-string number)
-                                     (:a :href (format nil "#~d" number)
-                                         (princ-to-string number))
+                                     (:h2.override (:a :href (format nil "#~d" number)
+                                              (princ-to-string number)))
                                      (:pre.override (or page ""))))))
                      "")))
           (if local-p
