@@ -82,6 +82,7 @@ $ lspci -v
 A poor man's hsplit :)"
   (setf (ffi-window-panel-buffer-width (current-window) panel) 550)
   (run-thread "URL loader"
+    (sleep 0.3)
     (buffer-load (quri:uri url) :buffer panel))
   "")
 
