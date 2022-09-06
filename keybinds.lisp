@@ -48,22 +48,17 @@
       "C-x 3" 'hsplit
       "C-x 1" 'close-all-panels
       "C-'"  (construct-command insert-left-angle-quote ()
-                                #+nyxt-3
-                                (ffi-buffer-paste (current-buffer) "«"))
+               #+nyxt-3 (ffi-buffer-paste (current-buffer) "«"))
       "C-M-'" (construct-command insert-left-angle-quote ()
-                                 #+nyxt-3
-                                 (ffi-buffer-paste (current-buffer) "»"))
+                #+nyxt-3 (ffi-buffer-paste (current-buffer) "»"))
       "C-M-hyphen" (construct-command insert-left-angle-quote ()
-                                      #+nyxt-3
-                                      (ffi-buffer-paste (current-buffer) "—"))
+                     #+nyxt-3 (ffi-buffer-paste (current-buffer) "—"))
       "C-M-_" (construct-command insert-left-angle-quote ()
-                                 #+nyxt-3
-                                 (ffi-buffer-paste (current-buffer) "–"))))))
-#+nyxt-3
-(define-configuration base-mode
-  ((keyscheme-map
-    (alter-keyscheme %slot-default% nyxt/keyscheme:emacs
-      "C-x C-b" nil))))
+                #+nyxt-3 (ffi-buffer-paste (current-buffer) "–"))
+      "C-E" (construct-command small-e-with-acute ()
+              #+nyxt-3 (ffi-buffer-paste (current-buffer) "é"))
+      "C-A" (construct-command small-a-with-acute ()
+              #+nyxt-3 (ffi-buffer-paste (current-buffer) "á"))))))
 
 #+nyxt-2
 (define-configuration nyxt/auto-mode:auto-mode
