@@ -185,3 +185,9 @@ Why the variable? Because it's too much hassle copying it everywhere.")
   "A simple mode to set Firefox-like Linux user agent."
   ((nyxt/reduce-tracking-mode:preferred-user-agent
     "Mozilla/5.0 (X11; Linux x86_64; rv:94.0) Gecko/20100101 Firefox/94.0")))
+
+;; Enable Nyxt-internal debugging, but only in binary mode and after
+;; startup if done (there are conditions raised at startup, and I
+;; don't want to catch those, hanging my Nyxt).
+(unless nyxt::*run-from-repl-p*
+  (hooks:add-hook *after-startup-hook* #'toggle-debug-on-error))
