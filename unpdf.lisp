@@ -9,7 +9,7 @@
 (define-internal-scheme "unpdf"
     (lambda (url buffer)
       (let* ((url (quri:uri url))
-             (original-url (quri:uri (quri:uri-path url)))
+             (original-url (quri:uri (quri:url-decode (quri:uri-path url))))
              (local-p (or (null (quri:uri-scheme original-url))
                           (string= "file" (quri:uri-scheme original-url))))
              (original-content (unless local-p
