@@ -61,7 +61,7 @@ $ lspci -v
     (hooks:once-on (buffer-loaded-hook buffer)
         (buffer)
       (nyxt:ps-eval (ps:chain (nyxt/ps:qs document "#issue_body") (focus)))
-      (%paste :input-text (funcall (nyxt/autofill-mode:autofill-fill *debug-autofill*))))))
+      (ffi-buffer-paste buffer (funcall (nyxt/autofill-mode:autofill-fill *debug-autofill*))))))
 
 ;; This is built into execute-command on 3.*.
 #+nyxt-2
