@@ -103,4 +103,4 @@ A poor man's hsplit :)"
 
 (nyxt/bookmarklets-mode:define-bookmarklet-command-global post-to-hn
   "Post the link you're currently on to Hacker News"
-  "window.location=\"https://news.ycombinator.com/submitlink?u=\" encodeURIComponent(document.location) \"&t=\" encodeURIComponent(document.title)")
+  "window.location=\"https://news.ycombinator.com/submitlink?u=\" + encodeURIComponent(document.location) + \"&t=\" + encodeURIComponent(document.title)")
