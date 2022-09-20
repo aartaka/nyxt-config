@@ -15,7 +15,8 @@
   '(nyxt/emacs-mode:emacs-mode nyxt/auto-mode:auto-mode
     nyxt/blocker-mode:blocker-mode nyxt/force-https-mode:force-https-mode
     nyxt/reduce-tracking-mode:reduce-tracking-mode
-    #+nyxt-3 nyxt/user-script-mode:user-script-mode)
+    #+nyxt-3 nyxt/user-script-mode:user-script-mode
+    #+nyxt-3 nyxt/bookmarklets-mode:bookmarklets-mode)
   "The modes to enable in web-buffer by default.
 Extension files (like dark-reader.lisp) are to append to this list.
 
