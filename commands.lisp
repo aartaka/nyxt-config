@@ -112,3 +112,10 @@ A poor man's hsplit :)"
 (ffi-add-context-menu-command
  'open-in-nosave-buffer
  "Open Link in New Nosave Buffer")
+
+(define-command-global make-new-buffer-with-url-and-context ()
+  (make-buffer-with-context :url (url-at-point (current-buffer))))
+
+(ffi-add-context-menu-command
+ 'make-new-buffer-with-url-and-context
+ "Open Link in New Buffer with Context")
