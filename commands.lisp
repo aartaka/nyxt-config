@@ -104,3 +104,11 @@ A poor man's hsplit :)"
 (nyxt/bookmarklets-mode:define-bookmarklet-command-global post-to-hn
   "Post the link you're currently on to Hacker News"
   "window.location=\"https://news.ycombinator.com/submitlink?u=\" + encodeURIComponent(document.location) + \"&t=\" + encodeURIComponent(document.title)")
+
+(define-command-global open-in-nosave-buffer ()
+  (let ((url (url-at-point (current-buffer))))
+    (make-nosave-buffer :url url)))
+
+(ffi-add-context-menu-command
+ 'open-in-nosave-buffer
+ "Open Link in New Nosave Buffer")
