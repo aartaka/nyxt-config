@@ -109,13 +109,16 @@ A poor man's hsplit :)"
   (let ((url (url-at-point (current-buffer))))
     (make-nosave-buffer :url url)))
 
+#+nyxt-3
 (ffi-add-context-menu-command
  'open-in-nosave-buffer
  "Open Link in New Nosave Buffer")
 
+#+(and nyxt-gtk nyxt-3)
 (define-command-global make-new-buffer-with-url-and-context ()
   (make-buffer-with-context :url (url-at-point (current-buffer))))
 
+#+nyxt-3
 (ffi-add-context-menu-command
  'make-new-buffer-with-url-and-context
  "Open Link in New Buffer with Context")
