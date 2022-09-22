@@ -119,3 +119,20 @@ A poor man's hsplit :)"
 (ffi-add-context-menu-command
  'make-new-buffer-with-url-and-context
  "Open Link in New Buffer with Context")
+
+#+nyxt-3
+(define-panel-command-global search-translate-selection (&key (selection (ffi-buffer-copy (current-buffer))))
+    (panel "*Translate panel*" :right)
+  "Open the translation of the selected word in a panel buffer."
+  (setf (ffi-window-panel-buffer-width (current-window) panel) 550)
+  (run-thread "search translation URL loader"
+    (sleep 0.3)
+    (buffer-load (quri:uri (format nil (nyxt::search-url (nyxt::default-search-engine))
+                                   (str:concat "translate " (ffi-buffer-copy (current-buffer)))))
+                 :buffer panel))
+  "")
+
+#+nyxt-3
+(ffi-add-context-menu-command
+ 'search-translate-selection
+ "Translate Selection")
