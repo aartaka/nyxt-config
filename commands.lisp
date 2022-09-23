@@ -101,6 +101,7 @@ A poor man's hsplit :)"
       (close-all-panels)
       (hsplit-internal)))
 
+#+nyxt-3-pre-release-2
 (nyxt/bookmarklets-mode:define-bookmarklet-command-global post-to-hn
   "Post the link you're currently on to Hacker News"
   "window.location=\"https://news.ycombinator.com/submitlink?u=\" + encodeURIComponent(document.location) + \"&t=\" + encodeURIComponent(document.title)")
