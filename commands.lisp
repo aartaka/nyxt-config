@@ -109,7 +109,7 @@ A poor man's hsplit :)"
   (let ((url (url-at-point (current-buffer))))
     (make-nosave-buffer :url url)))
 
-#+nyxt-3
+#+nyxt-3-pre-release-2
 (ffi-add-context-menu-command
  'open-in-nosave-buffer
  "Open Link in New Nosave Buffer")
@@ -118,7 +118,7 @@ A poor man's hsplit :)"
 (define-command-global make-new-buffer-with-url-and-context ()
   (make-buffer-with-context :url (url-at-point (current-buffer))))
 
-#+nyxt-3
+#+nyxt-3-pre-release-2
 (ffi-add-context-menu-command
  'make-new-buffer-with-url-and-context
  "Open Link in New Buffer with Context")
@@ -135,7 +135,7 @@ A poor man's hsplit :)"
                  :buffer panel))
   "")
 
-#+nyxt-3
+#+nyxt-3-pre-release-2
 (ffi-add-context-menu-command
  'search-translate-selection
  "Translate Selection")
