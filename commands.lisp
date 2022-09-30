@@ -6,7 +6,9 @@
    #+nyxt-3 'nyxt/autofill-mode:autofill
    :name "Debug"
    :fill (lambda ()
-           (nyxt:ps-eval (setf (ps:@ document active-element value) ""))
+           (#+nyxt-3-pre-release-2 nyxt:ps-eval
+            #-nyxt-3-pre-release-2 nyxt:peval
+            (setf (ps:@ document active-element value) ""))
            (format
             nil "**Describe the bug**
 
@@ -60,7 +62,9 @@ $ lspci -v
                                          title)))))
     (hooks:once-on (buffer-loaded-hook buffer)
         (buffer)
-      (nyxt:ps-eval (ps:chain (nyxt/ps:qs document "#issue_body") (focus)))
+      (#+nyxt-3-pre-release-2 nyxt:ps-eval
+       #-nyxt-3-pre-release-2 nyxt:peval
+       (ps:chain (nyxt/ps:qs document "#issue_body") (focus)))
       (ffi-buffer-paste buffer (funcall (nyxt/autofill-mode:autofill-fill *debug-autofill*))))))
 
 ;; This is built into execute-command on 3.*.
@@ -107,6 +111,7 @@ A poor man's hsplit :)"
   "window.location=\"https://news.ycombinator.com/submitlink?u=\" + encodeURIComponent(document.location) + \"&t=\" + encodeURIComponent(document.title)")
 
 (define-command-global open-in-nosave-buffer ()
+  "Make a new nosave buffer with URL at point."
   (let ((url (url-at-point (current-buffer))))
     (make-nosave-buffer :url url)))
 
@@ -117,6 +122,7 @@ A poor man's hsplit :)"
 
 #+(and nyxt-gtk nyxt-3)
 (define-command-global make-new-buffer-with-url-and-context ()
+  "Make a new buffer with a user-chosen context and a URL under pointer."
   (make-buffer-with-context :url (url-at-point (current-buffer))))
 
 #+nyxt-3-pre-release-2
