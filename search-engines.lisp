@@ -25,7 +25,7 @@
     :background-color "000000"
     :center-alignment t))
 
-(define-configuration buffer
+(define-configuration #+nyxt-2 buffer #+nyxt-3 context-buffer
   ((search-engines (list
                     ;; engines: is a prefix for `nx-search-engines',
                     ;; it only works if you load nx-search-engines.
