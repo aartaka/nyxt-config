@@ -189,23 +189,3 @@ Why the variable? Because it's too much hassle copying it everywhere.")
 ;; don't want to catch those, hanging my Nyxt).
 (unless nyxt::*run-from-repl-p*
   (hooks:add-hook *after-startup-hook* #'toggle-debug-on-error))
-
-(defvar *times* nil)
-
-(define-configuration web-buffer
-  ((request-resource-hook
-    (hooks:add-hook
-     %slot-value%
-     (make-instance 'hooks:handler
-                    :fn (lambda (request-data)
-                          (when (toplevel-p request-data)
-                            (let ((request-time (local-time:now)))
-                              (hooks:once-on (buffer-loaded-hook (buffer request-data))
-                                  (buffer)
-                                (let ((time (local-time:timestamp-difference (local-time:now) request-time)))
-                                  (push time *times*)
-                                  (echo "~a loaded in ~f seconds."
-                                        (url buffer)
-                                        time)))))
-                          request-data)
-                    :name 'benchmark-loading)))))
