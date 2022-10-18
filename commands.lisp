@@ -146,3 +146,16 @@ A poor man's hsplit :)"
 (ffi-add-context-menu-command
  'search-translate-selection
  "Translate Selection")
+
+#+nyxt-3
+(define-command-global add-autofill ()
+  "Add an autofill with the selected text to the list of `autofill-mode' autofills."
+  (push (make-instance 'nyxt/autofill-mode:autofill
+                       :name (prompt1 :prompt "Autofill key" :sources 'prompter:raw-source)
+                       :fill (ffi-buffer-copy (current-buffer)))
+        (nyxt/autofill-mode::autofills (current-mode :autofill))))
+
+#+nyxt-3-pre-release-2
+(ffi-add-context-menu-command
+ 'add-autofill
+ "Add Temporary Autofill")
