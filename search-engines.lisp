@@ -34,7 +34,7 @@
                     (make-instance 'search-engine
                                    :shortcut "osm"
                                    :search-url "https://www.openstreetmap.org/search?query=~a"
-                                   :fallback-url "https://www.openstreetmap.org/")
+                                   :fallback-url (quri:uri "https://www.openstreetmap.org/"))
                     (make-instance 'search-engine
                                    :shortcut "golang"
                                    :search-url "https://golang.org/pkg/~a/"
