@@ -159,3 +159,41 @@ A poor man's hsplit :)"
 (ffi-add-context-menu-command
  'add-autofill
  "Add Temporary Autofill")
+
+#+nyxt-3
+(define-internal-page-command-global design-system ()
+    (buffer "Nyxt Design System so far" 'nyxt/history-tree-mode::history-tree-mode)
+  (spinneret:with-html-string
+    (:style (style (find-submode 'nyxt/history-tree-mode:history-tree-mode buffer)))
+    (:nsection :title "Interface primitives"
+      (:div
+       (:button.button
+        "A <button> with .button class"))
+      (:div
+       (:select.button
+        (:option :value "1"
+                 "A <select> with .button class (see how it's a bit underdeveloped and
+stretches to the content).")))
+      (:div
+       (:button.button.accent
+        "Accented <button> (.button + .accent)."))
+      (:div
+       (:a.link :href "#" "A link with .link class"))
+      (:div (:ul
+             (:li "Tree-like")
+             (:li "lists")
+             (:ul
+              (:li "as used")
+              (:ul
+               (:li "in"))
+              (:li "Nyxt")
+              (:li "history")
+              (:ul
+               (:li "tree listing"))))))
+    (:nsection :title "Advanced widgets"
+      (:p ":nsection tag is the one wrapping around this list of widgets, with a
+heading, a hash-link, and a collapsible content.")
+      (:p ":ncode element with buttons for code editing and interaction:")
+      (:ncode '(print "Hello, Nyxt!"))
+      (:nxref :function 'ffi-display-url
+        "An :nxref reference to Nyxt function called FFI-DISPLAY-URL (obviously not clickable outside Nyxt)."))))
