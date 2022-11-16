@@ -145,9 +145,14 @@
   ((style (str:concat
            %slot-value%
            (theme:themed-css (theme *browser*)
+             #+nyxt-3-pre-release-1
              ("#kbshortcutmenu"
               :background-color theme:background
-              :color theme:on-background))))
+              :color theme:on-background)
+             #+(and nyxt-3 (not nyxt-3-pre-release-1))
+             `("#kbshortcutmenu"
+               :background-color ,theme:background
+               :color ,theme:on-background))))
    (nx-ace::keybindings "ace/keyboard/emacs")))
 
 (define-configuration nyxt/editor-mode::editor-buffer
