@@ -28,7 +28,7 @@
 ;;; though. Thus, I'm overriding those to be a bit more laconia-like.
 (define-configuration nyxt/style-mode:dark-mode
   ((style
-    #+nyxt-3
+    #+(and nyxt-3 (not (or nyxt-2 nyxt-3-pre-release-1)))
     (theme:themed-css (theme *browser*)
       `(*
         :background-color ,(if (theme:dark-p theme:theme)
@@ -47,7 +47,7 @@
         "!important"
         :background-image none "!important"
         :color ,theme:primary "!important"))
-    #+(and nyxt-2 nyxt-3-pre-release-1)
+    #+(or nyxt-2 nyxt-3-pre-release-1)
     (theme:themed-css (theme *browser*)
       (*
        :background-color (str:concat
