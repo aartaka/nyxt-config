@@ -24,12 +24,20 @@
                        (spinneret:with-html-string
                          (:head
                           (:style (style buffer))
+                          ;; A class to override the <pre> colors.
                           (:style (theme:themed-css (theme *browser*)
-                                    (.override ;; A class to override the <pre> colors.
+                                    #+(or nyxt-2 nyxt-3-pre-release-1)
+                                    (.override
                                      :background-color theme:background
                                      :color theme:on-background
                                      :font-size "150%"
-                                     :line-height "150%"))))
+                                     :line-height "150%")
+                                    #+(and nyxt-3 (not (or nyxt-2 nyxt-3-pre-release-1)))
+                                    `(.override
+                                      :background-color ,theme:background
+                                      :color ,theme:on-background
+                                      :font-size "150%"
+                                      :line-height "150%"))))
                          (loop for page in pages
                                for number from 1
                                unless (uiop:emptyp page)
