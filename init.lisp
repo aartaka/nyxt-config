@@ -12,7 +12,8 @@
     (load quicklisp-init)))
 
 (defvar *web-buffer-modes*
-  '(nyxt/emacs-mode:emacs-mode nyxt/auto-mode:auto-mode
+  '(nyxt/emacs-mode:emacs-mode
+    #+(or nyxt-2 nyxt-3-pre-release-1) nyxt/auto-mode:auto-mode
     nyxt/blocker-mode:blocker-mode nyxt/force-https-mode:force-https-mode
     nyxt/reduce-tracking-mode:reduce-tracking-mode
     #+nyxt-3 nyxt/user-script-mode:user-script-mode
@@ -136,10 +137,14 @@ Why the variable? Because it's too much hassle copying it everywhere.")
    ;; Same as default except it doesn't hint images
    (nyxt/hint-mode:hints-selector "a, button, input, textarea, details, select")))
 
-;;; This makes auto-mode to prompt me about remembering this or that
+;;; This makes auto-rules to prompt me about remembering this or that
 ;;; mode when I toggle it.
+#+(or nyxt-2 nyxt-3-pre-release-1)
 (define-configuration nyxt/auto-mode:auto-mode
   ((nyxt/auto-mode:prompt-on-mode-toggle t)))
+#+(and nyxt-3 (not (or nyxt-2 nyxt-3-pre-release-1)))
+(define-configuration modable-buffer
+  ((prompt-on-mode-toggle-p t)))
 
 ;;; Setting WebKit-specific settings. Not exactly the best way to
 ;;; configure Nyxt. See

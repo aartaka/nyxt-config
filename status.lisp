@@ -15,6 +15,7 @@
 (define-configuration nyxt/certificate-exception-mode:certificate-exception-mode
   ((glyph "χ")))
 (define-configuration nyxt/style-mode:style-mode ((glyph "ϕ")))
+#+(or nyxt-2 nyxt-3-pre-release-1)
 (define-configuration nyxt/auto-mode:auto-mode ((glyph "α")))
 (define-configuration nyxt/cruise-control-mode:cruise-control-mode ((glyph "σ")))
 
