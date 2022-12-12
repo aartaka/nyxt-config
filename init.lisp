@@ -166,12 +166,13 @@ Why the variable? Because it's too much hassle copying it everywhere.")
      (webkit:webkit-settings-monospace-font-family settings) "Hack"
      (webkit:webkit-settings-default-monospace-font-size settings) 17)))
 
+;; This is to strip UTM-parameters of all the links. Upstream Nyxt
+;; doesn't have it because it may break some websites.
 #+nyxt-3
 (define-configuration nyxt/reduce-tracking-mode:reduce-tracking-mode
-  ((nyxt/reduce-tracking-mode:preferred-user-agent
-    ;; Safari on Mac. Taken from
-    ;; https://techblog.willshouse.com/2012/01/03/most-common-user-agents
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.3 Safari/605.1.15")))
+  ((nyxt/reduce-tracking-mode:query-tracking-parameters
+    (append '("utm_source" "utm_medium" "utm_campaign" "utm_term" "utm_content")
+            %slot-value%))))
 
 ;;; reduce-tracking-mode has a preferred-user-agent slot that it uses
 ;;; as the User Agent to set when enabled. What I want here is to have
