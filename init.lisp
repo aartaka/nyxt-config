@@ -164,7 +164,9 @@ Why the variable? Because it's too much hassle copying it everywhere.")
      (webkit:webkit-settings-default-font-size settings) 18
      ;; Use Hack-17 as the monospace font.
      (webkit:webkit-settings-monospace-font-family settings) "Hack"
-     (webkit:webkit-settings-default-monospace-font-size settings) 17)))
+     (webkit:webkit-settings-default-monospace-font-size settings) 17
+     ;; Use Unifont for pictograms.
+     (webkit:webkit-settings-pictograph-font-family settings) "Unifont")))
 
 ;; This is to strip UTM-parameters of all the links. Upstream Nyxt
 ;; doesn't have it because it may break some websites.
