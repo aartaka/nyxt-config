@@ -4,10 +4,10 @@
 ;;; files.
 #+nyxt-2
 (define-configuration password:keepassxc-interface
-  ((password:password-file "/home/aartaka/Documents/Passwords.kdbx")))
+  ((password:password-file "/home/aartaka/Documents/p.kdbx")))
 #+nyxt-3
 (defmethod initialize-instance :after ((interface password:keepassxc-interface) &key &allow-other-keys)
-  (setf (password:password-file interface) "/home/aartaka/Documents/Passwords.kdbx"))
+  (setf (password:password-file interface) "/home/aartaka/Documents/p.kdbx"))
 
 ;; This is to emphasize that I use KeePassXC, as Nyxt is not always
 ;; smart enough to guess that.
