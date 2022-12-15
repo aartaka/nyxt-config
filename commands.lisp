@@ -67,6 +67,21 @@ $ lspci -v
        (ps:chain (nyxt/ps:qs document "#issue_body") (focus)))
       (ffi-buffer-paste buffer (funcall (nyxt/autofill-mode:autofill-fill *debug-autofill*))))))
 
+#+nyxt-3
+(nyxt:define-command-global new-feature-request ()
+  "Open a new feature request in Nyxt repo."
+  (let* ((title (prompt1
+                 :prompt "Title of the issue"
+                 :sources (list (make-instance 'prompter:raw-source))))
+         (buffer (make-buffer-focus
+                  :url (quri:uri (format nil "https://github.com/atlas-engineer/nyxt/issues/new?assignees=&labels=feature&template=feature_request.md&title=~a"
+                                         title)))))
+    (hooks:once-on (buffer-loaded-hook buffer)
+        (buffer)
+      (#+nyxt-3-pre-release-2 nyxt:ps-eval
+       #-nyxt-3-pre-release-2 nyxt:peval
+        (ps:chain (nyxt/ps:qs document "#issue_body") (focus))))))
+
 ;; This is built into execute-command on 3.*.
 #+nyxt-2
 (define-command-global eval-expression ()
