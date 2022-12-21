@@ -15,7 +15,7 @@
        ,@bindings)
      scheme)
   #+nyxt-3
-  `(nkeymaps/core:define-keyscheme-map "custom" (list :import ,keyscheme)
+  `(keymaps:define-keyscheme-map "custom" (list :import ,keyscheme)
      ,scheme-name
      (list ,@bindings)))
 
