@@ -151,7 +151,12 @@ Why the variable? Because it's too much hassle copying it everywhere.")
 ;;; https://webkitgtk.org/reference/webkit2gtk/stable/WebKitSettings.html
 ;;; for the full list of settings you can tweak this way.
 (defmethod ffi-buffer-make :after ((buffer buffer))
-  (let* ((settings (webkit:webkit-web-view-get-settings (nyxt::gtk-object buffer))))
+  (let* ((settings (webkit:webkit-web-view-get-settings
+                    ;; It's not exactly 3.*, it's rather
+                    ;; 3-pre-release-3+, but I'm too lazy to conjure
+                    ;; this complexity right now.
+                    #+nyxt-3 (nyxt/renderer/gtk::gtk-object buffer)
+                    #+nyxt-2 (nyxt::gtk-object buffer))))
     (setf
      ;; Resizeable textareas. It's not perfect, but still a cool feature to have.
      (webkit:webkit-settings-enable-resizable-text-areas settings) t
