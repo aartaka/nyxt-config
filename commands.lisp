@@ -6,9 +6,9 @@
    #+nyxt-3 'nyxt/autofill-mode:autofill
    :name "Debug"
    :fill (lambda ()
-           (#+nyxt-3-pre-release-2 nyxt:ps-eval
-            #-nyxt-3-pre-release-2 nyxt:peval
-            (setf (ps:@ document active-element value) ""))
+           (#+(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:ps-eval
+            #-(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:peval
+             (setf (ps:@ document active-element value) ""))
            (format
             nil "**Describe the bug**
 
@@ -62,9 +62,9 @@ $ lspci -v
                                          title)))))
     (hooks:once-on (buffer-loaded-hook buffer)
         (buffer)
-      (#+nyxt-3-pre-release-2 nyxt:ps-eval
-       #-nyxt-3-pre-release-2 nyxt:peval
-       (ps:chain (nyxt/ps:qs document "#issue_body") (focus)))
+      (#+(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:ps-eval
+       #-(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:peval
+        (ps:chain (nyxt/ps:qs document "#issue_body") (focus)))
       (ffi-buffer-paste buffer (funcall (nyxt/autofill-mode:autofill-fill *debug-autofill*))))))
 
 #+nyxt-3
@@ -78,8 +78,8 @@ $ lspci -v
                                          title)))))
     (hooks:once-on (buffer-loaded-hook buffer)
         (buffer)
-      (#+nyxt-3-pre-release-2 nyxt:ps-eval
-       #-nyxt-3-pre-release-2 nyxt:peval
+      (#+(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:ps-eval
+       #-(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:peval
         (ps:chain (nyxt/ps:qs document "#issue_body") (focus))))))
 
 ;; This is built into execute-command on 3.*.
