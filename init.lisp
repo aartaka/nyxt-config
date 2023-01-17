@@ -184,5 +184,9 @@ Why the variable? Because it's too much hassle copying it everywhere.")
 ;; Enable Nyxt-internal debugging, but only in binary mode and after
 ;; startup if done (there are conditions raised at startup, and I
 ;; don't want to catch those, hanging my Nyxt).
+#+(and nyxt-3 (or (and nyxt-3-pre-release-2 nyxt-unstable)
+                  (and (not nyxt-3-pre-release-2)
+                       (not nyxt-3-pre-release-1))))
 (unless nyxt::*run-from-repl-p*
-  (hooks:add-hook *after-startup-hook* #'toggle-debug-on-error))
+  (define-configuration browser
+      ((after-startup-hook (hooks:add-hook %slot-value% #'toggle-debug-on-error)))))
