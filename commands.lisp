@@ -120,7 +120,7 @@ A poor man's hsplit :)"
       (close-all-panels)
       (hsplit-internal)))
 
-#+nyxt-3-pre-release-2
+#+(and nyxt-3 (not nyxt-3-pre-release-1))
 (nyxt/bookmarklets-mode:define-bookmarklet-command-global post-to-hn
   "Post the link you're currently on to Hacker News"
   "window.location=\"https://news.ycombinator.com/submitlink?u=\" + encodeURIComponent(document.location) + \"&t=\" + encodeURIComponent(document.title)")
@@ -130,9 +130,11 @@ A poor man's hsplit :)"
   (let ((url (url-at-point (current-buffer))))
     (make-nosave-buffer :url url)))
 
-#+nyxt-3-pre-release-2
+#+(and nyxt-3 (not nyxt-3-pre-release-1))
 (ffi-add-context-menu-command
- 'open-in-nosave-buffer
+ (lambda ()
+   (when (url-at-point (current-buffer))
+     (make-nosave-buffer :url (url-at-point (current-buffer)))))
  "Open Link in New Nosave Buffer")
 
 #+(and nyxt-gtk nyxt-3)
@@ -140,7 +142,7 @@ A poor man's hsplit :)"
   "Make a new buffer with a user-chosen context and a URL under pointer."
   (make-buffer-with-context :url (url-at-point (current-buffer))))
 
-#+nyxt-3-pre-release-2
+#+(and nyxt-3 (not nyxt-3-pre-release-1))
 (ffi-add-context-menu-command
  'make-new-buffer-with-url-and-context
  "Open Link in New Buffer with Context")
@@ -157,7 +159,7 @@ A poor man's hsplit :)"
                  :buffer panel))
   "")
 
-#+nyxt-3-pre-release-2
+#+(and nyxt-3 (not nyxt-3-pre-release-1))
 (ffi-add-context-menu-command
  'search-translate-selection
  "Translate Selection")
@@ -170,7 +172,7 @@ A poor man's hsplit :)"
                        :fill (ffi-buffer-copy (current-buffer)))
         (nyxt/autofill-mode::autofills (current-mode :autofill))))
 
-#+nyxt-3-pre-release-2
+#+(and nyxt-3 (not nyxt-3-pre-release-1))
 (ffi-add-context-menu-command
  'add-autofill
  "Add Temporary Autofill")
