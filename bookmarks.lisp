@@ -1,0 +1,11 @@
+(
+(:url "https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API" :title "Web Audio API - Web APIs | MDN" :date "2022-10-09T16:55:38.556411Z" :tags ("api" "audio" "web"))
+(:url "https://esolangs.org/wiki/Brainfuck_algorithms" :title "Brainfuck algorithms - Esolang" :date "2022-12-02T18:48:07.933090Z" :tags ("algorithm" "brainfuck"))
+(:url "https://json-schema.org/draft/2020-12/json-schema-core.html#name-regular-expressions" :title "JSON Schema: A Media Type for Describing JSON Documents" :date "2022-10-07T20:43:00.190863Z" :tags ("json" "reference" "schema"))
+(:url "https://parenscript.common-lisp.dev/reference.html" :title "Parenscript Reference Manual" :date "2022-12-20T11:52:29.894787Z" :tags ("code" "javascript" "lisp" "parenscript"))
+(:url "https://port70.net/~nsz/c/c89/c89-draft.html" :title "The C89 Draft" :date "2023-01-01T11:27:24.881003Z" :tags ("c" "reference"))
+(:url "https://react-icons.github.io/react-icons/" :title "React Icons" :date "2022-11-16T17:29:39.108986Z")
+(:url "https://therules.ru/" :title "Правила русского языка" :date "2022-12-23T13:19:26.235136Z")
+(:url "https://webkitgtk.org/reference/webkit2gtk/2.4.2/" :title "WebKit2GTK+ Reference Manual: WebKit2GTK+ Reference Manual" :date "2022-11-17T08:53:57.998591Z" :tags ("manual" "reference"))
+(:url "https://www.defmacro.org/ramblings/lisp.html" :title "defmacro - The Nature of Lisp" :date "2022-10-08T09:42:16.555816Z" :tags ("code" "data" "lisp"))
+)

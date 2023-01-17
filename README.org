@@ -67,6 +67,15 @@ in your init.lisp.
 * A KeePassXC configuration (passwd.lisp) 
 This used to contain a =setup-keepassxc= function to setup KeePassXC to better work with built-in password interface. Now this function is merged upstream as part of this password interface, so what's left is just a simple re-configuration of defaults.
 
+* Bookmarks relocation (bookmarks.lisp)
+
+This is a file with all my bookmarks, Git-synced across devices. The snippet (in init.lisp) that enables it is:
+#+begin_src lisp
+  (defmethod files:resolve ((profile nyxt:nyxt-profile) (file nyxt/bookmark-mode:bookmarks-file))
+    (uiop:parse-unix-namestring "~/.config/nyxt/bookmarks.lisp"))
+#+end_src
+
+
 * Ace editor inside Nyxt (ace.lisp)
 
 This configures [[https://github.com/atlas-engineer/nx-ace][nx-ace]] to work as a default =editor-mode=. To enable it, you need to use
