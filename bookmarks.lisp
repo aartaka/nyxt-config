@@ -53,4 +53,5 @@
 (:url "https://www.w3.org/TR/activitystreams-core/" :title "Activity Streams 2.0" :date "2022-04-14T15:16:43.540925Z" :tags ("activity" "activitypub" "implementations" "streams"))
 (:url "https://www.w3.org/TR/activitystreams-vocabulary/" :title "Activity Vocabulary" :date "2022-04-27T18:04:04.424005Z" :tags ("activitypub"))
 (:url "https://www.w3.org/TR/annotation-model/" :title "Web Annotation Data Model" :date "2022-06-26T09:23:32.706389Z" :tags ("annotation" "web"))
+ (:url "https://project-mage.org/" :title "Project Mage" :date "2023-01-19T16:16:34.517878Z" :tags ("lisp"))
 )
