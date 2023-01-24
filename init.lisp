@@ -69,7 +69,9 @@ Why the variable? Because it's too much hassle copying it everywhere.")
           *debug-autofill*)))
 
 (define-configuration browser
-  (#+nyxt-2
+  ;; Enable --remote --eval code evaluation.
+  ((remote-execution-p t)
+   #+nyxt-2
    (autofills *autofills*)
    (external-editor-program
     (list "emacsclient" "-cn" "-a" "" "-F"
