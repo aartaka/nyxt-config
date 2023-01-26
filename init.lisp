@@ -175,6 +175,9 @@ Why the variable? Because it's too much hassle copying it everywhere.")
      ;; Use Unifont for pictograms.
      (webkit:webkit-settings-pictograph-font-family settings) "Unifont")))
 
+(defmethod files:resolve ((profile nyxt:nyxt-profile) (file nyxt/bookmark-mode:bookmarks-file))
+  #p"~/.config/nyxt/bookmarks.lisp")
+
 ;; This is to strip UTM-parameters of all the links. Upstream Nyxt
 ;; doesn't have it because it may break some websites.
 #+nyxt-3
