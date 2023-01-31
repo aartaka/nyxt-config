@@ -176,3 +176,14 @@ A poor man's hsplit :)"
 (ffi-add-context-menu-command
  'add-autofill
  "Add Temporary Autofill")
+
+#+nyxt-3
+(defmethod nyxt:value->html :around ((value string) &optional compact-p)
+  (declare (ignorable compact-p))
+  (if (html-string-p value)
+      (spinneret:with-html-string
+        (:label
+         (:raw (call-next-method))
+         (:br)
+         (:raw value)))
+      (call-next-method)))
