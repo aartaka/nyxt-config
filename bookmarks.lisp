@@ -23,6 +23,7 @@
 (:url "https://htmlreference.io/" :title "HTML Reference - A free guide to all HTML elements and attributes." :date "2022-05-04T11:10:42.900064Z" :tags ("html" "reference"))
 (:url "unpdf:https://standards.scheme.org/unofficial/errata-corrected-r6rs.pdf" :title "Revised^6 Report on the Algorithmic Language Scheme (PDF)" :date "2022-09-06T13:24:12.992572Z" :tags ("lisp" "reference" "scheme" "standard"))
 (:url "unpdf:https://standards.scheme.org/unofficial/errata-corrected-r7rs.pdf" :title "Revised^7 Report on the Algorithmic Language Scheme (PDF)" :date "2022-09-06T13:25:00.062370Z" :tags ("lisp" "reference" "scheme" "standard"))
+(:url "https://jacobian.org/2009/nov/10/what-to-write/" :title "What to write - Jacob Kaplan-Moss" :date "2023-01-30T16:49:25.620080Z" :tags ("documentation" "reference" "tutorial"))
 (:url "https://join-lemmy.org/docs/en/federation/lemmy_protocol.html" :title "Lemmy Protocol - Lemmy Documentation" :date "2022-04-20T10:47:11.816267Z" :tags ("activitypub" "community" "user"))
 (:url "https://json-schema.org/draft/2020-12/json-schema-core.html#name-regular-expressions" :title "JSON Schema: A Media Type for Describing JSON Documents" :date "2022-10-07T20:43:00.190863Z" :tags ("json" "reference" "schema"))
 (:url "https://justine.lol/lambda/" :title "Lambda Calculus in 383 Bytes" :date "2022-03-15T19:33:08.796871Z" :tags ("code" "lambda" "sectorlambda"))
