@@ -51,6 +51,7 @@
 (:url "https://webkitgtk.org/reference/jsc-glib/stable/index.html" :title "JavaScriptCore GLib Reference Manual: JavaScriptCore GLib Reference Manual" :date "2022-01-11T10:49:00.437108Z")
 (:url "https://webkitgtk.org/reference/webkit2gtk/stable/index.html" :title "WebKitGTK Reference Manual: WebKitGTK Reference Manual" :date "2021-11-22T05:13:25.505081Z")
 (:url "https://www.andy.works/words/the-most-satisfying-checkbox" :title "The World's Most Satisfying Checkbox | (Not Boring) Software" :date "2022-06-19T09:13:02.933562Z" :tags ("design" "feel" "game"))
+(:url "https://www.asciitable.com/" :title "ASCII Table - ASCII Character Codes, HTML, Octal, Hex, Decimal" :date "2023-02-03T13:19:20.994031Z" :tags ("ascii" "brainfuck" "code" "encoding" "text"))
 (:url "https://www.ceginformacio.hu/cr9311525305_EN" :title "POZZO & POZZO Kft. short credit report, official company document download" :date "2023-02-02T19:31:14.768465Z")
 (:url "https://www.defmacro.org/ramblings/lisp.html" :title "defmacro - The Nature of Lisp" :date "2022-10-08T09:42:16.555816Z" :tags ("code" "data" "lisp"))
 (:url "https://www.jcchouinard.com/reddit-api/" :title "Reddit API with Python (Complete Guide) - JC Chouinard" :date "2022-03-25T06:29:04.193778Z" :tags ("api" "reddit"))
