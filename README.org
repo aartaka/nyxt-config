@@ -37,9 +37,7 @@ A good example of how you can redefine mode keybinding there! There's also a por
 
 * Alternative format for status-buffer (status.lisp)
 
-I don't like the default wordy version of status-buffer (especially with long mode names), so I define my own =laconic-format-status= to make modeline a bit more minimalistic. Several helper functions (=laconic-format-status-*=) are there to make things easier.
-
-It's currently all commented out as Nyxt's status bar is a moving target that I cannot fully track.
+I don't like the default wordy version of status-buffer (especially with long mode names), so I define my own styles and layouts to make it lighter.
 
 This can evolve into an extension someday.
 
