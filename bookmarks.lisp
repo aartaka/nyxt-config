@@ -48,6 +48,8 @@
 (:url "https://techblog.willshouse.com/2012/01/03/most-common-user-agents/" :title "Most Common User Agents - Tech Blog (wh)" :date "2022-03-16T04:59:49.597708Z" :tags ("agents" "common" "user"))
 (:url "https://therules.ru/" :title "Правила русского языка" :date "2022-12-23T13:19:26.235136Z")
 (:url "https://trac.webkit.org/wiki" :title "WebKit" :date "2022-03-20T14:17:47.302767Z" :tags ("webkit" "wiki"))
+(:url "https://trac.webkit.org/wiki/EnvironmentVariables" :title "EnvironmentVariables – WebKit" :date "2023-02-06T09:27:41.234757Z" :tags ("environment" "nyxt" "reference" "webkit"))
+(:url "https://tree-sitter.github.io/tree-sitter/" :title "Tree-sitter｜Introduction" :date "2023-02-06T20:45:20.749655Z" :tags ("brainfuck" "c" "lisp" "nyxt" "parser" "syntax"))
 (:url "https://webkitgtk.org/reference/jsc-glib/stable/index.html" :title "JavaScriptCore GLib Reference Manual: JavaScriptCore GLib Reference Manual" :date "2022-01-11T10:49:00.437108Z")
 (:url "https://webkitgtk.org/reference/webkit2gtk/stable/index.html" :title "WebKitGTK Reference Manual: WebKitGTK Reference Manual" :date "2021-11-22T05:13:25.505081Z")
 (:url "https://www.andy.works/words/the-most-satisfying-checkbox" :title "The World's Most Satisfying Checkbox | (Not Boring) Software" :date "2022-06-19T09:13:02.933562Z" :tags ("design" "feel" "game"))
