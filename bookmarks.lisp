@@ -3,6 +3,7 @@
 (:url "https://aybuben.com/armenian-writers" :title "Армянские Писатели | Հայ Գրողներ" :date "2022-03-23T15:33:54.540461Z" :tags ("armenian"))
 (:url "https://clos-mop.hexstreamsoft.com/concepts/#funcallable-instances" :title "Chapter 5: Concepts | CLOS MOP specification" :date "2022-09-05T13:35:37.129245Z" :tags ("class" "function" "generic" "lisp"))
 (:url "https://code.golf/" :title "Code Golf" :date "2023-01-25T18:13:19.877444Z" :tags ("brainfuck" "code" "game" "golf"))
+(:url "https://codeberg.org/fediverse/delightful-activitypub-development" :title "fediverse/delightful-activitypub-development: A curated list of developer resources related to ActivityPub and the Fediverse. - delightful-activitypub-development - Codeberg.org" :date "2023-02-12T15:20:24.328527Z" :tags ("activity" "activitypub" "browser"))
 (:url "https://composerprogrammer.com/teaching/supercollider/sctutorial/tutorial.html" :title "SuperCollider tutorial by Nick Collins" :date "2022-03-27T10:51:03.904602Z" :tags ("lisp" "supercollider"))
 (:url "https://crackmes.one/" :title "Crackmes" :date "2022-05-30T19:12:22.872483Z")
 (:url "https://cssreference.io/" :title "CSS Reference - A free visual guide to CSS" :date "2022-05-04T11:10:54.373436Z" :tags ("css" "reference"))
