@@ -19,6 +19,7 @@
 (define-configuration nyxt/auto-mode:auto-mode ((glyph "α")))
 (define-configuration nyxt/cruise-control-mode:cruise-control-mode ((glyph "σ")))
 
+;; Remove most of the status elements but URL and modes.
 #+nyxt-3
 (define-configuration status-buffer
   ((style (str:concat
@@ -27,18 +28,7 @@
              `("#controls,#tabs"
                :display none !important))))))
 
-(local-time:reread-timezone-repository)
-
-#+nyxt-3
-(defmethod format-status-modes :around ((status status-buffer))
-  (spinneret:with-html-string
-    (:raw (call-next-method))
-    (:span (format nil "| ~2d:~2d"
-                   (local-time:timestamp-hour
-                    (local-time:now)
-                    :timezone (local-time:find-timezone-by-location-name "Asia/Yerevan"))
-                   (local-time:timestamp-minute (local-time:now))))))
-
+;; A fancier load status.
 #+nyxt-3
 (defmethod format-status-load-status ((status status-buffer))
   (spinneret:with-html-string
