@@ -1,5 +1,6 @@
 (
 (:url "https://activitypub.rocks/" :title "ActivityPub Rocks!" :date "2022-04-12T16:29:20.722346Z" :tags ("activitypub" "social" "web"))
+(:url "http://collapseos.org/" :title "Collapse OS — Bootstrap post-collapse technology")
 (:url "https://aybuben.com/armenian-writers" :title "Армянские Писатели | Հայ Գրողներ" :date "2022-03-23T15:33:54.540461Z" :tags ("armenian"))
 (:url "https://clos-mop.hexstreamsoft.com/concepts/#funcallable-instances" :title "Chapter 5: Concepts | CLOS MOP specification" :date "2022-09-05T13:35:37.129245Z" :tags ("class" "function" "generic" "lisp"))
 (:url "https://code.golf/" :title "Code Golf" :date "2023-01-25T18:13:19.877444Z" :tags ("brainfuck" "code" "game" "golf"))
@@ -19,6 +20,7 @@
 (:url "https://gemini.circumlunar.space/docs/" :title "Gemini protocol documentation" :date "2022-01-10T18:24:52.946648Z" :tags ("gemini"))
 (:url "https://gist.github.com/jrosco/661ec0afe46a0cad459887645c03d452/" :title "Lenovo Yoga 13 tablet mode / auto rotation script (ubuntu/debian)" :date "2021-10-13T11:59:48.855877Z")
 (:url "https://github.com/CodyReichert/awesome-cl" :title "CodyReichert/awesome-cl: A curated list of awesome Common Lisp frameworks, libraries and other shiny stuff." :date "2022-05-08T13:08:11.360941Z" :tags ("libraries" "lisp"))
+(:url "https://github.com/jdorfman/awesome-json-datasets" :title "jdorfman/awesome-json-datasets: A curated list of awesome JSON datasets that don't require authentication." :date "2023-02-20T18:54:36.983868Z" :tags ("awesome" "json"))
 (:url "https://github.com/jubalh/awesome-package-maintainer" :title "jubalh/awesome-package-maintainer: How to become a packager" :date "2023-02-17T13:32:36.397487Z" :tags ("build" "package"))
 (:url "https://github.com/kdeldycke/awesome-falsehood" :title "kdeldycke/awesome-falsehood: 😱 Falsehoods Programmers Believe in" :date "2023-02-17T13:32:52.638478Z" :tags ("falsehoods" "programmers"))
 (:url "https://github.com/massung/json" :title "massung/json: JSON parser for Common Lisp" :date "2023-02-17T13:32:17.268398Z" :tags ("json" "lisp" "parser"))
@@ -47,6 +49,7 @@
 (:url "https://project-mage.org/" :title "Project Mage" :date "2023-01-19T16:16:34.517878Z" :tags ("lisp"))
 (:url "https://puredata.info/docs/developer/PdFileFormat" :title "PdFileFormat — Pd Community Site" :date "2022-03-31T11:55:13.607558Z" :tags ("puredata" "reference"))
 (:url "https://react-icons.github.io/react-icons/" :title "React Icons" :date "2022-11-16T17:29:39.108986Z")
+(:url "https://sabracrolleton.github.io/json-review#shasht" :title "Review of CL Json Libraries UPDATED 1 Feb 2022" :date "2023-02-20T19:25:32.921729Z" :tags ("json" "libraries"))
 (:url "https://sbcl.org/manual/index.html" :title "SBCL 2.3.0 User Manual" :date "2023-01-25T11:28:40.927320Z" :tags ("lisp" "reference"))
 (:url "https://shields.io/" :title "Shields.io: Quality metadata badges for open source projects" :date "2022-04-11T17:29:26.050641Z" :tags ("badges"))
 (:url "https://standards.scheme.org/unofficial/errata-corrected-r6rs/r6rs.html" :title "Revised^6 Report on the Algorithmic Language Scheme" :date "2022-09-06T13:25:43.635668Z" :tags ("lisp" "reference" "scheme" "standard"))
