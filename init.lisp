@@ -63,6 +63,7 @@ loads."
 (load-after-system* :nx-kaomoji "kaomoji")
 (load-after-system* :nx-ace "ace.lisp")
 #+nyxt-2 (load-after-system* :slynk "slynk")
+(load-after-system* :nx-fruit)
 (load-after-system* :nx-freestance-handler "freestance")
 #+nyxt-3 (load-after-system* :nx-dark-reader "dark-reader")
 
