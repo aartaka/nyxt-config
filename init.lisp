@@ -44,14 +44,20 @@ Why the variable? Because it's too much hassle copying it everywhere.")
 ;;; and adding a `load-after-system' (Nyxt 2) /
 ;;; `define-nyxt-user-system-and-load' (Nyxt 3) line mentioning a
 ;;; config file for this extension.
-(defmacro load-after-system* (system file)
+(defmacro load-after-system* (system &optional file)
+  "Helper macro to load configuration for extensions.
+Loads a newly-generated ASDF system depending on SYSTEM.
+FILE, if provided, is loaded after the generated system successfully
+loads."
   #+nyxt-2
-  `(load-after-system ,system (nyxt-init-file ,(if (str:ends-with-p ".lisp" file)
-                                                   file
-                                                   (str:concat file ".lisp"))))
+  `(load-after-system ,system ,@(when file
+                                  `((nyxt-init-file ,(if (str:ends-with-p ".lisp" file)
+                                                         file
+                                                         (str:concat file ".lisp"))))))
   #+nyxt-3
   `(define-nyxt-user-system-and-load ,(gensym "NYXT-USER/")
-     :depends-on (,system) :components (,file)))
+     :depends-on (,system) ,@(when file
+                               `(:components (,file)))))
 
 (load-after-system* :nx-search-engines "search-engines")
 (load-after-system* :nx-kaomoji "kaomoji")
