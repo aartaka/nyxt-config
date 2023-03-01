@@ -177,6 +177,14 @@ A poor man's hsplit :)"
  'add-autofill
  "Add Temporary Autofill")
 
+#+(and nyxt-3 (not nyxt-3-pre-release-1))
+(ffi-add-context-menu-command
+ (lambda ()
+   (let ((url (url-at-point (current-buffer))))
+     (nyxt/bookmark-mode:bookmark-add
+      url :title (fetch-url-title url))))
+ "Bookmark this URL")
+
 #+nyxt-3
 (defmethod nyxt:value->html :around ((value string) &optional compact-p)
   (declare (ignorable compact-p))
