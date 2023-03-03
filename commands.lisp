@@ -99,7 +99,12 @@ $ lspci -v
   "Duplicate the current buffer URL in the panel buffer on the right.
 
 A poor man's hsplit :)"
-  (setf (ffi-window-panel-buffer-width (current-window) panel) 550)
+  (setf
+   #-(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
+   (ffi-window-panel-buffer-width (current-window) panel)
+   #+(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
+   (ffi-width panel)
+   550)
   (run-thread "URL loader"
     (sleep 0.3)
     (buffer-load (quri:uri url) :buffer panel))
@@ -108,15 +113,27 @@ A poor man's hsplit :)"
 #+nyxt-3
 (define-command-global close-all-panels ()
   "Close all the panel buffers there are."
-  (when (panel-buffers-right (current-window))
-    (delete-panel-buffer :window (current-window) :panels (panel-buffers-right (current-window))))
-  (when (panel-buffers-left (current-window))
-    (delete-panel-buffer :window (current-window) :panels (panel-buffers-left (current-window)))))
+  (alexandria:when-let ((panels (#-(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
+                                 panel-buffers-right
+                                 #+(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
+                                 nyxt/renderer/gtk:panel-buffers-right
+                                 (current-window))))
+    (delete-panel-buffer :window (current-window) :panels panels))
+  (alexandria:when-let ((panels (#-(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
+                                 panel-buffers-left
+                                 #+(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
+                                 nyxt/renderer/gtk:panel-buffers-left
+                                 (current-window))))
+    (delete-panel-buffer :window (current-window) :panels panels)))
 
 #+nyxt-3
 (define-command-global hsplit ()
   "Based on `hsplit-panel' above."
-  (if (panel-buffers-right (current-window))
+  (if (#-(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
+       panel-buffers-right
+       #+(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
+       nyxt/renderer/gtk:panel-buffers-right
+       (current-window))
       (close-all-panels)
       (hsplit-internal)))
 
@@ -140,9 +157,13 @@ A poor man's hsplit :)"
 #+(and nyxt-gtk nyxt-3)
 (define-command-global make-new-buffer-with-url-and-context ()
   "Make a new buffer with a user-chosen context and a URL under pointer."
-  (make-buffer-with-context :url (url-at-point (current-buffer))))
+  (#-(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
+   make-buffer-with-context
+   #+(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
+   nyxt/renderer/gtk:make-buffer-with-context
+   :url (url-at-point (current-buffer))))
 
-#+(and nyxt-3 (not nyxt-3-pre-release-1))
+#+(and nyxt-gtk nyxt-3 (not nyxt-3-pre-release-1))
 (ffi-add-context-menu-command
  'make-new-buffer-with-url-and-context
  "Open Link in New Buffer with Context")
@@ -151,7 +172,11 @@ A poor man's hsplit :)"
 (define-panel-command-global search-translate-selection (&key (selection (ffi-buffer-copy (current-buffer))))
     (panel "*Translate panel*" :right)
   "Open the translation of the selected word in a panel buffer."
-  (setf (ffi-window-panel-buffer-width (current-window) panel) 550)
+  (setf
+   #-(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
+   (ffi-window-panel-buffer-width (current-window) panel)
+   #+(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
+   (ffi-width panel) 550)
   (run-thread "search translation URL loader"
     (sleep 0.3)
     (buffer-load (quri:uri (format nil (nyxt::search-url (nyxt::default-search-engine))
