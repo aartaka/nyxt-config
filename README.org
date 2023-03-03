@@ -13,6 +13,7 @@ This loads other configuration files:
   - status.lisp,
   - style.lisp,
   - commands.lisp,
+  - hsplit.lisp,
   - unpdf.lisp;
 - and extension-dependent:
   - ace.lisp
@@ -50,6 +51,10 @@ Right now it uses the 3.0 =theme= library (made by yours truly :P). If you're on
 * Additional commands (commands.lisp)
 
 I lack some things in Nyxt, like the ability to evaluate arbitrary Lisp expression without a REPL (there used to be a command for that in 1.5, but it was phased out) and horisontal split , so I hack those with some possibly non-portable things and internal Nyxt APIs. It's mostly 3.*-only.
+
+* Hacky hsplit (hsplit.lisp)
+
+It's too useful to have hsplit to not implement a hacky one based on panel buffers :P
 
 * A barebones PDF text reader (unpdf.lisp)
 
