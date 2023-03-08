@@ -70,6 +70,7 @@
 (:url "https://trac.webkit.org/wiki/EnvironmentVariables" :title "EnvironmentVariables – WebKit" :date "2023-02-06T09:27:41.234757Z" :tags ("environment" "nyxt" "reference" "webkit"))
 (:url "https://tree-sitter.github.io/tree-sitter/" :title "Tree-sitter｜Introduction" :date "2023-02-06T20:45:20.749655Z" :tags ("brainfuck" "c" "lisp" "nyxt" "parser" "syntax"))
 (:url "https://webkitgtk.org/reference/jsc-glib/stable/index.html" :title "JavaScriptCore GLib Reference Manual: JavaScriptCore GLib Reference Manual" :date "2022-01-11T10:49:00.437108Z")
+(:url "https://webkitgtk.org/reference/webkit2gtk-web-extension/stable/index.html" :title "WebKit2WebExtension – 4.1" :date "2023-03-08T08:19:25.856638Z" :tags ("reference" "web" "webkit"))
 (:url "https://webkitgtk.org/reference/webkit2gtk/stable/index.html" :title "WebKitGTK Reference Manual: WebKitGTK Reference Manual" :date "2021-11-22T05:13:25.505081Z")
 (:url "https://www.accessible-social.com/" :title "Accessible Social" :date "2023-03-01T10:04:56.321770Z")
 (:url "https://www.andy.works/words/the-most-satisfying-checkbox" :title "The World's Most Satisfying Checkbox | (Not Boring) Software" :date "2022-06-19T09:13:02.933562Z" :tags ("design" "feel" "game"))
