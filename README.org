@@ -15,6 +15,7 @@ This loads other configuration files:
   - commands.lisp,
   - hsplit.lisp,
   - unpdf.lisp;
+  - objdump.lisp;
 - and extension-dependent:
   - ace.lisp
   - kaomoji.lisp
@@ -59,6 +60,10 @@ It's too useful to have hsplit to not implement a hacky one based on panel buffe
 * A barebones PDF text reader (unpdf.lisp)
 
 This one leverages Nyxt 3.* improved request processing to redirect any PDF file I load to a separate buffer, where its text is parsed with ~pdftotext~. I like ~pdftotext~ (even if it's quite chaotic at times), so why not extend this passion to Nyxt? :P
+
+* Experiments with objdump (objdump.lisp)
+
+I cherish a dream of getting into reverse engineering, and ~objdump~ seems to be a good and simple utility to get one's feet wet. Thus, this simple ~objdump~ command to display section contents as a webpage.
 
 * Lots of search engines for different things (search-engines.lisp)
 This file has actually evolved from small configuration to an extension: [[https://github.com/aartaka/nx-search-engines][nx-search-engines]], so now it's basically an extension configuration. To use it, you need to do

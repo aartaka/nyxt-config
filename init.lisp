@@ -27,7 +27,7 @@ Why the variable? Because it's too much hassle copying it everywhere.")
 ;;; Can be done individually per file, dolist is there to simplify it.
 #+nyxt-3
 (define-nyxt-user-system-and-load nyxt-user/basic-config
-  :components ("keybinds" "passwd" "status" "commands" "hsplit" "style" "unpdf"))
+  :components ("keybinds" "passwd" "status" "commands" "hsplit" "style" "unpdf" "objdump"))
 #+nyxt-2
 (dolist (file (list
                (nyxt-init-file "keybinds.lisp")
