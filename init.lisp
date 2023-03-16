@@ -27,7 +27,7 @@ Why the variable? Because it's too much hassle copying it everywhere.")
 ;;; Can be done individually per file, dolist is there to simplify it.
 #+nyxt-3
 (define-nyxt-user-system-and-load nyxt-user/basic-config
-  :components ("keybinds" "passwd" "status" "commands" "hsplit" "style" "unpdf" "objdump"))
+  :components ("keybinds" "passwd" "status" "commands" "hsplit" "style" "unpdf" "objdump" "github"))
 #+nyxt-2
 (dolist (file (list
                (nyxt-init-file "keybinds.lisp")
@@ -72,8 +72,7 @@ loads."
                 #+nyxt-3 #'nyxt/autofill-mode:make-autofill
                 args)))
   (defvar *autofills*
-    (list (construct-autofill :name "Crunch" :fill "Ну что, кранчим сегодня в Дискорде?")
-          *debug-autofill*)))
+    (list (construct-autofill :name "Crunch" :fill "Ну что, кранчим сегодня в Дискорде?"))))
 
 (define-configuration browser
   ;; Enable --remote --eval code evaluation.
