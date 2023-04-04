@@ -100,9 +100,6 @@ loads."
   ;; Nyxt-native Dexador-based download engine. I don't remember why
   ;; I switched, though.
   ((download-engine :renderer)
-   ;; I'm weak on the eyes, so I want everything to be a bit
-   ;; zoomed-in.
-   (current-zoom-ratio 1.25)
    ;; I don't like search completion when I don't need it.
    #+nyxt-3
    (search-always-auto-complete-p nil)))
