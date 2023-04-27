@@ -95,6 +95,13 @@ loads."
                     #+nyxt-3 ,@%slot-value%
                     #+nyxt-2 ,@%slot-default%))))
 
+;; Make the attribute widths adjust to the content in them. It's not
+;; exactly necessary on master, because there are more or less
+;; intuitive default widths, but these are sometimes inefficient.
+#+(and nyxt-3 (not nyxt-3-pre-release-1) (not nyxt-3-pre-release-2) (not nyxt-3-pre-release-3))
+(define-configuration prompt-buffer
+  ((dynamic-attribute-width-p t)))
+
 (define-configuration web-buffer
   ;; This overrides download engine to use WebKit instead of
   ;; Nyxt-native Dexador-based download engine. I don't remember why
