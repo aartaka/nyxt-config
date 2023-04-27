@@ -11,7 +11,12 @@
       (list
        "C-c C-c" 'approve-pull-request
        "C-c C-m" 'new-feature-request
-       "C-c C-k" 'report-bug)))))
+       "C-c C-k" 'report-bug
+       "C-c C-r" 'review
+       "C-c C-0" 'notifications)))))
+
+(define-command notifications ()
+  (buffer-load "https://github.com/notifications"))
 
 (defvar *debug-autofill*
   (make-instance
@@ -92,25 +97,28 @@ $ lspci -v
          #-(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:peval
          (ps:chain (nyxt/ps:qs document "#issue_body") (focus))))))
 
+(define-command review ()
+  "Open the file diffing tab of the pull request."
+  (unless (search "/files" (render-url (url (current-buffer))))
+    (let ((files-url (quri:copy-uri
+                      (url (current-buffer))
+                      :path (str:concat (string-right-trim "/" (quri:uri-path url))
+                                        "/files"))))
+      (buffer-load files-url))))
+
 (define-command approve-pull-request ()
   "Approve the pull request currently open."
-  (let* ((url (url (current-buffer)))
-         (url (quri:copy-uri
-               url :path (str:concat (string-right-trim "/" (quri:uri-path url))
-                                     "/files")))
-         (approval-buffer (make-background-buffer :url url)))
-    (hooks:once-on (buffer-loaded-hook approval-buffer)
-        (buffer)
-      ;; Make sure Nyxt DOM is fresh.
-      (update-document-model :buffer buffer)
-      (flet ((sel (selector)
-               (elt (clss:select selector  (document-model buffer)) 0)))
-        ;; Nyxt/DOM already has lots of things, so why not use them?
-        (nyxt/dom:toggle-details-element (sel "#review-changes-modal"))
-        (nyxt/dom:click-element (sel "input[type=radio][value=approve]"))
-        (nyxt/dom:click-element (sel "button[type=submit]")))
-      (sleep 0.5)
-      (ffi-buffer-delete buffer))))
+  (review)
+  (hooks:wait-on (buffer-loaded-hook (current-buffer))
+      buffer
+    ;; Make sure Nyxt DOM is fresh.
+    (update-document-model :buffer buffer)
+    (flet ((sel (selector)
+             (elt (clss:select selector  (document-model buffer)) 0)))
+      ;; Nyxt/DOM already has lots of things, so why not use them?
+      (nyxt/dom:toggle-details-element (sel "#review-changes-modal"))
+      (nyxt/dom:click-element (sel "input[type=radio][value=approve]"))
+      (nyxt/dom:click-element (sel "button[type=submit]")))))
 
 (define-auto-rule '(match-domain "github.com")
   :included '(github-mode))
