@@ -18,6 +18,9 @@
 (define-command notifications ()
   (buffer-load "https://github.com/notifications"))
 
+(define-command nyxt ()
+  (buffer-load "https://github.com/atlas-engineer/nyxt"))
+
 (defvar *debug-autofill*
   (make-instance
    'nyxt/autofill-mode:autofill
