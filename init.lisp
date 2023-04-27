@@ -142,6 +142,10 @@ loads."
    ;; Same as default except it doesn't hint images
    (nyxt/hint-mode:hints-selector "a, button, input, textarea, details, select")))
 
+#+(and nyxt-3 (not nyxt-3-pre-release-1) (not nyxt-3-pre-release-2))
+(define-configuration nyxt/history-mode:history-mode
+  ((nyxt/history-mode:backtrack-to-hubs-p t)))
+
 ;;; This makes auto-rules to prompt me about remembering this or that
 ;;; mode when I toggle it.
 #+(or nyxt-2 nyxt-3-pre-release-1)
