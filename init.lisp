@@ -159,28 +159,32 @@ loads."
 ;;; configure Nyxt. See
 ;;; https://webkitgtk.org/reference/webkit2gtk/stable/WebKitSettings.html
 ;;; for the full list of settings you can tweak this way.
-(defmethod ffi-buffer-make :after ((buffer buffer))
-  (let* ((settings (webkit:webkit-web-view-get-settings
-                    ;; It's not exactly 3.*, it's rather
-                    ;; 3-pre-release-3+, but I'm too lazy to conjure
-                    ;; this complexity right now.
-                    #+nyxt-3 (nyxt/renderer/gtk::gtk-object buffer)
-                    #+nyxt-2 (nyxt::gtk-object buffer))))
-    (setf
-     ;; Resizeable textareas. It's not perfect, but still a cool feature to have.
-     (webkit:webkit-settings-enable-resizable-text-areas settings) t
-     ;; Write console errors/warnings to the shell, to ease debugging.
-     (webkit:webkit-settings-enable-write-console-messages-to-stdout settings) t
-     ;; "Inspect element" context menu option available at any moment.
-     (webkit:webkit-settings-enable-developer-extras settings) t
-     ;; Use Cantarell-18 as the default font.
-     (webkit:webkit-settings-default-font-family settings) "Cantarell"
-     (webkit:webkit-settings-default-font-size settings) 18
-     ;; Use Hack-17 as the monospace font.
-     (webkit:webkit-settings-monospace-font-family settings) "Hack"
-     (webkit:webkit-settings-default-monospace-font-size settings) 17
-     ;; Use Unifont for pictograms.
-     (webkit:webkit-settings-pictograph-font-family settings) "Unifont"))
+(defmethod ffi-buffer-make :after ((buffer #+nyxt-3 nyxt/renderer/gtk::gtk-buffer
+                                           #+nyxt-2 nyxt::gtk-buffer))
+  (when (slot-boundp
+         buffer #+nyxt-3 'nyxt/renderer/gtk::gtk-object
+         #+nyxt-2 'nyxt::gtk-object)
+      (let* ((settings (webkit:webkit-web-view-get-settings
+                        ;; It's not exactly 3.*, it's rather
+                        ;; 3-pre-release-3+, but I'm too lazy to conjure
+                        ;; this complexity right now.
+                        #+nyxt-3 (nyxt/renderer/gtk::gtk-object buffer)
+                        #+nyxt-2 (nyxt::gtk-object buffer))))
+        (setf
+         ;; Resizeable textareas. It's not perfect, but still a cool feature to have.
+         (webkit:webkit-settings-enable-resizable-text-areas settings) t
+         ;; Write console errors/warnings to the shell, to ease debugging.
+         (webkit:webkit-settings-enable-write-console-messages-to-stdout settings) t
+         ;; "Inspect element" context menu option available at any moment.
+         (webkit:webkit-settings-enable-developer-extras settings) t
+         ;; Use Cantarell-18 as the default font.
+         (webkit:webkit-settings-default-font-family settings) "Cantarell"
+         (webkit:webkit-settings-default-font-size settings) 18
+         ;; Use Hack-17 as the monospace font.
+         (webkit:webkit-settings-monospace-font-family settings) "Hack"
+         (webkit:webkit-settings-default-monospace-font-size settings) 17
+         ;; Use Unifont for pictograms.
+         (webkit:webkit-settings-pictograph-font-family settings) "Unifont")))
   ;; Set the view background to black.
   (cffi:foreign-funcall
    "webkit_web_view_set_background_color"
