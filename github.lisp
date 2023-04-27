@@ -5,7 +5,8 @@
 
 (nyxt:define-mode github-mode ()
   "Manage Nyxt GitHub repository with convenient keybindings."
-  ((keyscheme-map
+  ((glyph "γ")
+   (keyscheme-map
     (define-keyscheme-map "github-mode" ()
       keyscheme:emacs
       (list
