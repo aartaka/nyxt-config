@@ -103,11 +103,13 @@ $ lspci -v
 
 (define-command review ()
   "Open the file diffing tab of the pull request."
-  (unless (search "/files" (render-url (url (current-buffer))))
-    (let ((files-url (quri:copy-uri
-                      (url (current-buffer))
-                      :path (str:concat (string-right-trim "/" (quri:uri-path url))
-                                        "/files"))))
+  (let* ((url (url (current-buffer)))
+         (files-url (quri:copy-uri
+                     url
+                     :path (str:concat (string-right-trim "/" (quri:uri-path url))
+                                       "/files"))))
+    (unless (or (search "/files" (render-url url))
+                (string/= "github.com" (quri:uri-domain url)))
       (buffer-load files-url))))
 
 (define-command approve-pull-request ()
