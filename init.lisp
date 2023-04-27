@@ -210,9 +210,12 @@ loads."
 ;; doesn't have it because it may break some websites.
 #+nyxt-3
 (define-configuration nyxt/reduce-tracking-mode:reduce-tracking-mode
+  ;; Remove all the UTM params.
   ((nyxt/reduce-tracking-mode:query-tracking-parameters
     (append '("utm_source" "utm_medium" "utm_campaign" "utm_term" "utm_content")
-            %slot-value%))))
+            %slot-value%))
+   ;; Mimic Chrome on MacOS.
+   (nyxt/reduce-tracking-mode:preferred-user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36")))
 
 ;; Enable Nyxt-internal debugging, but only in binary mode and after
 ;; startup if done (there are conditions raised at startup, and I
