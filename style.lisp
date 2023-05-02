@@ -26,7 +26,7 @@
 ;;; Dark-mode is a simple mode for simple HTML pages to color those in
 ;;; a darker palette. I don't like the default gray-ish colors,
 ;;; though. Thus, I'm overriding those to be a bit more laconia-like.
-(define-configuration nyxt/style-mode:dark-mode
+(define-configuration :dark-mode
   ((style
     #+(and nyxt-3 (not (or nyxt-2 nyxt-3-pre-release-1)))
     (theme:themed-css (theme *browser*)
