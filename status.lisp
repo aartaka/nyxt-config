@@ -5,19 +5,19 @@
 (define-configuration status-buffer
   ((glyph-mode-presentation-p t)))
 
-(define-configuration nyxt/force-https-mode:force-https-mode ((glyph "ϕ")))
+(define-configuration :force-https-mode ((glyph "ϕ")))
 #+nyxt-3
-(define-configuration nyxt/user-script-mode:user-script-mode ((glyph "u")))
-(define-configuration nyxt/blocker-mode:blocker-mode ((glyph "β")))
-(define-configuration nyxt/proxy-mode:proxy-mode ((glyph "π")))
-(define-configuration nyxt/reduce-tracking-mode:reduce-tracking-mode
+(define-configuration :user-script-mode ((glyph "u")))
+(define-configuration :blocker-mode ((glyph "β")))
+(define-configuration :proxy-mode ((glyph "π")))
+(define-configuration :reduce-tracking-mode
   ((glyph "τ")))
-(define-configuration nyxt/certificate-exception-mode:certificate-exception-mode
+(define-configuration :certificate-exception-mode
   ((glyph "χ")))
-(define-configuration nyxt/style-mode:style-mode ((glyph "ϕ")))
+(define-configuration :style-mode ((glyph "ϕ")))
 #+(or nyxt-2 nyxt-3-pre-release-1)
 (define-configuration nyxt/auto-mode:auto-mode ((glyph "α")))
-(define-configuration nyxt/cruise-control-mode:cruise-control-mode ((glyph "σ")))
+(define-configuration :cruise-control-mode ((glyph "σ")))
 
 ;; Remove most of the status elements but URL and modes.
 #+nyxt-3

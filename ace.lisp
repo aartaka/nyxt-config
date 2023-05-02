@@ -155,5 +155,9 @@
                :color ,theme:on-background))))
    (nx-ace::keybindings "ace/keyboard/emacs")))
 
-(define-configuration nyxt/editor-mode::editor-buffer
+(define-configuration
+    #+(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+  nyxt/editor-mode::editor-buffer
+  #-(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+  nyxt/mode/editor::editor-buffer
   ((default-modes `(nx-ace:ace-mode ,@%slot-value%))))

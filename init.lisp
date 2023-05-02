@@ -12,12 +12,12 @@
     (load quicklisp-init)))
 
 (defvar *web-buffer-modes*
-  '(nyxt/emacs-mode:emacs-mode
+  '(:emacs-mode
     #+(or nyxt-2 nyxt-3-pre-release-1) nyxt/auto-mode:auto-mode
-    nyxt/blocker-mode:blocker-mode nyxt/force-https-mode:force-https-mode
-    nyxt/reduce-tracking-mode:reduce-tracking-mode
-    #+nyxt-3 nyxt/user-script-mode:user-script-mode
-    #+nyxt-3 nyxt/bookmarklets-mode:bookmarklets-mode)
+    :blocker-mode :force-https-mode
+    :reduce-tracking-mode
+    #+nyxt-3 :user-script-mode
+    #+nyxt-3 :bookmarklets-mode)
   "The modes to enable in web-buffer by default.
 Extension files (like dark-reader.lisp) are to append to this list.
 
@@ -68,8 +68,12 @@ loads."
 #+nyxt-3 (load-after-system* :nx-dark-reader "dark-reader")
 
 (flet ((construct-autofill (&rest args)
-         (apply #+nyxt-2 #'make-autofill
-                #+nyxt-3 #'nyxt/autofill-mode:make-autofill
+         (apply #+nyxt-2
+                #'make-autofill
+                #+(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+                #'nyxt/autofill-mode:make-autofill
+                #-(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+                #'nyxt/mode/autofill:make-autofill
                 args)))
   (defvar *autofills*
     (list (construct-autofill :name "Crunch" :fill "Ну что, кранчим сегодня в Дискорде?"))))
@@ -85,13 +89,17 @@ loads."
 
 ;;; Autofils are abstracted into a mode of their own on 3.*.
 #+nyxt-3
-(define-configuration nyxt/autofill-mode:autofill-mode
-  ((nyxt/autofill-mode:autofills *autofills*)))
+(define-configuration :autofill-mode
+  ((autofills *autofills*)))
 
 ;;; Those are settings that every type of buffer should share.
-(define-configuration (web-buffer prompt-buffer nyxt/editor-mode:editor-buffer)
+(define-configuration (web-buffer prompt-buffer
+                                  #+(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+                                  nyxt/editor-mode:editor-buffer
+                                  #+(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+                                  nyxt/mode/editor:editor-buffer)
   ;; Emacs keybindings.
-  ((default-modes `(nyxt/emacs-mode:emacs-mode
+  ((default-modes `(:emacs-mode
                     #+nyxt-3 ,@%slot-value%
                     #+nyxt-2 ,@%slot-default%))))
 
@@ -134,7 +142,7 @@ loads."
 
 ;;; Enable proxy in nosave (private, incognito) buffers.
 (define-configuration nosave-buffer
-  ((default-modes `(nyxt/proxy-mode:proxy-mode
+  ((default-modes `(:proxy-mode
                     ,@*web-buffer-modes*
                     #+nyxt-3 ,@%slot-value%
                     #+nyxt-2 ,@%slot-default%))))
@@ -144,14 +152,12 @@ loads."
 (define-configuration nyxt/web-mode:web-mode
   ((nyxt/web-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")))
 #+nyxt-3
-(define-configuration nyxt/hint-mode:hint-mode
-  ((nyxt/hint-mode:hints-alphabet "DSJKHLFAGNMXCWEIO")
-   ;; Same as default except it doesn't hint images
-   (nyxt/hint-mode:hints-selector "a, button, input, textarea, details, select")))
+(define-configuration :hint-mode
+  ((hints-alphabet "DSJKHLFAGNMXCWEIO")))
 
 #+(and nyxt-3 (not nyxt-3-pre-release-1) (not nyxt-3-pre-release-2))
-(define-configuration nyxt/history-mode:history-mode
-  ((nyxt/history-mode:backtrack-to-hubs-p t)))
+(define-configuration :history-mode
+  ((backtrack-to-hubs-p t)))
 
 ;;; This makes auto-rules to prompt me about remembering this or that
 ;;; mode when I toggle it.
@@ -184,6 +190,8 @@ loads."
          (webkit:webkit-settings-enable-write-console-messages-to-stdout settings) t
          ;; "Inspect element" context menu option available at any moment.
          (webkit:webkit-settings-enable-developer-extras settings) t
+         ;; Enable WebRTC.
+         (webkit:webkit-settings-enable-media-stream settings) t
          ;; Use Cantarell-18 as the default font.
          (webkit:webkit-settings-default-font-family settings) "Cantarell"
          (webkit:webkit-settings-default-font-size settings) 18
@@ -203,19 +211,23 @@ loads."
              ;; red green blue alpha
              :initial-contents '(0d0 0d0 0d0 1d0))))
 
-(defmethod files:resolve ((profile nyxt:nyxt-profile) (file nyxt/bookmark-mode:bookmarks-file))
+(defmethod files:resolve ((profile nyxt:nyxt-profile)
+                          #+(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+                          (file nyxt/bookmark-mode:bookmarks-file)
+                          #-(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+                          (file nyxt/mode/bookmark:bookmarks-file))
   #p"~/.config/nyxt/bookmarks.lisp")
 
 ;; This is to strip UTM-parameters of all the links. Upstream Nyxt
 ;; doesn't have it because it may break some websites.
 #+nyxt-3
-(define-configuration nyxt/reduce-tracking-mode:reduce-tracking-mode
+(define-configuration :reduce-tracking-mode
   ;; Remove all the UTM params.
-  ((nyxt/reduce-tracking-mode:query-tracking-parameters
+  ((query-tracking-parameters
     (append '("utm_source" "utm_medium" "utm_campaign" "utm_term" "utm_content")
             %slot-value%))
    ;; Mimic Chrome on MacOS.
-   (nyxt/reduce-tracking-mode:preferred-user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36")))
+   (preferred-user-agent "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36")))
 
 ;; Enable Nyxt-internal debugging, but only in binary mode and after
 ;; startup if done (there are conditions raised at startup, and I

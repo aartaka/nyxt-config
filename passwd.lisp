@@ -15,9 +15,9 @@
 (define-configuration buffer
   ((password-interface (make-instance 'password:user-keepassxc-interface))))
 #+nyxt-3
-(define-configuration nyxt/password-mode:password-mode
-  ((nyxt/password-mode:password-interface (make-instance 'password:keepassxc-interface))))
+(define-configuration :password-mode
+  ((password-interface (make-instance 'password:keepassxc-interface))))
 #+nyxt-3
 (define-configuration buffer
-  ((default-modes (append `(nyxt/password-mode:password-mode) %slot-value%))))
+  ((default-modes (append `(:password-mode) %slot-value%))))
 

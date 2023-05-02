@@ -12,9 +12,13 @@
     (echo "~S" (eval (read-from-string expression-string)))))
 
 #+(and nyxt-3 (not nyxt-3-pre-release-1))
-(nyxt/bookmarklets-mode:define-bookmarklet-command-global post-to-hn
-  "Post the link you're currently on to Hacker News"
-  "window.location=\"https://news.ycombinator.com/submitlink?u=\" + encodeURIComponent(document.location) + \"&t=\" + encodeURIComponent(document.title)")
+(#+(or 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+ nyxt/bookmarklets-mode:define-bookmarklet-command-global
+   #-(or 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+   nyxt/mode/bookmarklets:define-bookmarklet-command-global
+   post-to-hn
+   "Post the link you're currently on to Hacker News"
+   "window.location=\"https://news.ycombinator.com/submitlink?u=\" + encodeURIComponent(document.location) + \"&t=\" + encodeURIComponent(document.title)")
 
 (define-command-global open-in-nosave-buffer ()
   "Make a new nosave buffer with URL at point."
@@ -63,13 +67,20 @@
  'search-translate-selection
  "Translate Selection")
 
-#+nyxt-3
+#+(and nyxt-3 (or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6))
 (define-command-global add-autofill ()
   "Add an autofill with the selected text to the list of `autofill-mode' autofills."
   (push (make-instance 'nyxt/autofill-mode:autofill
                        :name (prompt1 :prompt "Autofill key" :sources 'prompter:raw-source)
                        :fill (ffi-buffer-copy (current-buffer)))
         (nyxt/autofill-mode::autofills (current-mode :autofill))))
+#+nyxt-3
+(define-command-global add-autofill ()
+  "Add an autofill with the selected text to the list of `autofill-mode' autofills."
+  (push (make-instance 'nyxt/mode/autofill:autofill
+                       :name (prompt1 :prompt "Autofill key" :sources 'prompter:raw-source)
+                       :fill (ffi-buffer-copy (current-buffer)))
+        (nyxt/mode/autofill::autofills (current-mode :autofill))))
 
 #+(and nyxt-3 (not nyxt-3-pre-release-1))
 (ffi-add-context-menu-command
@@ -80,7 +91,10 @@
 (ffi-add-context-menu-command
  (lambda ()
    (let ((url (url-at-point (current-buffer))))
-     (nyxt/bookmark-mode:bookmark-add
+     (#+(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+      nyxt/bookmark-mode:bookmark-add
+      #-(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+      nyxt/mode/bookmark:bookmark-add
       url :title (fetch-url-title url))))
  "Bookmark this URL")
 

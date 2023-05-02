@@ -14,7 +14,6 @@
 (define-configuration browser
   ((theme (make-instance
            'theme:theme
-           :dark-p t
            :background-color "black"
            :on-background-color "white"
            :accent-color "#CD5C5C"

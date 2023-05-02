@@ -82,5 +82,9 @@ elsewhere, thus I need this command."
 (define-configuration web-buffer
   ((request-resource-hook (hooks:add-hook %slot-value% 'redirect-pdf))))
 
+#+(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
 (define-configuration nyxt/file-manager-mode:file-source
   ((nyxt/file-manager-mode:supported-media-types `("pdf" ,@%slot-value%))))
+#-(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+(define-configuration nyxt/mode/file-manager:file-source
+  ((supported-media-types `("pdf" ,@%slot-value%))))

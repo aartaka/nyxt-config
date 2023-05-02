@@ -3,7 +3,11 @@
 (define-internal-page-command-global objdump (&key (file (uiop:native-namestring
                                                           (prompt1 :prompt "File to disassemble"
                                                                    :input (uiop:native-namestring (uiop:getcwd))
-                                                                   :sources 'nyxt/file-manager-mode:file-source))))
+                                                                   :sources
+                                                                   #+(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+                                                                   'nyxt/file-manager-mode:file-source
+                                                                   #-(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+                                                                   'nyxt/mode/file-manager:file-source))))
     (buffer (format nil "Objdump of ~a" file))
   "Show disassembly of code sections and contents of data sections in FILE."
   (spinneret:with-html-string
