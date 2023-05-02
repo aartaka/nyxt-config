@@ -21,9 +21,14 @@
 
 ;; nyxt/web-mode: is the package prefix. Usually is just nyxt/ and mode name.
 ;; Think of it as Emacs' package prefixes e.g. `org-' in `org-agenda' etc.
+;;
+;; UPD: in Nyxt 3-pre-release-7+ it's nyxt/mode/*: prefix. But you can
+;; use shorthand keyword, like :document-mode now.
 (define-configuration
-    (#+nyxt-2 nyxt/web-mode:web-mode
-     #+nyxt-3 nyxt/document-mode:document-mode)
+    (#+nyxt-2
+     nyxt/web-mode:web-mode
+     #+nyxt-3
+     :document-mode)
   ((#+nyxt-2 keymap-scheme
     #+nyxt-3 keyscheme-map
     (alter-keyscheme
@@ -39,12 +44,12 @@
       "C-c y" 'autofill
       "C-f"
       #+nyxt-2 'nyxt/web-mode:history-forwards-maybe-query
-      #+nyxt-3 'nyxt/history-mode:history-forwards-maybe-query
-      "C-i" 'nyxt/input-edit-mode:input-edit-mode
+      #+nyxt-3 :history-forwards-maybe-query
+      "C-i" #+nyxt-3 :input-edit-mode
       "M-:" 'eval-expression
       "C-s"
       #+nyxt-2 'nyxt/web-mode:search-buffer
-      #+nyxt-3 'nyxt/search-buffer-mode:search-buffer
+      #+nyxt-3 :search-buffer
       "C-x 3" 'hsplit
       "C-x 1" 'close-all-panels
       "C-'"  (construct-command insert-left-angle-quote ()
@@ -72,7 +77,7 @@
 ;;;
 ;;; Shadowed by Emacs scheme's `nyxt/document-mode:cut' on 3.*.
 #+nyxt-2
-(define-configuration base-mode
+(define-configuration :base-mode
   ((keymap-scheme
     (let ((scheme %slot-default%))
       (keymap:define-key (gethash scheme:cua scheme)
