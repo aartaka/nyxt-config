@@ -22,16 +22,12 @@
 (define-command nyxt ()
   (buffer-load "https://github.com/atlas-engineer/nyxt"))
 
-(defvar *debug-autofill*
-  (make-instance
-   'nyxt/autofill-mode:autofill
-   :name "Debug"
-   :fill (lambda ()
-           (#+(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:ps-eval
-              #-(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:peval
-              (setf (ps:@ document active-element value) ""))
-           (format
-            nil "**Describe the bug**
+(defun debug-autofill ()
+  (#+(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:ps-eval
+     #-(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:peval
+     (setf (ps:@ document active-element value) ""))
+  (format
+   nil "**Describe the bug**
 
 **Precise recipe to reproduce the issue**
 
@@ -68,9 +64,9 @@ $ lspci -v
 ```
 
 **Output when started from a shell** "
-            (uiop:run-program "guix describe"
-                              :output '(:string :stripped t))
-            (nyxt::system-information)))))
+   (uiop:run-program "guix describe"
+                     :output '(:string :stripped t))
+   (nyxt::system-information)))
 
 (define-command report-bug ()
   "Report the bug on Nyxt GitHub, filling all the necessary information in the process."
@@ -85,7 +81,7 @@ $ lspci -v
       (#+(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:ps-eval
          #-(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:peval
          (ps:chain (nyxt/ps:qs document "#issue_body") (focus)))
-      (ffi-buffer-paste buffer (funcall (nyxt/autofill-mode:autofill-fill *debug-autofill*))))))
+      (ffi-buffer-paste buffer (debug-autofill)))))
 
 (define-command new-feature-request ()
   "Open a new feature request in Nyxt repo."
