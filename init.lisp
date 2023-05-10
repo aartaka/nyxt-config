@@ -134,7 +134,11 @@ loads."
   ((default-new-buffer-url "https://github.com")))
 #+nyxt-3
 (define-configuration browser
-  ((default-new-buffer-url (quri:uri "nyxt:nyxt/repl-mode:repl"))))
+  ((default-new-buffer-url (quri:uri
+                            #+(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+                            "nyxt:nyxt/repl-mode:repl"
+                            #-(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
+                            "nyxt:nyxt/mode/repl:repl"))))
 
 ;;; Enable proxy in nosave (private, incognito) buffers.
 (define-configuration nosave-buffer
