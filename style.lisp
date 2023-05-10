@@ -15,12 +15,10 @@
   ((theme (make-instance
            'theme:theme
            :background-color "black"
-           :on-background-color "white"
            :accent-color "#CD5C5C"
+           :accent-alt-color "#6C2429"
            :primary-color "rgb(170, 170, 170)"
-           :on-primary-color "black"
-           :secondary-color "rgb(100, 100, 100)"
-           :on-secondary-color "white"))))
+           :secondary-color "rgb(100, 100, 100)"))))
 
 ;;; Dark-mode is a simple mode for simple HTML pages to color those in
 ;;; a darker palette. I don't like the default gray-ish colors,
