@@ -93,11 +93,7 @@ loads."
   ((autofills *autofills*)))
 
 ;;; Those are settings that every type of buffer should share.
-(define-configuration (web-buffer prompt-buffer
-                                  #+(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
-                                  nyxt/editor-mode:editor-buffer
-                                  #+(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
-                                  nyxt/mode/editor:editor-buffer)
+(define-configuration (modable-buffer prompt-buffer)
   ;; Emacs keybindings.
   ((default-modes `(:emacs-mode
                     #+nyxt-3 ,@%slot-value%
