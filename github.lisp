@@ -116,7 +116,9 @@ $ lspci -v
     ;; Make sure Nyxt DOM is fresh.
     (update-document-model :buffer buffer)
     (flet ((sel (selector)
-             (elt (clss:select selector  (document-model buffer)) 0)))
+             (let ((result (clss:select selector  (document-model buffer))))
+               (unless (uiop:emptyp result)
+                 (elt result 0)))))
       ;; Nyxt/DOM already has lots of things, so why not use them?
       (nyxt/dom:toggle-details-element (sel "#review-changes-modal"))
       (nyxt/dom:click-element (sel "input[type=radio][value=approve]"))
