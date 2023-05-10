@@ -23,13 +23,13 @@ A poor man's hsplit :)"
   (alexandria:when-let ((panels (#-(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
                                  panel-buffers-right
                                  #+(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
-                                 nyxt/renderer/gtk:panel-buffers-right
+                                 nyxt/renderer/gtk::panel-buffers-right
                                  (current-window))))
     (delete-panel-buffer :window (current-window) :panels panels))
   (alexandria:when-let ((panels (#-(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
                                  panel-buffers-left
                                  #+(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
-                                 nyxt/renderer/gtk:panel-buffers-left
+                                 nyxt/renderer/gtk::panel-buffers-left
                                  (current-window))))
     (delete-panel-buffer :window (current-window) :panels panels)))
 
@@ -39,7 +39,7 @@ A poor man's hsplit :)"
   (if (#-(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
        panel-buffers-right
        #+(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
-       nyxt/renderer/gtk:panel-buffers-right
+       nyxt/renderer/gtk::panel-buffers-right
        (current-window))
       #-(and nyxt-3 (not (or nyxt-3-pre-release-2 nyxt-3-pre-release-1)))
       (close-all-panels)
