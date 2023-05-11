@@ -77,6 +77,7 @@
 (:url "https://webkitgtk.org/reference/webkit2gtk-web-extension/stable/index.html" :title "WebKit2WebExtension – 4.1" :date "2023-03-08T08:19:25.856638Z" :tags ("reference" "web" "webkit"))
 (:url "https://webkitgtk.org/reference/webkit2gtk/stable/index.html" :title "WebKitGTK Reference Manual: WebKitGTK Reference Manual" :date "2021-11-22T05:13:25.505081Z")
 (:url "https://wiki.archlinux.org/" :title "ArchWiki" :date "2023-03-04T15:19:39.078393Z" :tags ("linux" "wiki"))
+(:url "https://www-ccs.cs.umass.edu/mw/Mwed00000005.html" :title "Guide to Pronunciation" :date "2023-05-11T11:50:15.048478Z" :tags ("ascii" "dictionary" "documentation" "pronunciation"))
 (:url "https://www-formal.stanford.edu/jmc/recursive/recursive.html" :title "Recursive Functions of Symbolic Expressions and Their Computation by Machine, Part I" :date "2023-03-16T11:29:14.691932Z" :tags ("lisp"))
 (:url "https://www.accessible-social.com/" :title "Accessible Social" :date "2023-03-01T10:04:56.321770Z")
 (:url "http://www.alistapart.com/articles/readspec/" :title "How to Read W3C Specs – A List Apart" :date "2023-03-12T17:07:52.892459Z")
