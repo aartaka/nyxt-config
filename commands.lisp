@@ -108,3 +108,17 @@
          (:br)
          (:raw value)))
       (call-next-method)))
+
+(defun all-clcs-symbol-links ()
+  "Quite a broken function, but it lists at least 654 symbols from CL package."
+  (remove-duplicates
+   (remove-if (complement
+               (lambda (a)
+                 (and
+                  (let ((data (ignore-errors (uiop:safe-read-from-string (plump:text a)))))
+                    (and (symbolp data)
+                         (eq :external (nth-value 1 (find-symbol (symbol-name data) :cl)))))
+                  (not (find #\space (plump:text a))))))
+              (clss:select "a" (plump:parse (dex:get "https://cl-community-spec.github.io/pages/index.html"))))
+   :key (lambda (a)
+          (ignore-errors (uiop:safe-read-from-string (plump:text a))))))
