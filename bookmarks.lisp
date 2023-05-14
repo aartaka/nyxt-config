@@ -57,6 +57,7 @@
 (:url "https://news.ycombinator.com/item?id=33593631" :title "Ask HN: Do you recall any book or course that made a topic finally click? | Hacker News" :date "2023-03-01T10:06:26.589219Z")
 (:url "https://parenscript.common-lisp.dev/reference.html" :title "Parenscript Reference Manual" :date "2022-12-20T11:52:29.894787Z" :tags ("code" "javascript" "lisp" "parenscript"))
 (:url "https://port70.net/~nsz/c/c89/c89-draft.html" :title "The C89 Draft" :date "2023-01-01T11:27:24.881003Z" :tags ("c" "reference"))
+(:url "https://portability.cl/" :title "Common Lisp Portability Library Status" :date "2023-05-12T12:58:44.953269Z" :tags ("ansi" "build" "common" "function" "language" "libraries" "library" "lisp" "package" "syntax" "system"))
 (:url "https://project-mage.org/" :title "Project Mage" :date "2023-01-19T16:16:34.517878Z" :tags ("lisp"))
 (:url "https://puredata.info/docs/developer/PdFileFormat" :title "PdFileFormat — Pd Community Site" :date "2022-03-31T11:55:13.607558Z" :tags ("puredata" "reference"))
 (:url "https://rainworld.miraheze.org/wiki/Broadcasts" :title "Broadcasts - Official Rain World Wiki" :date "2023-05-09T19:56:48.079314Z" :tags ("rainworld"))
