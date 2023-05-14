@@ -63,7 +63,8 @@
       "C-E" (construct-command small-e-with-acute ()
               #+nyxt-3 (ffi-buffer-paste (current-buffer) "é"))
       "C-A" (construct-command small-a-with-acute ()
-              #+nyxt-3 (ffi-buffer-paste (current-buffer) "á"))))))
+              #+nyxt-3 (ffi-buffer-paste (current-buffer) "á"))
+      "C-h hyphen" 'clcs-lookup))))
 
 #+nyxt-2
 (define-configuration nyxt/auto-mode:auto-mode
