@@ -18,7 +18,7 @@
 (:url "https://dev.to/arikaturika/how-web-browsers-work-part-1-with-illustrations-1nid" :title "How web browsers work - navigation (part 1, with illustrations) ⚙️💥 - DEV Community" :date "2022-08-18T17:05:39.676179Z" :tags ("browser" "web"))
 (:url "https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/API" :title "JavaScript APIs - Mozilla | MDN" :date "2022-01-04T06:49:44.836292Z" :tags ("webExtensions"))
 (:url "https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API" :title "Web Audio API - Web APIs | MDN" :date "2022-10-09T16:55:38.556411Z" :tags ("api" "audio" "web"))
-(:url "https://ecl.common-lisp.dev/static/manual/System-building.html#Shared-library" :title "System building (ECL Manual)" :date "2022-08-12T15:22:36.207802Z" :tags ("lisp" "reference"))
+(:url "https://ecl.common-lisp.dev/static/manual/index.html" :title "Top (ECL Manual)" :date "2023-05-18T16:54:29.146495Z" :tags ("lisp" "reference"))
 (:url "https://edicl.github.io/hunchentoot/" :title "Hunchentoot - The Common Lisp web server formerly known as TBNL" :date "2022-06-21T19:30:09.617485Z" :tags ("hunchentoot" "reference"))
 (:url "https://esolangs.org/wiki/Brainfuck_algorithms" :title "Brainfuck algorithms - Esolang" :date "2022-12-02T18:48:07.933090Z" :tags ("algorithm" "brainfuck"))
 (:url "https://futurearmenian.com/" :title "The Future Armenian • Thinking collectively" :date "2022-03-24T18:20:53.976729Z" :tags ("armenia" "future"))
