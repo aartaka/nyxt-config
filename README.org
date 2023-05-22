@@ -2,14 +2,13 @@
 
 This is my repo with small tweaks to Nyxt that make it more comfortable and personal. Things of interest here:
 
-BEWARE: I'm always using most recent Nyxt possible, often building from master branch. While I try to make my configuration portable, I may fail to do so for your version, especially if you're using any version other than latest stable or latest master. In particular, I'm going to drop all Nyxt 2.* configuration after the 3.0.0 release, so clone this if necessary.
+WARNING: I've purged all the configuration for 2.* and 3-pre-releases from here. If you want to use my config for versions below 3.0, look for older commits.
 
-* The hub of configuration (init.lisp for 2.*, config.lisp AND init.lisp for 3.*)
+* The hub of configuration (config.lisp)
 This loads other configuration files:
 - Nyxt-dependent:
   - keybinds.lisp,
   - passwd.lisp,
-  - slynk.lisp,
   - status.lisp,
   - style.lisp,
   - commands.lisp,
@@ -27,15 +26,13 @@ And configures some basic things, like default modes for buffers.
 
 Everything interesting is in other files.
 
-There is also a ~load-after-system*~ portability macro to load system and its configuration file on both Nyxt 2 and Nyxt 3.
-
 * Some custom keybindings (keybinds.lisp)
 
-There are some things that irritate me in default keybindings (like =C-R= in =auto-mode= on 2.*) and I want to unbind/rebind these.
+There are some things that irritate me in default keybindings and I want to unbind/rebind these.
 
 There are some commands that I lack keybindings for (e.g., password management, prompting history movement) and I want to add these.
 
-A good example of how you can redefine mode keybinding there! There's also a portable (between 2.* and 3.*) macro to redefine the whole keymap-schemes — ~alter-keyscheme~.
+A good example of how you can redefine mode keybinding there!
 
 * Alternative format for status-buffer (status.lisp)
 
@@ -47,11 +44,11 @@ This can evolve into an extension someday.
 
 I love dark themes everywhere, and I _don't_ like any colors but red. This have made me to do black-red-and-green [[https://github.com/aartaka/laconia-theme][laconia-theme]]. I'm trying to reproduce it in style.lisp.
 
-Right now it uses the 3.0 =theme= library (made by yours truly :P). If you're on 2.* Nyxt, see 1416f93927f6e91050da82e81dafe37e3e713ebf for the way of configuration that might work for you.
+Right now it uses the 3.0 =theme= library (made by yours truly :P).
 
 * Additional commands (commands.lisp)
 
-I lack some things in Nyxt, like the ability to evaluate arbitrary Lisp expression without a REPL (there used to be a command for that in 1.5, but it was phased out) and horisontal split , so I hack those with some possibly non-portable things and internal Nyxt APIs. It's mostly 3.*-only.
+I lack some things in Nyxt, like the ability to evaluate arbitrary Lisp expression without a REPL (there used to be a command for that in 1.5, but it was phased out) and horisontal split, so I hack those with some possibly non-portable things and internal Nyxt APIs.
 
 * Hacky hsplit (hsplit.lisp)
 
@@ -68,11 +65,12 @@ I cherish a dream of getting into reverse engineering, and ~objdump~ seems to be
 * Lots of search engines for different things (search-engines.lisp)
 This file has actually evolved from small configuration to an extension: [[https://github.com/aartaka/nx-search-engines][nx-search-engines]], so now it's basically an extension configuration. To use it, you need to do
 #+BEGIN_SRC lisp
-(load-after-system* :nx-search-engines (nyxt-init-file "search-engines.lisp"))
+  (define-nyxt-user-system-and-load "nyxt-user/search-engines"
+    :depends-on (:nx-search-engines) (:components "search-engines.lisp"))
 #+END_SRC
 in your init.lisp.
 
-* A KeePassXC configuration (passwd.lisp) 
+* A KeePassXC configuration (passwd.lisp)
 This used to contain a =setup-keepassxc= function to setup KeePassXC to better work with built-in password interface. Now this function is merged upstream as part of this password interface, so what's left is just a simple re-configuration of defaults.
 
 * Bookmarks relocation (bookmarks.lisp)
@@ -83,12 +81,12 @@ This is a file with all my bookmarks, Git-synced across devices. The snippet (in
     (uiop:parse-unix-namestring "~/.config/nyxt/bookmarks.lisp"))
 #+end_src
 
-
 * Ace editor inside Nyxt (ace.lisp)
 
 This configures [[https://github.com/atlas-engineer/nx-ace][nx-ace]] to work as a default =editor-mode=. To enable it, you need to use
 #+BEGIN_SRC lisp
-(load-after-system* :nx-ace (nyxt-init-file "ace.lisp"))
+  (define-nyxt-user-system-and-load "nyxt-user/search-engines"
+    :depends-on (:nx-ace) (:components "ace.lisp"))
 #+END_SRC
 in your init.lisp.
 
@@ -101,12 +99,10 @@ over-emotional responses everywhere!
 This file is simply a keybinding configuration.
 To enable nx-kaomoji, you need to use
 #+BEGIN_SRC lisp
-(load-after-system* :nx-kaomoji (nyxt-init-file "kaomoji.lisp"))
+  (define-nyxt-user-system-and-load "nyxt-user/search-engines"
+    :depends-on (:nx-kaomoji) (:components "kaomoji.lisp"))
 #+END_SRC
 in your init.lisp.
-
-* Using SLY with Nyxt (slynk.lisp)
-This is a simple copy-paste from the [[https://github.com/atlas-engineer/nyxt/blob/master/documents/README.org#sly][developer manual]], nothing interesting.
 
 * Redirections to free alternatives for Twitter/YouTube
 I rely on [[https://github.com/kssytsrk/nx-freestance-handler][kssytsrk/nx-freestance-handler]] here. It's mostly plug-n-play, so not much configuration there.

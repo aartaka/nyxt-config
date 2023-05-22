@@ -145,19 +145,10 @@
   ((style (str:concat
            %slot-value%
            (theme:themed-css (theme *browser*)
-             #+nyxt-3-pre-release-1
-             ("#kbshortcutmenu"
-              :background-color theme:background
-              :color theme:on-background)
-             #+(and nyxt-3 (not nyxt-3-pre-release-1))
              `("#kbshortcutmenu"
                :background-color ,theme:background
                :color ,theme:on-background))))
    (nx-ace::keybindings "ace/keyboard/emacs")))
 
-(define-configuration
-    #+(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
-  nyxt/editor-mode::editor-buffer
-  #-(or 3-pre-release-1 3-pre-release-2 3-pre-release-3 3-pre-release-4 3-pre-release-5 3-pre-release-6)
-  nyxt/mode/editor::editor-buffer
+(define-configuration :editor-buffer
   ((default-modes `(nx-ace:ace-mode ,@%slot-value%))))

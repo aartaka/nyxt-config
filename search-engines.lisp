@@ -3,8 +3,6 @@
 ;;;; This is a file with settings for my nx-search-engines extension.
 ;;;; You can find it at https://github.com/aartaka/nx-search-engines
 
-;;; My DDG settings, shared between the usual, image-search and other
-;;; types of DuckDuckGo.
 (defvar *duckduckgo-keywords*
   '(:theme :dark
     :help-improve-duckduckgo nil
@@ -23,9 +21,11 @@
     :header-behavior :on-fixed
     :font :helvetica
     :background-color "000000"
-    :center-alignment t))
+    :center-alignment t)
+  "My DDG settings, shared between the usual, image-search and other
+types of DuckDuckGo.")
 
-(define-configuration #+nyxt-2 buffer #+nyxt-3 context-buffer
+(define-configuration :context-buffer
   ((search-engines (list
                     ;; engines: is a prefix for `nx-search-engines',
                     ;; it only works if you load nx-search-engines.
@@ -58,10 +58,6 @@
                                         #'> :key (alexandria:curry
                                                   #'prompter::score-suggestion-string input)))))
                     (engines:wikipedia :shortcut "w")
-                    (engines:arch)
-                    (engines:arch-aur)
-                    (engines:debian)
-                    (engines:pkgs)
                     (make-instance 'search-engine
                                    :shortcut "yi"
                                    :search-url "https://yandex.ru/images/search?text=~a"
@@ -70,8 +66,6 @@
                                    :shortcut "y"
                                    :search-url "https://yandex.com/search/?text=~a"
                                    :fallback-url (quri:uri "https://yandex.com/search/"))
-                    (engines:wordnet :shortcut "wn"
-                                     :show-word-frequencies t)
                     (engines:google :shortcut "g"
                                     :safe-search nil)
                     (engines:google-scholar :shortcut "gs")
@@ -92,13 +86,3 @@
                     (engines:hacker-news :shortcut "hn")
                     (apply #'engines:duckduckgo
                            :shortcut "d" *duckduckgo-keywords*)))))
-
-;;; Deprecated nx-search-engines features.
-
-;; (define-configuration engines:search-engines-mode
-;;   ((engines::search-engine (apply #'engines:duckduckgo *duckduckgo-keywords*))
-;;    (engines::image-search-engine (apply #'engines:duckduckgo-images *duckduckgo-keywords*))
-;;    (glyph "σ")))
-
-;; (define-configuration web-buffer
-;;   ((default-modes `(engines:search-engines-mode ,@%slot-default%))))
