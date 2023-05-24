@@ -77,7 +77,12 @@ Dexador-based download engine. I don't remember why I switched,
 though.")
    (search-always-auto-complete-p
     nil
-    :doc "I don't like search completion when I don't need it.")))
+    :doc "I don't like search completion when I don't need it.")
+   (global-history-p
+    t
+    :doc "It was disabled after 2.2.4, while being a useful feature.
+I'm forcing it here, because I'm getting lost in buffer-local
+histories otherwise...")))
 
 (define-configuration :prompt-buffer
   ((hide-single-source-header-p
@@ -107,12 +112,7 @@ more minimalist, but those are internal APIs :(")))
     t
     :doc "I often browse with \"hub\" places, like GitHub notifications page.
 Having all the links it leads to to be forward children of it is useful.
-The feature is slightly experimental, though.")
-   (global-history-p
-    t
-    :doc "It was disabled after 2.2.4, while being a useful feature.
-I'm forcing it here, because I'm getting lost in buffer-local
-histories otherwise...")))
+The feature is slightly experimental, though.")))
 
 (define-configuration :modable-buffer
   "This makes auto-rules to prompt me about remembering this or that mode when I toggle it."
