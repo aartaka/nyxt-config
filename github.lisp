@@ -124,5 +124,12 @@ $ lspci -v
       (nyxt/dom:click-element (sel "input[type=radio][value=approve]"))
       (nyxt/dom:click-element (sel "button[type=submit]")))))
 
+(define-command done ()
+  (let* ((buttons (clss:select "button" (document-model (current-buffer))))
+         (done-button (find "Done" buttons
+                            :key (compose #'sera:trim-whitespace #'plump:text)
+                            :test #'string=)))
+    (nyxt/dom:click-element done-button)))
+
 (define-auto-rule '(match-domain "github.com")
   :included '(github-mode))
