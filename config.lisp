@@ -177,3 +177,14 @@ Upstream Nyxt doesn't have it because it may break some websites.")
 (unless nyxt::*run-from-repl-p*
   (define-configuration :browser
     ((after-startup-hook (hooks:add-hook %slot-value% #'toggle-debug-on-error)))))
+
+(defun request-log (request-data)
+  (log:debug "~:@(~a~) ~a (~@[~*toplevel~]~@[~*resource~]) ~{~&~a~}"
+             (http-method request-data) (url request-data)
+             (toplevel-p request-data) (resource-p request-data)
+             (request-headers request-data))
+  request-data)
+
+(define-configuration :web-buffer
+  ((request-resource-hook
+    (hooks:add-hook %slot-value% #'request-log))))
