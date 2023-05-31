@@ -29,4 +29,6 @@
                    (ffi-buffer-paste (current-buffer) "é"))
            "C-A" (lambda-command small-a-with-acute ()
                    (ffi-buffer-paste (current-buffer) "á"))
+           "C-I" (lambda-command small-i-diaeresis ()
+                   (ffi-buffer-paste (current-buffer) "ï"))
            "C-h hyphen" 'clcs-lookup)))))

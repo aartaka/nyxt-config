@@ -52,14 +52,17 @@ loads."
 
 (define-configuration :autofill-mode
   "Setting up autofills."
-  ((autofills (list (nyxt/mode/autofill:make-autofill
-                     :name "Crunch" :fill "Ну что, кранчим сегодня в Дискорде?")))))
+  ((autofills (flet ((autofill (name fill)
+                               (nyxt/mode/autofill:make-autofill :name name :fill fill)))
+                    (list (autofill "naive" "naïve")
+                          (autofill "andre" "André")
+                          (autofill "ala" "a-lá")
+                          (autofill "let" "laisser-faire"))))))
 
 ;;; Those are settings that every type of buffer should share.
 (define-configuration (:modable-buffer :prompt-buffer :editor-buffer)
   "Set up Emacs keybindings everywhere possible."
   ((default-modes `(:emacs-mode ,@%slot-value%))))
-
 
 (define-configuration :prompt-buffer
   "Make the attribute widths adjust to the content in them.
