@@ -43,6 +43,7 @@
 (:url "https://guix.gnu.org/manual/en/guix.html" :title "GNU Guix Reference Manual" :date "2023-05-25T10:39:06.867643Z" :tags ("guix" "reference"))
 (:url "https://guix.gnu.org/manual/en/html_node/Build-Systems.html" :title "Build Systems (GNU Guix Reference Manual)" :date "2023-02-01T16:08:32.273671Z" :tags ("build" "reference" "system"))
 (:url "https://guix.gnu.org/manual/en/html_node/Services.html" :title "Services (GNU Guix Reference Manual)" :date "2023-02-01T16:08:05.614690Z" :tags ("configuration" "guix" "os" "services" "system"))
+(:url "https://hipster.home.xs4all.nl/lib/scheme/gauche/define-syntax-primer.txt" :date "2023-05-30T13:46:11.113565Z" :tags ("lisp" "reference"))
 (:url "https://html.spec.whatwg.org/" :title "HTML Standard" :date "2023-03-12T17:08:50.389118Z")
 (:url "https://htmlreference.io/" :title "HTML Reference - A free guide to all HTML elements and attributes." :date "2022-05-04T11:10:42.900064Z" :tags ("html" "reference"))
 (:url "unpdf:https://standards.scheme.org/unofficial/errata-corrected-r6rs.pdf" :title "Revised^6 Report on the Algorithmic Language Scheme (PDF)" :date "2022-09-06T13:24:12.992572Z" :tags ("lisp" "reference" "scheme" "standard"))
