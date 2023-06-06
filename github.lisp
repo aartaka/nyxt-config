@@ -125,7 +125,9 @@ $ lspci -v
       (nyxt/dom:click-element (sel "button[type=submit]")))))
 
 (define-command done ()
-  (let* ((button (elt (clss:select "button[type=\"submit\"][title=\"Done\"]" (document-model (current-buffer))) 0)))
+  (let* ((button (elt (clss:select "button[type=\"submit\"][title=\"Done\"],
+button[type=\"submit\"][aria-label=\"Done\"]"
+                                   (document-model (current-buffer))) 0)))
     (nyxt/dom:click-element button)))
 
 (define-auto-rule '(match-domain "github.com")
