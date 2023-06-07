@@ -181,13 +181,14 @@ There are conditions raised at startup, and I don't want to catch
 those, hanging my Nyxt)."
     ((after-startup-hook (hooks:add-hook %slot-value% #'toggle-debug-on-error)))))
 
-(defun request-log (request-data)
-  (log:debug "~:@(~a~) ~a (~@[~*toplevel~]~@[~*resource~]) ~{~&~a~}"
-             (http-method request-data) (url request-data)
-             (toplevel-p request-data) (resource-p request-data)
-             (request-headers request-data))
-  request-data)
+;; (defun request-log (request-data)
+;;   (log:debug "~:@(~a~) ~a (~@[~*toplevel~]~@[~*resource~]) ~{~&~a~}"
+;;              (http-method request-data) (url request-data)
+;;              (toplevel-p request-data) (resource-p request-data)
+;;              (request-headers request-data))
+;;   request-data)
 
-(define-configuration :web-buffer
-  ((request-resource-hook
-    (hooks:add-hook %slot-value% #'request-log))))
+;; (define-configuration :web-buffer
+;;   "Request debugging, clutters the shell real fast."
+;;   ((request-resource-hook
+;;     (hooks:add-hook %slot-value% #'request-log))))
