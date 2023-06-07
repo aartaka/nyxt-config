@@ -85,4 +85,10 @@ types of DuckDuckGo.")
                     (engines:invidious :shortcut "yt")
                     (engines:hacker-news :shortcut "hn")
                     (apply #'engines:duckduckgo
-                           :shortcut "d" *duckduckgo-keywords*)))))
+                           :shortcut "d" *duckduckgo-keywords*)
+                    (make-instance
+                     'search-engine
+                     :shortcut "a"
+                     :search-url "https://search.atlas.engineer/searxng/search?q=hello&simple_style=dark&enginetab=1&maintab=1&safesearch=0&autocomplete=google&method=POST&results_on_new_tab=1&q=~a"
+                     :fallback-url (quri:uri "https://search.atlas.engineer")
+                     :completion-function (engines:make-duckduckgo-completion))))))
