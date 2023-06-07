@@ -174,11 +174,11 @@ Upstream Nyxt doesn't have it because it may break some websites.")
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36"
     :doc "Mimic Chrome on MacOS.")))
 
-;; Enable Nyxt-internal debugging, but only in binary mode and after
-;; startup if done (there are conditions raised at startup, and I
-;; don't want to catch those, hanging my Nyxt).
 (unless nyxt::*run-from-repl-p*
   (define-configuration :browser
+    "Enable Nyxt-internal debugging, but only in binary mode and after startup if done.
+There are conditions raised at startup, and I don't want to catch
+those, hanging my Nyxt)."
     ((after-startup-hook (hooks:add-hook %slot-value% #'toggle-debug-on-error)))))
 
 (defun request-log (request-data)
