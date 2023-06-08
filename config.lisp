@@ -53,11 +53,12 @@ loads."
 (define-configuration :autofill-mode
   "Setting up autofills."
   ((autofills (flet ((autofill (name fill)
-                               (nyxt/mode/autofill:make-autofill :name name :fill fill)))
+                       (nyxt/mode/autofill:make-autofill :name name :fill fill)))
                     (list (autofill "naive" "naïve")
                           (autofill "andre" "André")
                           (autofill "ala" "a-lá")
-                          (autofill "let" "laisser-faire"))))))
+                          (autofill "let" "laisser-faire")
+                          (autofill "voila" "Et voilà!"))))))
 
 ;;; Those are settings that every type of buffer should share.
 (define-configuration (:modable-buffer :prompt-buffer :editor-buffer)
