@@ -62,7 +62,16 @@ loads."
 
 ;;; Those are settings that every type of buffer should share.
 (define-configuration (:modable-buffer :prompt-buffer :editor-buffer)
-  "Set up Emacs keybindings everywhere possible."
+  "Set up Emacs keybindings everywhere possible.
+
+If you're the VI person, then use this:
+(define-configuration :web-buffer
+  ((default-modes (append (list :vi-normal-mode) %slot-value%))))
+
+You probably want to stay with CUA in :prompt-buffer, because it's too
+weird using it with VI bindings. But if you're feeling risky, then:
+(define-configuration :prompt-buffer
+  ((default-modes (append (list :vi-insert-mode) %slot-value%))))"
   ((default-modes `(:emacs-mode ,@%slot-value%))))
 
 (define-configuration :prompt-buffer
