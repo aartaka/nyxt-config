@@ -17,7 +17,15 @@
        "C-c C-0" 'notifications)))))
 
 (define-command notifications ()
-  (buffer-load "https://github.com/notifications"))
+  (let* ((notification-links (clss:select "a[href=\"https://github.com/notifications\"]"
+                               (document-model (current-buffer))))
+         (back-to-notifications
+           (unless (uiop:emptyp notification-links)
+             (find-if (lambda (l) (search "Back to notifications" (nyxt/dom:body l)))
+                      notification-links))))
+    (if back-to-notifications
+        (nyxt/dom:click-element back-to-notifications)
+        (buffer-load "https://github.com/notifications"))))
 
 (define-command nyxt ()
   (buffer-load "https://github.com/atlas-engineer/nyxt"))
