@@ -84,6 +84,7 @@ types of DuckDuckGo.")
                     (engines:libgen :shortcut "l")
                     (engines:invidious :shortcut "yt")
                     (engines:hacker-news :shortcut "hn")
+                    (engines:wordnet :shortcut "wn" :show-word-frequencies t)
                     (apply #'engines:duckduckgo
                            :shortcut "d" *duckduckgo-keywords*)
                     (engines:searx
