@@ -53,12 +53,18 @@ loads."
 (define-configuration :autofill-mode
   "Setting up autofills."
   ((autofills (flet ((autofill (name fill)
-                       (nyxt/mode/autofill:make-autofill :name name :fill fill)))
+                       (nyxt/mode/autofill:make-autofill :name name :fill fill))
+                     (done (text)
+                       (lambda ()
+                         (uiop:strcat text " in " (trivial-clipboard:text)))))
                     (list (autofill "naive" "naïve")
                           (autofill "andre" "André")
                           (autofill "ala" "a-lá")
                           (autofill "let" "laisser-faire")
-                          (autofill "voila" "Et voilà!"))))))
+                          (autofill "voila" "Et voilà!")
+                          (autofill "done" (done "Done"))
+                          (autofill "fixed" (done "Fixed"))
+                          (autofill "reverted" (done "Reverted")))))))
 
 ;;; Those are settings that every type of buffer should share.
 (define-configuration (:modable-buffer :prompt-buffer :editor-buffer)
