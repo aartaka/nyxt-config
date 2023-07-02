@@ -11,6 +11,26 @@ BUT: this one lacks error handling, so I often use it for Nyxt-internal debugger
     ;; Message the evaluation result to the message-area down below.
     (echo "~S" (eval (read-from-string expression-string)))))
 
+(define-class unicode-source (prompter:source)
+  ((prompter:name "Unicode character")
+   (prompter:filter-preprocessor #'prompter:filter-exact-matches)
+   (prompter:constructor (lambda ()
+                           (loop for i from 0
+                                 while (ignore-errors (code-char i))
+                                 collect (code-char i))))))
+
+(defmethod prompter:object-attributes ((char character) (source unicode-source))
+  `(("Character" ,(if (graphic-char-p char)
+                      (princ-to-string char)
+                      (format nil "~s" char)))
+    ("Name" ,(char-name char))
+    ("Code" ,(format nil "~D/~:*~X" (char-code char)))))
+
+(define-command-global insert-unicode (&key (character (prompt :prompt "Character to insert"
+                                                               :sources 'unicode-source)))
+  "Insert the chosen Unicode character."
+  (ffi-buffer-paste (string character)))
+
 (nyxt/mode/bookmarklets:define-bookmarklet-command-global
    post-to-hn
    "Post the link you're currently on to Hacker News"
