@@ -6,6 +6,7 @@
 (:url "https://aybuben.com/armenian-writers" :title "Армянские Писатели | Հայ Գրողներ" :date "2022-03-23T15:33:54.540461Z" :tags ("armenian"))
 (:url "https://brainfuck.org/function_tutorial.b" :date "2023-03-01T10:06:32.551396Z")
 (:url "https://ccl.clozure.com/docs/ccl.html" :title "Clozure CL Documentation" :date "2023-05-24T17:37:25.153506Z" :tags ("lisp" "reference"))
+(:url "https://cl-community-spec.github.io/pages/" :title "CL CommunitySpec (CLCS)" :date "2023-07-04T10:51:42.400065Z" :tags ("lisp" "reference" "standard"))
 (:url "https://cl-community-spec.github.io/pages/Debugging-Utilities.html" :title "Debugging Utilities (CLCS)" :date "2023-05-15T16:59:02.939861Z" :tags ("lisp"))
 (:url "https://cl-community-spec.github.io/pages/Type-Relationships.html" :title "Type Relationships (CLCS)" :date "2023-05-24T12:52:16.592536Z" :tags ("lisp" "type"))
 (:url "https://clos-mop.hexstreamsoft.com/concepts/#funcallable-instances" :title "Chapter 5: Concepts | CLOS MOP specification" :date "2022-09-05T13:35:37.129245Z" :tags ("class" "function" "generic" "lisp"))
