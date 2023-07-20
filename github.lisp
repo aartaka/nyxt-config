@@ -31,9 +31,8 @@
   (buffer-load "https://github.com/atlas-engineer/nyxt"))
 
 (defun debug-autofill ()
-  (#+(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:ps-eval
-     #-(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:peval
-     (setf (ps:@ document active-element value) ""))
+  (ps-eval
+   (setf (ps:@ document active-element value) ""))
   (format
    nil "**Describe the bug**
 
@@ -86,9 +85,8 @@ $ lspci -v
                                          title)))))
     (hooks:once-on (buffer-loaded-hook buffer)
         (buffer)
-      (#+(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:ps-eval
-         #-(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:peval
-         (ps:chain (nyxt/ps:qs document "#issue_body") (focus)))
+      (ps-eval
+       (ps:chain (nyxt/ps:qs document "#issue_body") (focus)))
       (ffi-buffer-paste buffer (debug-autofill)))))
 
 (define-command new-feature-request ()
@@ -101,8 +99,7 @@ $ lspci -v
                                          title)))))
     (hooks:once-on (buffer-loaded-hook buffer)
         (buffer)
-      (#+(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:ps-eval
-         #-(and nyxt-3 (not nyxt-3-pre-release-1)) nyxt:peval
+      (ps-eval
          (ps:chain (nyxt/ps:qs document "#issue_body") (focus))))))
 
 (define-command review ()

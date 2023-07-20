@@ -52,7 +52,7 @@ BUT: this one lacks error handling, so I often use it for Nyxt-internal debugger
      (make-nosave-buffer :url (url-at-point (current-buffer)))))
  "Open Link in New Nosave Buffer")
 
-#+(and nyxt-gtk nyxt-3)
+#+nyxt-gtk
 (define-command-global make-new-buffer-with-url-and-context ()
   "Make a new buffer with a user-chosen context and a URL under pointer."
   (nyxt/renderer/gtk:make-buffer-with-context :url (url-at-point (current-buffer))))
