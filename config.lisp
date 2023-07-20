@@ -165,7 +165,7 @@ for the full list of settings you can tweak this way."
        (webkit:webkit-settings-monospace-font-family settings) "Hack"
        (webkit:webkit-settings-default-monospace-font-size settings) 17
        ;; Use Unifont for pictograms.
-       (webkit:webkit-settings-pictograph-font-family settings) "Unifont")))
+       (webkit:webkit-settings-pictograph-font-family settings) "Material Icons")))
   ;; Set the view background to black.
   (cffi:foreign-funcall
    "webkit_web_view_set_background_color"
