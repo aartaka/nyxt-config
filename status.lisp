@@ -24,7 +24,8 @@
 (defmethod format-status-load-status ((status status-buffer))
   "A fancier load status."
   (spinneret:with-html-string
-   (:span (if (web-buffer-p (current-buffer))
+   (:span (if (and (current-buffer)
+                   (web-buffer-p (current-buffer)))
               (case (slot-value (current-buffer) 'nyxt::status)
                     (:unloaded "∅")
                     (:loading "∞")
