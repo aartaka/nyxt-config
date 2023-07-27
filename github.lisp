@@ -25,7 +25,7 @@
                       notification-links))))
     (if back-to-notifications
         (nyxt/dom:click-element back-to-notifications)
-        (buffer-load "https://github.com/notifications"))))
+        (buffer-load "https://github.com/notifications?query=reason:assign%20reason:mention%20reason:review-requested%20reason:team-mention"))))
 
 (define-command nyxt ()
   (buffer-load "https://github.com/atlas-engineer/nyxt"))
