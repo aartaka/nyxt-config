@@ -6,14 +6,24 @@
 
 (define-configuration browser
   "Configuring my reddish theme."
-  ((theme (make-instance
+  ((theme (apply
+           #'make-instance
            'theme:theme
            :background-color "black"
-           :accent-color "#CD5C5C"
-           :accent-alt-color "#6C2429"
+           #+nyxt-4 :action-color
+           #-nyxt-4 :accent-color "#CD5C5C"
            :warning-color "#CEFF00"
            :primary-color "rgb(170, 170, 170)"
-           :secondary-color "rgb(100, 100, 100)"))))
+           :secondary-color "rgb(100, 100, 100)"
+           ;; #-nyxt-4
+           nil
+           ;; #+nyxt-4
+           (list
+            :text-color "#FFF4F3"
+            :contrast-text-color "#250000"
+            :highlight-color "red"
+            :success-color "#2D9402"
+            :codeblock-color "#600101")))))
 
 (define-configuration :dark-mode
   "Dark-mode is a simple mode for simple HTML pages to color those in a darker palette.
@@ -24,20 +34,20 @@ those to be a bit more laconia-like.
 I'm not using this mode, though: I have nx-dark-reader."
   ((style
     (theme:themed-css (theme *browser*)
-                      `(*
-                        :background-color ,(if (theme:dark-p theme:theme)
-                                               theme:background
-                                             theme:on-background)
-                        "!important"
-                        :background-image none "!important"
-                        :color ,(if (theme:dark-p theme:theme)
-                                    theme:on-background
-                                  theme:background)
-                        "!important")
-                      `(a
-                        :background-color ,(if (theme:dark-p theme:theme)
-                                               theme:background
-                                             theme:on-background)
-                        "!important"
-                        :background-image none "!important"
-                        :color ,theme:primary "!important")))))
+      `(*
+        :background-color ,(if (theme:dark-p theme:theme)
+                               theme:background
+                               theme:on-background)
+        "!important"
+        :background-image none "!important"
+        :color ,(if (theme:dark-p theme:theme)
+                    theme:on-background
+                    theme:background)
+        "!important")
+      `(a
+        :background-color ,(if (theme:dark-p theme:theme)
+                               theme:background
+                               theme:on-background)
+        "!important"
+        :background-image none "!important"
+        :color ,theme:primary "!important")))))
