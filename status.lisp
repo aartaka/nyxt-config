@@ -18,8 +18,8 @@
   ((style (str:concat
            %slot-value%
            (theme:themed-css (theme *browser*)
-                             `("#controls,#tabs"
-                               :display none !important))))))
+	     `("#controls,#tabs"
+	       :display none !important))))))
 
 (defmethod format-status-load-status ((status status-buffer))
   "A fancier load status."
