@@ -6,24 +6,27 @@
 
 (define-configuration browser
   "Configuring my reddish theme."
-  ((theme (apply
-           #'make-instance
-           'theme:theme
-           :background-color "black"
-           #+nyxt-4 :action-color
-           #-nyxt-4 :accent-color "#CD5C5C"
-           :warning-color "#CEFF00"
-           :primary-color "rgb(170, 170, 170)"
-           :secondary-color "rgb(100, 100, 100)"
-           ;; #-nyxt-4
-           nil
-           ;; #+nyxt-4
-           (list
-            :text-color "#FFF4F3"
-            :contrast-text-color "#250000"
-            :highlight-color "red"
-            :success-color "#2D9402"
-            :codeblock-color "#600101")))))
+  ((theme
+    ;; theme:+dark-theme+
+    ;; theme:+light-theme+
+    (apply
+     #'make-instance
+     'theme:theme
+     :background-color "black"
+     ;; Will be :action-color in 4.*
+     :accent-color "#CD5C5C"
+     :warning-color "#CEFF00"
+     :primary-color "rgb(170, 170, 170)"
+     :secondary-color "rgb(100, 100, 100)"
+     #-nyxt-4
+     nil
+     #+nyxt-4
+     (list
+      :text-color "#FFF4F3"
+      :contrast-text-color "#250000"
+      :highlight-color "red"
+      :success-color "#2D9402"
+      :codeblock-color "#600101")))))
 
 (define-configuration :dark-mode
   "Dark-mode is a simple mode for simple HTML pages to color those in a darker palette.
