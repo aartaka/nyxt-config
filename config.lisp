@@ -150,6 +150,8 @@ for the full list of settings you can tweak this way."
     (let* ((settings (webkit:webkit-web-view-get-settings
                       (nyxt/renderer/gtk::gtk-object buffer))))
       (setf
+       ;; Spatial navigation to help in non-hint movement.
+       (webkit:webkit-settings-enable-spatial-navigation settings) t
        ;; Resizeable textareas. It's not perfect, but still a cool feature to have.
        (webkit:webkit-settings-enable-resizable-text-areas settings) t
        ;; Write console errors/warnings to the shell, to ease debugging.
