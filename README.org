@@ -1,8 +1,6 @@
 #+TITLE:My Nyxt Configuration Files
 
-This is my repo with small tweaks to Nyxt that make it more comfortable and personal. Things of interest here:
-
-WARNING: I've purged all the configuration for 2.* and 3-pre-releases from here. If you want to use my config for versions below 3.0, look for older commits.
+WARNING: I no longer use Nyxt, so this config is likely to rot and get wildly irrelevant. Proceed with caution.
 
 * The hub of configuration (config.lisp)
 This loads other configuration files:
