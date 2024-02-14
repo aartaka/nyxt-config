@@ -1,6 +1,6 @@
 #+TITLE:My Nyxt Configuration Files
 
-WARNING: I no longer use Nyxt, so this config is likely to rot and get wildly irrelevant. Proceed with caution.
+WARNING: [[https://www.aartaka.me.eu.org/nyxt-to-surf][I no longer use Nyxt]], so this config is likely to rot and get wildly irrelevant. Proceed with caution.
 
 * The hub of configuration (config.lisp)
 This loads other configuration files:
